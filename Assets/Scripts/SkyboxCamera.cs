@@ -13,6 +13,13 @@ public class SkyboxCamera : MonoBehaviour
     [SerializeField]
     float scaleFactor = 20;
 
+    Vector3 _previousPosition;
+
+    private void Start()
+    {
+        _previousPosition = referenceRotation.position;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -21,6 +28,14 @@ public class SkyboxCamera : MonoBehaviour
 
     void UpdateTransform()
     {
+        Vector3 currentPosition = referenceRotation.position;
+        if (currentPosition != this._previousPosition)
+        {
+            this.transform.position += (currentPosition - _previousPosition) * (1 / scaleFactor);
+            this._previousPosition = referenceRotation.position;
+        }
         this.transform.eulerAngles = referenceRotation.eulerAngles;
+
+
     }
 }
