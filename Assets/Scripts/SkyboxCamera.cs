@@ -13,6 +13,9 @@ public class SkyboxCamera : MonoBehaviour
     [SerializeField]
     float scaleFactor = 20;
 
+    [SerializeField]
+    float skyboxRotationSpeed = 0.5f;
+
     Vector3 _previousPosition;
 
     private void Start()
@@ -23,6 +26,7 @@ public class SkyboxCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //RenderSettings.skybox.SetFloat("_Rotation", Time.time * skyboxRotationSpeed);
         UpdateTransform();
     }
 
