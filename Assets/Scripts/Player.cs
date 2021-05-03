@@ -30,12 +30,14 @@ public class Player : MonoBehaviour
     {
         UnlockCursor();
         DisableCameraMovement();
+        DisablePlayerMovement();
     }
 
     private void OnConversationExit()
     {
         LockCursor();
         EnableCameraMovement();
+        EnablePlayerMovement();
     }
 
     private void EnableCameraMovement()
@@ -58,5 +60,15 @@ public class Player : MonoBehaviour
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    void EnablePlayerMovement()
+    {
+        controller.playerCanMove = true;
+    }
+
+    void DisablePlayerMovement()
+    {
+        controller.playerCanMove = false;
     }
 }
