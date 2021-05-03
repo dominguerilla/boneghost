@@ -7,7 +7,7 @@ using DialogueEditor;
 
      private void OnMouseOver()
      {
-         if (Input.GetMouseButtonDown(0))
+         if (!ConversationManager.Instance.IsConversationActive &&  Input.GetMouseButtonDown(0))
          {
             ConversationManager.Instance.StartConversation(Conversation);
          }
