@@ -6,14 +6,14 @@ using DialogueEditor;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField]
-    float interactDistance = 3f;
+    public float interactDistance = 3f;
 
     public FirstPersonAIO controller;
+    public GameObject pauseUI;
 
-    Entity currentEntity;
-
+    Entity _currentEntity;
     bool _inConversation = false;
+    bool _isPaused = false;
 
     private void OnEnable()
     {
@@ -41,10 +41,28 @@ public class Player : MonoBehaviour
 
     void CheckInput()
     {
+        //TODO: Use the new Input System.
         if (Input.GetMouseButtonDown(0))
         {
-            if(!_inConversation) currentEntity.StartConversation();
+            if (!_inConversation && _currentEntity) _currentEntity.StartConversation();
         }
+        
+        else if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            TogglePause();
+        }
+    }
+
+    void TogglePause()
+    {
+        if (_inConversation) return;
+
+        _isPaused = !_isPaused;
+
+        pauseUI.SetActive(_isPaused);
+        if (_isPaused) EnableMouseUIInput();
+        else DisableMouseUIInput();
+
     }
 
     void CheckForInteractables()
@@ -52,24 +70,38 @@ public class Player : MonoBehaviour
         RaycastHit hit;
         if (!_inConversation && Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, interactDistance))
         {
-            currentEntity = hit.transform.gameObject.GetComponent<Entity>();
+            _currentEntity = hit.transform.gameObject.GetComponent<Entity>();
+        }
+        else
+        {
+            _currentEntity = null;
         }
     }
 
     private void OnConversationEnter()
     {
-        UnlockCursor();
-        DisableCameraMovement();
-        DisablePlayerMovement();
+        EnableMouseUIInput();
         _inConversation = true;
     }
 
     private void OnConversationExit()
     {
+        DisableMouseUIInput();
+        _inConversation = false;
+    }
+
+    void EnableMouseUIInput()
+    {
+        UnlockCursor();
+        DisableCameraMovement();
+        DisablePlayerMovement();
+    }
+
+    void DisableMouseUIInput()
+    {
         LockCursor();
         EnableCameraMovement();
         EnablePlayerMovement();
-        _inConversation = false;
     }
 
     private void EnableCameraMovement()

@@ -135,9 +135,9 @@ GameObject:
   - component: {fileID: 1568751921972139677}
   - component: {fileID: 1450553782247439735}
   - component: {fileID: 1514490400629737629}
+  - component: {fileID: 1504353858785625423}
   - component: {fileID: 1546345614895808833}
   - component: {fileID: 1504353858785625422}
-  - component: {fileID: 1504353858785625423}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -286,6 +286,21 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1504353858785625423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1506097625229913479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9c321b12ed48d249b47664732e15591, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactDistance: 3
+  controller: {fileID: 1546345614895808833}
+  pauseUI: {fileID: 0}
 --- !u!114 &1546345614895808833
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -447,17 +462,4 @@ MonoBehaviour:
       m_Calls: []
   respawnHeight: 100
   respawnDepth: 200
-  startingPosition: {x: 0, y: 0, z: 0}
---- !u!114 &1504353858785625423
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1506097625229913479}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9c321b12ed48d249b47664732e15591, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller: {fileID: 1546345614895808833}
+  respawnPosition: {x: 0, y: 0, z: 0}

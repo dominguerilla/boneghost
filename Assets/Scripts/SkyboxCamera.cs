@@ -13,9 +13,6 @@ public class SkyboxCamera : MonoBehaviour
     [SerializeField]
     float scaleFactor = 20;
 
-    [SerializeField]
-    float skyboxRotationSpeed = 0.5f;
-
     Vector3 _previousPosition;
     Vector3 _startRotation;
 
