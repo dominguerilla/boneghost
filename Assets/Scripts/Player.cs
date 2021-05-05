@@ -6,7 +6,14 @@ using DialogueEditor;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField]
+    float interactDistance = 3f;
+
     public FirstPersonAIO controller;
+
+    Entity currentEntity;
+
+    bool _inConversation = false;
 
     private void OnEnable()
     {
@@ -26,11 +33,35 @@ public class Player : MonoBehaviour
         LockCursor();
     }
 
+    private void Update()
+    {
+        CheckForInteractables();
+        CheckInput();
+    }
+
+    void CheckInput()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            if(!_inConversation) currentEntity.StartConversation();
+        }
+    }
+
+    void CheckForInteractables()
+    {
+        RaycastHit hit;
+        if (!_inConversation && Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, interactDistance))
+        {
+            currentEntity = hit.transform.gameObject.GetComponent<Entity>();
+        }
+    }
+
     private void OnConversationEnter()
     {
         UnlockCursor();
         DisableCameraMovement();
         DisablePlayerMovement();
+        _inConversation = true;
     }
 
     private void OnConversationExit()
@@ -38,6 +69,7 @@ public class Player : MonoBehaviour
         LockCursor();
         EnableCameraMovement();
         EnablePlayerMovement();
+        _inConversation = false;
     }
 
     private void EnableCameraMovement()

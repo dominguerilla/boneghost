@@ -9,17 +9,17 @@ public class Respawn : MonoBehaviour
     public float respawnHeight = 500;
     public float respawnDepth = 500;
     [SerializeField]
-    Vector3 startingPosition;
+    Vector3 respawnPosition;
 
     // Start is called before the first frame update
     void Start()
     {
-        startingPosition = this.transform.position;
+        respawnPosition = this.transform.position;
     }
 
     private void FixedUpdate()
     {
-        if (transform.position.y < startingPosition.y - respawnDepth)
+        if (transform.position.y < respawnPosition.y - respawnDepth)
         {
             RespawnObject();
         }
@@ -29,7 +29,7 @@ public class Respawn : MonoBehaviour
     {
         CharacterController cc = GetComponent<CharacterController>();
         if (cc) cc.enabled = false;
-        transform.position = new Vector3(startingPosition.x, startingPosition.y + respawnHeight, startingPosition.z);
+        transform.position = new Vector3(respawnPosition.x, respawnPosition.y + respawnHeight, respawnPosition.z);
         if (cc) cc.enabled = true;
         onRespawn.Invoke();
     }

@@ -17,10 +17,12 @@ public class SkyboxCamera : MonoBehaviour
     float skyboxRotationSpeed = 0.5f;
 
     Vector3 _previousPosition;
+    Vector3 _startRotation;
 
     private void Start()
     {
         _previousPosition = referenceRotation.position;
+        _startRotation = this.transform.eulerAngles;
     }
 
     // Update is called once per frame
