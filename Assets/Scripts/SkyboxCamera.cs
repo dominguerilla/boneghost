@@ -13,14 +13,14 @@ public class SkyboxCamera : MonoBehaviour
     [SerializeField]
     float scaleFactor = 20;
 
-    [SerializeField]
-    float skyboxRotationSpeed = 0.5f;
-
     Vector3 _previousPosition;
+    Vector3 _startRotation;
 
     private void Start()
     {
+        if (!referenceRotation) referenceRotation = Camera.main.transform;
         _previousPosition = referenceRotation.position;
+        _startRotation = this.transform.eulerAngles;
     }
 
     // Update is called once per frame
