@@ -18,6 +18,7 @@ public class SkyboxCamera : MonoBehaviour
 
     private void Start()
     {
+        if (!referenceRotation) referenceRotation = Camera.main.transform;
         _previousPosition = referenceRotation.position;
         _startRotation = this.transform.eulerAngles;
     }
