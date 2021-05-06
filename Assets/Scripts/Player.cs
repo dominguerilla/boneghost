@@ -44,7 +44,7 @@ public class Player : MonoBehaviour
         //TODO: Use the new Input System.
         if (Input.GetMouseButtonDown(0))
         {
-            if (!_inConversation && _currentEntity) _currentEntity.Interact(this.gameObject);
+            if (!_inConversation && !_isPaused && _currentEntity) _currentEntity.Interact(this.gameObject);
         }
         
         else if (Input.GetKeyDown(KeyCode.Escape))
@@ -53,7 +53,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    void TogglePause()
+    public void TogglePause()
     {
         if (_inConversation) return;
 
