@@ -58,6 +58,7 @@ public class Player : MonoBehaviour
         if (_inConversation) return;
 
         _isPaused = !_isPaused;
+        Time.timeScale = _isPaused ? 0 : 1;
 
         pauseUI.SetActive(_isPaused);
         if (_isPaused) EnableMouseUIInput();
