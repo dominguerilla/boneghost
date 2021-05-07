@@ -11,7 +11,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/1-1.unity
     guid: 56439809156a4684697a08af6a7dfe50
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/interaction-testing.unity
     guid: c5f986b6d845f61408c900b257820df2
+  - enabled: 1
+    path: Assets/Scenes/respawn-testing.unity
+    guid: 8801c8be3f309a145a06015191681d93
   m_configObjects: {}

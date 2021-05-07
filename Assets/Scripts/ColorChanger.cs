@@ -12,6 +12,13 @@ public class ColorChanger : MonoBehaviour
     MeshRenderer meshRender;
 
     Entity entity;
+
+    private void Awake()
+    {
+        entity = GetComponent<Entity>();
+        meshRender = GetComponent<MeshRenderer>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,5 +33,10 @@ public class ColorChanger : MonoBehaviour
     {
         _currentIndex = (_currentIndex+1) % materials.Length;
         meshRender.material = materials[_currentIndex];
+    }
+
+    public void ChangeToColor(int index) {
+        meshRender.material = materials[index];
+        _currentIndex = index;
     }
 }
