@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SkyboxRotator : MonoBehaviour
+public class Rotator : MonoBehaviour
 {
     [SerializeField]
     float rotationSpeed = 0.1f;

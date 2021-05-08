@@ -566,6 +566,7 @@ MonoBehaviour:
   respawnDepth: 200
   changeRespawnOnContact: 1
   respawnPoint: {fileID: 0}
+  respawnPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &3130382497598319331
 GameObject:
   m_ObjectHideFlags: 0
