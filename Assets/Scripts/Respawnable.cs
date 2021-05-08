@@ -12,6 +12,7 @@ public class Respawnable : MonoBehaviour
 
     [SerializeField]
     RespawnPoint respawnPoint;
+    [SerializeField]
     Vector3 respawnPosition;
 
     // Start is called before the first frame update
@@ -31,7 +32,7 @@ public class Respawnable : MonoBehaviour
     {
         if (transform.position.y < respawnPosition.y - respawnDepth)
         {
-            RespawnObject(0, respawnHeight, respawnDepth);
+            RespawnObject(0, respawnHeight, 0);
         }
     }
 
