@@ -16,6 +16,7 @@ public class DuskEchoWorld : MonoBehaviour
 
     // Gatekeeper
     public bool saidRecipientsName;
+    public bool isGateOpen;
 
     public void checkDrinkingIncident()
     {
@@ -59,5 +60,15 @@ public class DuskEchoWorld : MonoBehaviour
     public void setSaidRecipientsName(bool input)
     {
         saidRecipientsName = input;
+    }
+
+    public void checkIsGateOpen()
+    {
+        ConversationManager.Instance.SetBool("isGateOpen", isGateOpen);
+    }
+
+    public void setIsGateOpen(bool input)
+    {
+        isGateOpen = input;
     }
 }
