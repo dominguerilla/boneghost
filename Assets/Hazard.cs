@@ -15,4 +15,13 @@ public class Hazard : MonoBehaviour
     {
         
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Respawnable respawnable = other.GetComponent<Respawnable>();
+        if (respawnable)
+        {
+            respawnable.RespawnObject();
+        }
+    }
 }
