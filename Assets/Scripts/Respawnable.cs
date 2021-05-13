@@ -52,6 +52,7 @@ public class Respawnable : MonoBehaviour
 
     public void SetRespawnPoint(RespawnPoint newRespawnPoint)
     {
+        if (newRespawnPoint == respawnPoint) return;
         if(respawnPoint) respawnPoint.DeactivatePoint();
         respawnPoint = newRespawnPoint;
         respawnPosition = respawnPoint.GetRespawnPosition();
