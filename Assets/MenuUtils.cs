@@ -11,6 +11,11 @@ public class MenuUtils : MonoBehaviour
         StartCoroutine(LoadYourAsyncScene());
     }
 
+    public void Quit()
+    {
+        Application.Quit();
+    }
+
     IEnumerator LoadYourAsyncScene()
     {
         // The Application loads the Scene in the background as the current Scene runs.
