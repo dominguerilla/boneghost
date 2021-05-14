@@ -9,7 +9,7 @@ public class Mover : MonoBehaviour
         BACK_AND_FORTH
     }
 
-    public float moveSpeed = 10f;
+    public Vector3 moveSpeed;
     public float maxDistance = 10f;
 
     Vector3 _startingPosition;
@@ -27,13 +27,13 @@ public class Mover : MonoBehaviour
         
     }
 
-    IEnumerator MoveBackAndForth(Vector3 startPosition, float moveSpeed, float maxDistance)
+    IEnumerator MoveBackAndForth(Vector3 startPosition, Vector3 moveSpeed, float maxDistance)
     {
         int flip = 1;
 
         while (true)
         {
-            transform.Translate(Time.deltaTime * moveSpeed * flip, 0, 0);
+            transform.Translate(Time.deltaTime * moveSpeed.x * flip, Time.deltaTime * moveSpeed.y * flip, Time.deltaTime * moveSpeed.z * flip);
             if (Vector3.Distance(startPosition, transform.position) > maxDistance)
             {
                 flip *= -1;
