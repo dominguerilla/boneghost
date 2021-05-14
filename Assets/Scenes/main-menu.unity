@@ -20093,7 +20093,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 48fd34745c8b3594c8ce2d24a21f44b3, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.504
+  m_Volume: 0.08
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -42981,9 +42981,60 @@ PrefabInstance:
       propertyPath: m_Name
       value: Controls Menu
       objectReference: {fileID: 0}
+    - target: {fileID: 8292970982406759995, guid: 64bcf8d5cc00fa54caf5d17d16f49204, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8292970982681710245, guid: 64bcf8d5cc00fa54caf5d17d16f49204, type: 3}
+      propertyPath: m_Text
+      value: 'LEFT CLICK TO TALK/INTERACT
+
+        WASD to WALK
+
+        SHIFT +
+        WASD to SPRINT
+
+        SPACE to JUMP
+
+
+        JUMP WHILE SPRINTING TO PERFORM
+        A LUNAR LEAP'
+      objectReference: {fileID: 0}
+    - target: {fileID: 8292970982681710246, guid: 64bcf8d5cc00fa54caf5d17d16f49204, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8292970982681710246, guid: 64bcf8d5cc00fa54caf5d17d16f49204, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8292970982681710246, guid: 64bcf8d5cc00fa54caf5d17d16f49204, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8292970982681710246, guid: 64bcf8d5cc00fa54caf5d17d16f49204, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8292970983895649004, guid: 64bcf8d5cc00fa54caf5d17d16f49204, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 480553778}
+    - target: {fileID: 8292970983895649005, guid: 64bcf8d5cc00fa54caf5d17d16f49204, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8292970983895649005, guid: 64bcf8d5cc00fa54caf5d17d16f49204, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8292970983895649005, guid: 64bcf8d5cc00fa54caf5d17d16f49204, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8292970983895649005, guid: 64bcf8d5cc00fa54caf5d17d16f49204, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64bcf8d5cc00fa54caf5d17d16f49204, type: 3}
