@@ -18,6 +18,22 @@ public class ImageFader : MonoBehaviour
         StartCoroutine(FadeImageIn(duration));
     }
 
+    public void FadeOut(float duration)
+    {
+        StartCoroutine(FadeImageOut(duration));
+    }
+
+    public void Flash(float duration)
+    {
+        StartCoroutine(FlashImage(duration));
+    }
+
+    IEnumerator FlashImage(float duration)
+    {
+        yield return FadeImageIn(duration / 2);
+        yield return FadeImageOut(duration / 2);
+    }
+
     IEnumerator FadeImageIn(float duration)
     {
         float elapsedTime = 0.0f;
@@ -26,6 +42,19 @@ public class ImageFader : MonoBehaviour
         {
             yield return null;
             elapsedTime += Time.deltaTime;
+            c.a = Mathf.Clamp01(elapsedTime / duration);
+            image.color = c;
+        }
+    }
+
+    IEnumerator FadeImageOut(float duration)
+    {
+        float elapsedTime = duration;
+        Color c = image.color;
+        while (elapsedTime > 0)
+        {
+            yield return null;
+            elapsedTime -= Time.deltaTime;
             c.a = Mathf.Clamp01(elapsedTime / duration);
             image.color = c;
         }
