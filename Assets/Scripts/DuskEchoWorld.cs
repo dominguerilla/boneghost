@@ -18,6 +18,10 @@ public class DuskEchoWorld : MonoBehaviour
     public bool saidRecipientsName;
     public bool isGateOpen;
 
+    // Courier
+    public bool hasTalkedToBandits;
+    public bool wasToldAboutRaid;
+
     public void checkDrinkingIncident()
     {
         ConversationManager.Instance.SetBool("wasDrinkingIncident", wasDrinkingIncident);
@@ -70,5 +74,25 @@ public class DuskEchoWorld : MonoBehaviour
     public void setIsGateOpen(bool input)
     {
         isGateOpen = input;
+    }
+
+    public void checkHasTalkedToBandits()
+    {
+        ConversationManager.Instance.SetBool("hasTalkedToBandits", hasTalkedToBandits);
+    }
+
+    public void setHasTalkedToBandits(bool input)
+    {
+        hasTalkedToBandits = input;
+    }
+
+    public void checkWasToldAboutRaid()
+    {
+        ConversationManager.Instance.SetBool("wasToldAboutRaid", wasToldAboutRaid);
+    }
+
+    public void setWasToldAboutRaid(bool input)
+    {
+        wasToldAboutRaid = input;
     }
 }
