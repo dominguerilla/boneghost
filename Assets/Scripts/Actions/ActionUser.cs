@@ -7,15 +7,23 @@ namespace Mango.Actions
 {
     public class ActionUser : MonoBehaviour
     {
-        public FPSControls controls;
+        FPSControls controls;
         public PlayerAction[] actions;
 
-        private void Awake()
+        private void Start()
         {
+            controls = new FPSControls();
             foreach (PlayerAction action in actions)
             {
                 action.Register(controls); 
             }
+            controls.Player.Enable();
+
+        }
+
+        private void Update()
+        {
+            
         }
     }
 }
