@@ -7911,6 +7911,11 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!4 &160766754 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5035517984665645277, guid: 5381e7fe136609d40a764941f0c3443d, type: 3}
+  m_PrefabInstance: {fileID: 6565522629348618211}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &168223242
 Mesh:
   m_ObjectHideFlags: 0
@@ -96154,6 +96159,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea643bd99dd23094c830b6c7fb33af30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sensitivityX: 8
+  sensitivityY: 0.5
+  playerCamera: {fileID: 160766754}
+  xClamp: 85
 --- !u!114 &1974271728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -103462,7 +103471,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5035360442687476233, guid: 5381e7fe136609d40a764941f0c3443d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -18.418
+      value: -28.918
       objectReference: {fileID: 0}
     - target: {fileID: 5035360442687476233, guid: 5381e7fe136609d40a764941f0c3443d, type: 3}
       propertyPath: m_LocalPosition.y
