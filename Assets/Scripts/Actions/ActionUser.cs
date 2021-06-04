@@ -10,9 +10,13 @@ namespace Mango.Actions
         FPSControls controls;
         public PlayerAction[] actions;
 
-        private void Start()
+        private void Awake()
         {
             controls = new FPSControls();
+        }
+
+        private void Start()
+        {
             foreach (PlayerAction action in actions)
             {
                 action.Register(controls); 
