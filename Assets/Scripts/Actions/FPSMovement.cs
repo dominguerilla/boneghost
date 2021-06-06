@@ -25,7 +25,9 @@ namespace Mango.Actions
         {
             if (isMoving)
             {
-                controller.Move(moveVector * moveSpeed * Time.deltaTime);
+                Vector3 moveDirection = CalculateMoveDirection(moveVector);
+
+                controller.Move(moveDirection * moveSpeed * Time.deltaTime);
             }
             
         }
@@ -44,10 +46,16 @@ namespace Mango.Actions
                 0, 
                 compositeInput.y
             );
-            moveVector = transform.TransformDirection(moveVector);
 
             //Debug.Log($"moveVector: {moveVector}");
             isMoving = true;
+        }
+
+        Vector3 CalculateMoveDirection(Vector3 inputVector)
+        {
+            Vector3 forwardDir = transform.forward * inputVector.z;
+            Vector3 sideDir = transform.right * inputVector.x;
+            return (forwardDir + sideDir).normalized;
         }
 
         void StopMoving()
