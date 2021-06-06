@@ -11,7 +11,7 @@ namespace Mango.Actions
         public virtual void Register(FPSControls controls)
         {
             this.controls = controls;
-            Debug.Log($"{ this.GetType().Name } controls registered on {gameObject.name}!");
+            //Debug.Log($"{ this.GetType().Name } controls registered on {gameObject.name}!");
         }
     }
 }
