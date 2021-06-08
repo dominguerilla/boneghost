@@ -47,7 +47,7 @@ public class Respawnable : MonoBehaviour
 
     public void RespawnObject()
     {
-        RespawnObject(0, 1f, 0);
+        RespawnObject(0, 0, 0);
     }
 
     public void SetRespawnPoint(RespawnPoint newRespawnPoint)

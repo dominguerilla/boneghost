@@ -6,7 +6,7 @@ namespace Mango.Actions
 {
     public class PlayerAction : MonoBehaviour
     {
-        FPSControls controls;
+        protected FPSControls controls;
 
         public virtual void Register(FPSControls controls)
         {
