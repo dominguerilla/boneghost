@@ -15,20 +15,27 @@ namespace Mango.Actions
         
         float xRotation = 0f;
 
+        bool _canLook = true;
+
         private void Start()
         {
             LockCursor();
+            InitializeMenuControls();
         }
 
         private void Update()
         {
-            transform.Rotate(Vector3.up, mouseX);
+            if (_canLook)
+            {
+                transform.Rotate(Vector3.up, mouseX);
 
-            Vector3 targetRotation = transform.eulerAngles;
-            xRotation -= mouseY;
-            xRotation = Mathf.Clamp(xRotation, -xClamp, xClamp);
-            targetRotation.x = xRotation;
-            playerCamera.eulerAngles = targetRotation;
+                Vector3 targetRotation = transform.eulerAngles;
+                xRotation -= mouseY;
+                xRotation = Mathf.Clamp(xRotation, -xClamp, xClamp);
+                targetRotation.x = xRotation;
+                playerCamera.eulerAngles = targetRotation;
+            }
+
         }
 
         public void ReceiveInput(Vector2 mouseInput)
@@ -50,6 +57,18 @@ namespace Mango.Actions
             controls.Player.Look.canceled += _ => this.ResetMouseDelta();
         }
 
+        private void OnPause()
+        {
+            _canLook = false;
+            UnlockCursor();
+        }
+
+        private void OnUnpause()
+        {
+            _canLook = true;
+            LockCursor();
+        }
+
         private void UnlockCursor()
         {
             Cursor.visible = true;
@@ -60,6 +79,16 @@ namespace Mango.Actions
         {
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
+        }
+
+        private void InitializeMenuControls()
+        {
+            MenuActions menu = GetComponent<MenuActions>();
+            if (menu)
+            {
+                menu.onPause.AddListener(OnPause);
+                menu.onUnpause.AddListener(OnUnpause);
+            }
         }
     }
 }

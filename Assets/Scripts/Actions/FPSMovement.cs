@@ -13,17 +13,18 @@ namespace Mango.Actions
         CharacterController controller;
         Vector3 moveVector;
 
-        bool isMoving = false;
+        bool _canMove = true;
+        bool _isMoving = false;
 
         private void Start()
         {
             controller = GetComponent<CharacterController>();
-            Debug.Log($"{gameObject.name}.transform.forward: {transform.forward}");
+            InitializeMenuControls();
         }
 
         private void Update()
         {
-            if (isMoving)
+            if (_canMove && _isMoving)
             {
                 Vector3 moveDirection = CalculateMoveDirection(moveVector);
 
@@ -39,6 +40,15 @@ namespace Mango.Actions
             controls.Player.Move.canceled += _ => this.StopMoving();
         }
 
+        public void LockMovement() {
+            _canMove = false;
+        }
+
+        public void UnlockMovement()
+        {
+            _canMove = true;
+        }
+
         public void ReceiveInput(Vector2 compositeInput)
         {
             moveVector = new Vector3(
@@ -48,7 +58,7 @@ namespace Mango.Actions
             );
 
             //Debug.Log($"moveVector: {moveVector}");
-            isMoving = true;
+            _isMoving = true;
         }
 
         Vector3 CalculateMoveDirection(Vector3 inputVector)
@@ -60,8 +70,20 @@ namespace Mango.Actions
 
         void StopMoving()
         {
-            isMoving = false;
+            _isMoving = false;
 
+        }
+
+        
+
+        void InitializeMenuControls()
+        {
+            MenuActions menu = GetComponent<MenuActions>();
+            if (menu)
+            {
+                menu.onPause.AddListener(LockMovement);
+                menu.onUnpause.AddListener(UnlockMovement);
+            }
         }
 
         

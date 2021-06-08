@@ -43,6 +43,14 @@ namespace Mango.Actions
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Menu1"",
+                    ""type"": ""Button"",
+                    ""id"": ""e3c656f4-ab1d-45f9-907a-548516b3f4ab"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -265,6 +273,28 @@ namespace Mango.Actions
                     ""action"": ""Fire"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""715f5636-007f-45dd-870f-0fc6dd8a7683"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Menu1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""19226231-7a51-4225-908e-e4b0ea67aa94"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad;XR"",
+                    ""action"": ""Menu1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -349,6 +379,14 @@ namespace Mango.Actions
                     ""type"": ""PassThrough"",
                     ""id"": ""09a4fce7-59ff-4f19-9bbe-a41d5c213a1d"",
                     ""expectedControlType"": ""Quaternion"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Menu1"",
+                    ""type"": ""Button"",
+                    ""id"": ""34c5872b-62a1-4871-aa57-6565b0a5b5c6"",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
                 }
@@ -771,6 +809,28 @@ namespace Mango.Actions
                     ""action"": ""TrackedDeviceOrientation"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4717bbec-b5d5-4a08-ae25-074408a7881f"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Menu1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4c8c69c6-8b9c-4798-ab5f-c03b637864d6"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad;XR"",
+                    ""action"": ""Menu1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -843,6 +903,7 @@ namespace Mango.Actions
             m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
             m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
             m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
+            m_Player_Menu1 = m_Player.FindAction("Menu1", throwIfNotFound: true);
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
             m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -855,6 +916,7 @@ namespace Mango.Actions
             m_UI_RightClick = m_UI.FindAction("RightClick", throwIfNotFound: true);
             m_UI_TrackedDevicePosition = m_UI.FindAction("TrackedDevicePosition", throwIfNotFound: true);
             m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
+            m_UI_Menu1 = m_UI.FindAction("Menu1", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -907,6 +969,7 @@ namespace Mango.Actions
         private readonly InputAction m_Player_Move;
         private readonly InputAction m_Player_Look;
         private readonly InputAction m_Player_Fire;
+        private readonly InputAction m_Player_Menu1;
         public struct PlayerActions
         {
             private @FPSControls m_Wrapper;
@@ -914,6 +977,7 @@ namespace Mango.Actions
             public InputAction @Move => m_Wrapper.m_Player_Move;
             public InputAction @Look => m_Wrapper.m_Player_Look;
             public InputAction @Fire => m_Wrapper.m_Player_Fire;
+            public InputAction @Menu1 => m_Wrapper.m_Player_Menu1;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -932,6 +996,9 @@ namespace Mango.Actions
                     @Fire.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
                     @Fire.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
                     @Fire.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
+                    @Menu1.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenu1;
+                    @Menu1.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenu1;
+                    @Menu1.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenu1;
                 }
                 m_Wrapper.m_PlayerActionsCallbackInterface = instance;
                 if (instance != null)
@@ -945,6 +1012,9 @@ namespace Mango.Actions
                     @Fire.started += instance.OnFire;
                     @Fire.performed += instance.OnFire;
                     @Fire.canceled += instance.OnFire;
+                    @Menu1.started += instance.OnMenu1;
+                    @Menu1.performed += instance.OnMenu1;
+                    @Menu1.canceled += instance.OnMenu1;
                 }
             }
         }
@@ -963,6 +1033,7 @@ namespace Mango.Actions
         private readonly InputAction m_UI_RightClick;
         private readonly InputAction m_UI_TrackedDevicePosition;
         private readonly InputAction m_UI_TrackedDeviceOrientation;
+        private readonly InputAction m_UI_Menu1;
         public struct UIActions
         {
             private @FPSControls m_Wrapper;
@@ -977,6 +1048,7 @@ namespace Mango.Actions
             public InputAction @RightClick => m_Wrapper.m_UI_RightClick;
             public InputAction @TrackedDevicePosition => m_Wrapper.m_UI_TrackedDevicePosition;
             public InputAction @TrackedDeviceOrientation => m_Wrapper.m_UI_TrackedDeviceOrientation;
+            public InputAction @Menu1 => m_Wrapper.m_UI_Menu1;
             public InputActionMap Get() { return m_Wrapper.m_UI; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -1016,6 +1088,9 @@ namespace Mango.Actions
                     @TrackedDeviceOrientation.started -= m_Wrapper.m_UIActionsCallbackInterface.OnTrackedDeviceOrientation;
                     @TrackedDeviceOrientation.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnTrackedDeviceOrientation;
                     @TrackedDeviceOrientation.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnTrackedDeviceOrientation;
+                    @Menu1.started -= m_Wrapper.m_UIActionsCallbackInterface.OnMenu1;
+                    @Menu1.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnMenu1;
+                    @Menu1.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnMenu1;
                 }
                 m_Wrapper.m_UIActionsCallbackInterface = instance;
                 if (instance != null)
@@ -1050,6 +1125,9 @@ namespace Mango.Actions
                     @TrackedDeviceOrientation.started += instance.OnTrackedDeviceOrientation;
                     @TrackedDeviceOrientation.performed += instance.OnTrackedDeviceOrientation;
                     @TrackedDeviceOrientation.canceled += instance.OnTrackedDeviceOrientation;
+                    @Menu1.started += instance.OnMenu1;
+                    @Menu1.performed += instance.OnMenu1;
+                    @Menu1.canceled += instance.OnMenu1;
                 }
             }
         }
@@ -1104,6 +1182,7 @@ namespace Mango.Actions
             void OnMove(InputAction.CallbackContext context);
             void OnLook(InputAction.CallbackContext context);
             void OnFire(InputAction.CallbackContext context);
+            void OnMenu1(InputAction.CallbackContext context);
         }
         public interface IUIActions
         {
@@ -1117,6 +1196,7 @@ namespace Mango.Actions
             void OnRightClick(InputAction.CallbackContext context);
             void OnTrackedDevicePosition(InputAction.CallbackContext context);
             void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
+            void OnMenu1(InputAction.CallbackContext context);
         }
     }
 }
