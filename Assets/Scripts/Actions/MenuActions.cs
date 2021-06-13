@@ -37,5 +37,15 @@ public class MenuActions : PlayerAction
 
     }
 
+    public void Pause()
+    {
+        if (!_isPaused) TogglePause();
+    }
+
+    public void Unpause()
+    {
+        if (_isPaused) TogglePause();
+    }
+
 
 }
