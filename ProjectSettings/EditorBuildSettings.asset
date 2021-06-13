@@ -23,7 +23,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/movement-test.unity
     guid: 3c2d1c1d6fdaa224eae495b8c917fdbc
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/model-test.unity
     guid: be002c0027a721847b39f87a305793bc
+  - enabled: 1
+    path: Assets/Scenes/Skybox Tests/skybox-1.unity
+    guid: e152a336df7b16b4fbbfb0773414a707
   m_configObjects: {}
