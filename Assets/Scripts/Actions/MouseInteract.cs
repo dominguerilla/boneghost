@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Mango.Actions
 {
@@ -12,13 +13,20 @@ namespace Mango.Actions
         [SerializeField] Arm[] arms;
         [SerializeField] Camera cam;
         Vector3[] originalArmPositions;
-        InventoryComponent inventory;
 
         Vector3 surfaceUnderCursor;
 
+        public override void Register(FPSControls controls)
+        {
+            base.Register(controls);
+            controls.Player.Interact1.performed += _ => StartInteract(0);
+            controls.Player.Interact2.performed += _ => StartInteract(1);
+            controls.Player.Interact1.canceled += _ => StopInteract(0);
+            controls.Player.Interact2.canceled += _ => StopInteract(1);
+        }
+
         private void Awake()
         {
-            inventory = GetComponent<InventoryComponent>();
             originalArmPositions = new Vector3[arms.Length];
             for (int i = 0; i < arms.Length; i++)
             {
@@ -35,15 +43,37 @@ namespace Mango.Actions
             GUI.Box(new Rect(Screen.width / 2, Screen.height / 2, 10, 10), "");
         }
 
-        // Update is called once per frame
-        void Update()
-        {
-            GetMouseInput();
-        }
-
         private void FixedUpdate()
         {
             surfaceUnderCursor = GetSurfaceUnderCursor();
+        }
+
+        void StartInteract(int armNum)
+        {
+            if (arms.Length <= 0) return;
+            Vector3 direction = cam.transform.forward;
+            ReachArm(armNum, direction);
+            UseArm(arms[armNum], Vector3.zero);
+        }
+
+        void StopInteract(int armNum)
+        {
+            if (arms.Length <= 0) return;
+            RetractArm(armNum);
+        }
+
+        void ReachArm(int armNum, Vector3 direction)
+        {
+            if (arms.Length <= 0) return;
+            arms[armNum].transform.position += direction;
+
+        }
+
+        void RetractArm(int armNum)
+        {
+            if (arms.Length <= 0) return;
+            arms[armNum].DropIfTemporary(surfaceUnderCursor);
+            arms[armNum].transform.localPosition = originalArmPositions[armNum];
         }
 
         void GetMouseInput()
@@ -97,7 +127,7 @@ namespace Mango.Actions
             }
 
             RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Ray ray = Camera.main.ScreenPointToRay(Pointer.current.position.ReadValue());
 
             if (Physics.Raycast(ray, out hit, maxInteractionDistance))
             {

@@ -22,9 +22,17 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Fire",
+                    "name": "Interact2",
                     "type": "Button",
                     "id": "7510c650-01b5-483e-8a63-ab9af4679c14",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Interact1",
+                    "type": "Button",
+                    "id": "f9b6f9e2-e036-4861-a6d5-e4b67ff49280",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -211,18 +219,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "Fire",
+                    "action": "Interact2",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "05f6913d-c316-48b2-a6bb-e225f14c7960",
-                    "path": "<Mouse>/leftButton",
+                    "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Fire",
+                    "action": "Interact2",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -233,7 +241,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Touch",
-                    "action": "Fire",
+                    "action": "Interact2",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -244,7 +252,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Joystick",
-                    "action": "Fire",
+                    "action": "Interact2",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -255,7 +263,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "XR",
-                    "action": "Fire",
+                    "action": "Interact2",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -278,6 +286,28 @@
                     "processors": "",
                     "groups": "Gamepad;XR",
                     "action": "Menu1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2fbb63ac-6998-4c14-a3ff-16538e97e9d5",
+                    "path": "<AndroidGamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad;Joystick",
+                    "action": "Interact1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e0a5648a-1926-4a6b-aacb-94126462ae20",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact1",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

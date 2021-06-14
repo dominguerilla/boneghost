@@ -5316,6 +5316,7 @@ GameObject:
   - component: {fileID: 230991158}
   - component: {fileID: 230991157}
   - component: {fileID: 230991156}
+  - component: {fileID: 230991160}
   m_Layer: 0
   m_Name: arm_l
   m_TagString: Untagged
@@ -5616,6 +5617,19 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!114 &230991160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 230991154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13b4417655645974dafb27cd77ea8c6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heldItemPosition: {fileID: 0}
 --- !u!43 &240096547
 Mesh:
   m_ObjectHideFlags: 0
@@ -13824,6 +13838,7 @@ GameObject:
   - component: {fileID: 693232442}
   - component: {fileID: 693232441}
   - component: {fileID: 693232440}
+  - component: {fileID: 693232444}
   m_Layer: 0
   m_Name: arm_r
   m_TagString: Untagged
@@ -14124,6 +14139,19 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!114 &693232444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 693232438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13b4417655645974dafb27cd77ea8c6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heldItemPosition: {fileID: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -63351,6 +63379,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1974271726, guid: 5381e7fe136609d40a764941f0c3443d, type: 3}
+      propertyPath: arms.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1974271726, guid: 5381e7fe136609d40a764941f0c3443d, type: 3}
+      propertyPath: arms.Array.data[0]
+      value: 
+      objectReference: {fileID: 230991160}
+    - target: {fileID: 1974271726, guid: 5381e7fe136609d40a764941f0c3443d, type: 3}
+      propertyPath: arms.Array.data[1]
+      value: 
+      objectReference: {fileID: 693232444}
     - target: {fileID: 1974271727, guid: 5381e7fe136609d40a764941f0c3443d, type: 3}
       propertyPath: playerCamera
       value: 
