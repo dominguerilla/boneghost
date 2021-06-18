@@ -76,48 +76,6 @@ namespace Mango.Actions
             arms[armNum].transform.localPosition = originalArmPositions[armNum];
         }
 
-        void GetMouseInput()
-        {
-            Vector3 direction = cam.transform.forward;
-            if (arms.Length <= 0) return;
-            if (Input.GetMouseButtonDown(0))
-            {
-                arms[0].transform.position += direction;
-                if (Input.GetKey(KeyCode.E))
-                {
-                    arms[0].Drop(surfaceUnderCursor);
-                }
-                else
-                {
-                    bool gotItem = UseArm(arms[0], Vector3.zero);
-                }
-            }
-            else if (Input.GetMouseButtonUp(0))
-            {
-                arms[0].DropIfTemporary(surfaceUnderCursor);
-                arms[0].transform.localPosition = originalArmPositions[0];
-            }
-
-            if (Input.GetMouseButtonDown(1))
-            {
-                arms[1].transform.position += direction;
-                if (Input.GetKey(KeyCode.E))
-                {
-                    arms[1].Drop(surfaceUnderCursor);
-                }
-                else
-                {
-                    Vector3 flippedEulerAngles = new Vector3(0f, -90f, 0f);
-                    bool gotItem = UseArm(arms[1], flippedEulerAngles);
-                }
-            }
-            else if (Input.GetMouseButtonUp(1))
-            {
-                arms[1].DropIfTemporary(surfaceUnderCursor);
-                arms[1].transform.localPosition = originalArmPositions[1];
-            }
-        }
-
         bool UseArm(Arm arm, Vector3 eulerAngleOffset)
         {
             if (arm.IsHoldingItem())
@@ -128,11 +86,11 @@ namespace Mango.Actions
 
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Pointer.current.position.ReadValue());
-
-            if (Physics.Raycast(ray, out hit, maxInteractionDistance))
+            
+            if (Physics.Raycast(ray, out hit, maxInteractionDistance, LayerMask.GetMask("Interactable")))
             {
                 Transform objectHit = hit.transform;
-
+                Debug.Log($"Using arm on {hit.collider.name}");
                 ItemComponent item = objectHit.GetComponent<ItemComponent>();
                 if (item)
                 {
