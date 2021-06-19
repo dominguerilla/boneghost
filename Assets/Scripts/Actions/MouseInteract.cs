@@ -23,6 +23,8 @@ namespace Mango.Actions
             controls.Player.Interact2.performed += _ => StartInteract(1);
             controls.Player.Interact1.canceled += _ => StopInteract(0);
             controls.Player.Interact2.canceled += _ => StopInteract(1);
+            controls.Player.Drop1.performed += _ => DropItem(0);
+            controls.Player.Drop2.performed += _ => DropItem(1);
         }
 
         private void Awake()
@@ -72,8 +74,14 @@ namespace Mango.Actions
         void RetractArm(int armNum)
         {
             if (arms.Length <= 0) return;
-            arms[armNum].DropIfTemporary(surfaceUnderCursor);
+            //arms[armNum].DropIfTemporary(surfaceUnderCursor);
             arms[armNum].transform.localPosition = originalArmPositions[armNum];
+        }
+
+        void DropItem(int armNum)
+        {
+            if (arms.Length <= 0) return;
+            arms[armNum].Drop(surfaceUnderCursor);
         }
 
         bool UseArm(Arm arm, Vector3 eulerAngleOffset)
@@ -111,7 +119,7 @@ namespace Mango.Actions
         {
             RaycastHit hit;
             Ray cameraForward = GetCameraForward();
-            if (Physics.Raycast(cameraForward, out hit, maxDropDistance))
+            if (Physics.Raycast(cameraForward, out hit, maxDropDistance,LayerMask.GetMask("Default")))
             {
                 return hit.point;
             }

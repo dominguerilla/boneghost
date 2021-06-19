@@ -57,8 +57,10 @@ public class ItemComponent : MonoBehaviour
     {
         Unfreeze();
         this.transform.SetParent(null);
+        this.transform.eulerAngles = Vector3.zero;
         this.equippedArm = null;
         isEquipped = false;
+        
         onDequip.Invoke();
     }
     void Freeze()
