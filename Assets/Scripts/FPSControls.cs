@@ -37,9 +37,17 @@ namespace Mango.Actions
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Fire"",
+                    ""name"": ""Interact2"",
                     ""type"": ""Button"",
                     ""id"": ""7510c650-01b5-483e-8a63-ab9af4679c14"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Interact1"",
+                    ""type"": ""Button"",
+                    ""id"": ""f9b6f9e2-e036-4861-a6d5-e4b67ff49280"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -48,6 +56,22 @@ namespace Mango.Actions
                     ""name"": ""Menu1"",
                     ""type"": ""Button"",
                     ""id"": ""e3c656f4-ab1d-45f9-907a-548516b3f4ab"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Drop1"",
+                    ""type"": ""Button"",
+                    ""id"": ""08f84b07-cf89-408c-9f64-0fc0d5b1cf0f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Drop2"",
+                    ""type"": ""Button"",
+                    ""id"": ""4f6fd910-f008-4034-9fba-bf2a42543d53"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -226,18 +250,18 @@ namespace Mango.Actions
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
-                    ""action"": ""Fire"",
+                    ""action"": ""Interact2"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
                     ""id"": ""05f6913d-c316-48b2-a6bb-e225f14c7960"",
-                    ""path"": ""<Mouse>/leftButton"",
+                    ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Fire"",
+                    ""action"": ""Interact2"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -248,7 +272,7 @@ namespace Mango.Actions
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Touch"",
-                    ""action"": ""Fire"",
+                    ""action"": ""Interact2"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -259,7 +283,7 @@ namespace Mango.Actions
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Joystick"",
-                    ""action"": ""Fire"",
+                    ""action"": ""Interact2"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -270,7 +294,7 @@ namespace Mango.Actions
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""XR"",
-                    ""action"": ""Fire"",
+                    ""action"": ""Interact2"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -293,6 +317,72 @@ namespace Mango.Actions
                     ""processors"": """",
                     ""groups"": ""Gamepad;XR"",
                     ""action"": ""Menu1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2fbb63ac-6998-4c14-a3ff-16538e97e9d5"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad;Joystick"",
+                    ""action"": ""Interact1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e0a5648a-1926-4a6b-aacb-94126462ae20"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ee0c36e9-a375-4de3-b6b0-4ca82a9485c0"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": ""Hold(duration=1)"",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Drop1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1b7e17b4-218a-41a8-827b-7d4191e66959"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": ""Hold(duration=2)"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Drop1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""80c805f4-3cfa-4855-85c1-358c83050fcd"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": ""Hold(duration=1)"",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Drop2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""25897098-2399-49e8-bbd3-98c258404353"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": ""Hold(duration=2)"",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Drop2"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -902,8 +992,11 @@ namespace Mango.Actions
             m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
             m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
             m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
-            m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
+            m_Player_Interact2 = m_Player.FindAction("Interact2", throwIfNotFound: true);
+            m_Player_Interact1 = m_Player.FindAction("Interact1", throwIfNotFound: true);
             m_Player_Menu1 = m_Player.FindAction("Menu1", throwIfNotFound: true);
+            m_Player_Drop1 = m_Player.FindAction("Drop1", throwIfNotFound: true);
+            m_Player_Drop2 = m_Player.FindAction("Drop2", throwIfNotFound: true);
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
             m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -968,16 +1061,22 @@ namespace Mango.Actions
         private IPlayerActions m_PlayerActionsCallbackInterface;
         private readonly InputAction m_Player_Move;
         private readonly InputAction m_Player_Look;
-        private readonly InputAction m_Player_Fire;
+        private readonly InputAction m_Player_Interact2;
+        private readonly InputAction m_Player_Interact1;
         private readonly InputAction m_Player_Menu1;
+        private readonly InputAction m_Player_Drop1;
+        private readonly InputAction m_Player_Drop2;
         public struct PlayerActions
         {
             private @FPSControls m_Wrapper;
             public PlayerActions(@FPSControls wrapper) { m_Wrapper = wrapper; }
             public InputAction @Move => m_Wrapper.m_Player_Move;
             public InputAction @Look => m_Wrapper.m_Player_Look;
-            public InputAction @Fire => m_Wrapper.m_Player_Fire;
+            public InputAction @Interact2 => m_Wrapper.m_Player_Interact2;
+            public InputAction @Interact1 => m_Wrapper.m_Player_Interact1;
             public InputAction @Menu1 => m_Wrapper.m_Player_Menu1;
+            public InputAction @Drop1 => m_Wrapper.m_Player_Drop1;
+            public InputAction @Drop2 => m_Wrapper.m_Player_Drop2;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -993,12 +1092,21 @@ namespace Mango.Actions
                     @Look.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
                     @Look.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
                     @Look.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
-                    @Fire.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
-                    @Fire.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
-                    @Fire.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
+                    @Interact2.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract2;
+                    @Interact2.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract2;
+                    @Interact2.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract2;
+                    @Interact1.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract1;
+                    @Interact1.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract1;
+                    @Interact1.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract1;
                     @Menu1.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenu1;
                     @Menu1.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenu1;
                     @Menu1.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenu1;
+                    @Drop1.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDrop1;
+                    @Drop1.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDrop1;
+                    @Drop1.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDrop1;
+                    @Drop2.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDrop2;
+                    @Drop2.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDrop2;
+                    @Drop2.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDrop2;
                 }
                 m_Wrapper.m_PlayerActionsCallbackInterface = instance;
                 if (instance != null)
@@ -1009,12 +1117,21 @@ namespace Mango.Actions
                     @Look.started += instance.OnLook;
                     @Look.performed += instance.OnLook;
                     @Look.canceled += instance.OnLook;
-                    @Fire.started += instance.OnFire;
-                    @Fire.performed += instance.OnFire;
-                    @Fire.canceled += instance.OnFire;
+                    @Interact2.started += instance.OnInteract2;
+                    @Interact2.performed += instance.OnInteract2;
+                    @Interact2.canceled += instance.OnInteract2;
+                    @Interact1.started += instance.OnInteract1;
+                    @Interact1.performed += instance.OnInteract1;
+                    @Interact1.canceled += instance.OnInteract1;
                     @Menu1.started += instance.OnMenu1;
                     @Menu1.performed += instance.OnMenu1;
                     @Menu1.canceled += instance.OnMenu1;
+                    @Drop1.started += instance.OnDrop1;
+                    @Drop1.performed += instance.OnDrop1;
+                    @Drop1.canceled += instance.OnDrop1;
+                    @Drop2.started += instance.OnDrop2;
+                    @Drop2.performed += instance.OnDrop2;
+                    @Drop2.canceled += instance.OnDrop2;
                 }
             }
         }
@@ -1181,8 +1298,11 @@ namespace Mango.Actions
         {
             void OnMove(InputAction.CallbackContext context);
             void OnLook(InputAction.CallbackContext context);
-            void OnFire(InputAction.CallbackContext context);
+            void OnInteract2(InputAction.CallbackContext context);
+            void OnInteract1(InputAction.CallbackContext context);
             void OnMenu1(InputAction.CallbackContext context);
+            void OnDrop1(InputAction.CallbackContext context);
+            void OnDrop2(InputAction.CallbackContext context);
         }
         public interface IUIActions
         {

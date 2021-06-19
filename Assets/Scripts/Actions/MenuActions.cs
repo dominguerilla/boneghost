@@ -32,8 +32,19 @@ public class MenuActions : PlayerAction
         Time.timeScale = _isPaused ? 0 : 1;
 
         pauseUI.SetActive(_isPaused);
-        if (_isPaused) onPause.Invoke();
-        else onUnpause.Invoke();
+
+        if (_isPaused)
+        {
+            controls.Player.Disable();
+            controls.UI.Enable();
+            onPause.Invoke();
+        }
+        else
+        {
+            controls.UI.Disable();
+            controls.Player.Enable();
+            onUnpause.Invoke();
+        }
 
     }
 
