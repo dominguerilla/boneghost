@@ -22,9 +22,17 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Fire",
+                    "name": "Interact2",
                     "type": "Button",
                     "id": "7510c650-01b5-483e-8a63-ab9af4679c14",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Interact1",
+                    "type": "Button",
+                    "id": "f9b6f9e2-e036-4861-a6d5-e4b67ff49280",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -33,6 +41,22 @@
                     "name": "Menu1",
                     "type": "Button",
                     "id": "e3c656f4-ab1d-45f9-907a-548516b3f4ab",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Drop1",
+                    "type": "Button",
+                    "id": "08f84b07-cf89-408c-9f64-0fc0d5b1cf0f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Drop2",
+                    "type": "Button",
+                    "id": "4f6fd910-f008-4034-9fba-bf2a42543d53",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -211,18 +235,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "Fire",
+                    "action": "Interact2",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "05f6913d-c316-48b2-a6bb-e225f14c7960",
-                    "path": "<Mouse>/leftButton",
+                    "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Fire",
+                    "action": "Interact2",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -233,7 +257,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Touch",
-                    "action": "Fire",
+                    "action": "Interact2",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -244,7 +268,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Joystick",
-                    "action": "Fire",
+                    "action": "Interact2",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -255,7 +279,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "XR",
-                    "action": "Fire",
+                    "action": "Interact2",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -278,6 +302,72 @@
                     "processors": "",
                     "groups": "Gamepad;XR",
                     "action": "Menu1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2fbb63ac-6998-4c14-a3ff-16538e97e9d5",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad;Joystick",
+                    "action": "Interact1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e0a5648a-1926-4a6b-aacb-94126462ae20",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ee0c36e9-a375-4de3-b6b0-4ca82a9485c0",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "Hold(duration=1)",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Drop1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1b7e17b4-218a-41a8-827b-7d4191e66959",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "Hold(duration=2)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Drop1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "80c805f4-3cfa-4855-85c1-358c83050fcd",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "Hold(duration=1)",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Drop2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "25897098-2399-49e8-bbd3-98c258404353",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "Hold(duration=2)",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Drop2",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
