@@ -52,6 +52,7 @@ public class ItemComponent : MonoBehaviour
         this.transform.SetParent(parentObject);
         Orient(offset, eulerOffset);
         isEquipped = true;
+        arm.Hold(this);
         onEquip.Invoke();
     }
 
@@ -64,6 +65,11 @@ public class ItemComponent : MonoBehaviour
         isEquipped = false;
         
         onDequip.Invoke();
+    }
+
+    public virtual void Interact(Arm arm, InventoryComponent inventory)
+    {
+        Equip(arm, arm.heldItemPosition, arm.offset, arm.eulerOffset);
     }
 
     void Freeze()

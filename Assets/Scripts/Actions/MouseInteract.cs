@@ -12,6 +12,7 @@ namespace Mango.Actions
 
         [SerializeField] Arm[] arms;
         [SerializeField] Camera cam;
+        [SerializeField] InventoryComponent inventory;
         Vector3[] originalArmPositions;
 
         Vector3 surfaceUnderCursor;
@@ -98,12 +99,12 @@ namespace Mango.Actions
             if (Physics.Raycast(ray, out hit, maxInteractionDistance, LayerMask.GetMask("Interactable")))
             {
                 Transform objectHit = hit.transform;
-                Debug.Log($"Using arm on {hit.collider.name}");
+                //Debug.Log($"Using arm on {hit.collider.name}");
                 ItemComponent item = objectHit.GetComponent<ItemComponent>();
                 if (item)
                 {
-                    //item.OnInteract(arm, inventory);
-                    arm.Hold(item);
+                    item.Interact(arm, inventory);
+                    //arm.Hold(item);
                     return true;
                 }
             }
