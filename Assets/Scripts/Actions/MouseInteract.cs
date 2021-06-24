@@ -67,11 +67,11 @@ namespace Mango.Actions
 
         void ReachArm(int armNum, Vector3 direction)
         {
-            if (arms.Length <= 0) return;
+            if (arms.Length <= 0 || arms[armNum].IsHoldingItem()) return;
             arms[armNum].transform.position += direction;
 
         }
-
+         
         void RetractArm(int armNum)
         {
             if (arms.Length <= 0) return;
@@ -81,6 +81,7 @@ namespace Mango.Actions
 
         void DropItem(int armNum)
         {
+            Debug.Log($"{armNum} drop called!");
             if (arms.Length <= 0) return;
             arms[armNum].Drop(surfaceUnderCursor);
         }
@@ -99,12 +100,10 @@ namespace Mango.Actions
             if (Physics.Raycast(ray, out hit, maxInteractionDistance, LayerMask.GetMask("Interactable")))
             {
                 Transform objectHit = hit.transform;
-                //Debug.Log($"Using arm on {hit.collider.name}");
                 ItemComponent item = objectHit.GetComponent<ItemComponent>();
                 if (item)
                 {
                     item.Interact(arm, inventory);
-                    //arm.Hold(item);
                     return true;
                 }
             }

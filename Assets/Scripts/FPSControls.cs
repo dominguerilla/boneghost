@@ -62,7 +62,7 @@ namespace Mango.Actions
                 },
                 {
                     ""name"": ""Drop1"",
-                    ""type"": ""Button"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""08f84b07-cf89-408c-9f64-0fc0d5b1cf0f"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
@@ -70,7 +70,7 @@ namespace Mango.Actions
                 },
                 {
                     ""name"": ""Drop2"",
-                    ""type"": ""Button"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""4f6fd910-f008-4034-9fba-bf2a42543d53"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",

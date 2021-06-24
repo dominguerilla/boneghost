@@ -8,7 +8,7 @@ public class Arm : MonoBehaviour
     public Vector3 offset;
     public Vector3 eulerOffset;
 
-    ItemComponent heldItem;
+    [SerializeField] ItemComponent heldItem;
 
     private void Awake()
     {
@@ -26,7 +26,6 @@ public class Arm : MonoBehaviour
     public void Hold(ItemComponent item)
     {
         heldItem = item;
-        //item.Equip(this, heldItemPosition, offset, eulerOffset);
     }
 
     public void UseItem()
