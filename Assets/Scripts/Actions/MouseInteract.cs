@@ -102,7 +102,8 @@ namespace Mango.Actions
                 ItemComponent item = objectHit.GetComponent<ItemComponent>();
                 if (item)
                 {
-                    arm.Hold(item, eulerAngleOffset);
+                    //item.OnInteract(arm, inventory);
+                    arm.Hold(item);
                     return true;
                 }
             }

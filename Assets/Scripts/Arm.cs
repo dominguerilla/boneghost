@@ -5,6 +5,8 @@ using UnityEngine;
 public class Arm : MonoBehaviour
 {
     [SerializeField] Transform heldItemPosition;
+    [SerializeField] Vector3 offset;
+    [SerializeField] Vector3 eulerOffset;
 
     ItemComponent heldItem;
 
@@ -21,10 +23,10 @@ public class Arm : MonoBehaviour
         return heldItemPosition;
     }
 
-    public void Hold(ItemComponent item, Vector3 eulerAngleOffset)
+    public void Hold(ItemComponent item)
     {
         heldItem = item;
-        item.Equip(this, heldItemPosition, Vector3.zero, eulerAngleOffset);
+        item.Equip(this, heldItemPosition, offset, eulerOffset);
     }
 
     public void UseItem()

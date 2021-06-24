@@ -65,6 +65,7 @@ public class ItemComponent : MonoBehaviour
         
         onDequip.Invoke();
     }
+
     void Freeze()
     {
         col.isTrigger = true;
