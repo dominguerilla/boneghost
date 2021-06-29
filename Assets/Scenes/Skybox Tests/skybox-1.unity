@@ -1166,6 +1166,8 @@ MonoBehaviour:
   offset: {x: 0, y: 0, z: 0}
   eulerOffset: {x: 0, y: 0, z: 0}
   heldItem: {fileID: 0}
+  armAnimator: {fileID: 1876758826}
+  animTriggerPrefix: l_
 --- !u!43 &67968056
 Mesh:
   m_ObjectHideFlags: 0
@@ -3255,6 +3257,8 @@ MonoBehaviour:
   offset: {x: 0, y: 0, z: 0}
   eulerOffset: {x: 0, y: 0, z: 0}
   heldItem: {fileID: 0}
+  armAnimator: {fileID: 1876758826}
+  animTriggerPrefix: r_
 --- !u!43 &198298874
 Mesh:
   m_ObjectHideFlags: 0
@@ -67153,6 +67157,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxInteractionDistance: 4
   maxDropDistance: 2
+  interactionCooldownTime: 1
   arms:
   - {fileID: 60530038}
   - {fileID: 186886282}

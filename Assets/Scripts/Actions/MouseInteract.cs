@@ -9,6 +9,7 @@ namespace Mango.Actions
     {
         public float maxInteractionDistance = 2f;
         public float maxDropDistance = 2f;
+        public float interactionCooldownTime = 1f;
 
         [SerializeField] Arm[] arms;
         [SerializeField] Camera cam;
@@ -17,6 +18,8 @@ namespace Mango.Actions
         Vector3[] originalArmPositions;
 
         Vector3 surfaceUnderCursor;
+        Coroutine cooldownRoutine;
+        bool interactionCoolingDown;
 
         public override void Register(FPSControls controls)
         {
@@ -70,8 +73,17 @@ namespace Mango.Actions
         {
             if (arms.Length <= 0 || arms[armNum].IsHoldingItem()) return;
             //arms[armNum].transform.position += direction;
+            if (interactionCoolingDown) return;
+            cooldownRoutine = StartCoroutine(InteractionCooldown(interactionCooldownTime));
             string triggerName = armNum % 2 == 0 ? "l_reach" : "r_reach";
             armAnim.SetTrigger(triggerName);
+        }
+
+        IEnumerator InteractionCooldown(float time)
+        {
+            interactionCoolingDown = true;
+            yield return new WaitForSeconds(time);
+            interactionCoolingDown = false;
         }
          
         void RetractArm(int armNum)

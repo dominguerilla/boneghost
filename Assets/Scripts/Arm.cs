@@ -9,6 +9,9 @@ public class Arm : MonoBehaviour
     public Vector3 eulerOffset;
 
     [SerializeField] ItemComponent heldItem;
+    [SerializeField] Animator armAnimator;
+    [SerializeField] string animTriggerPrefix = "";
+
 
     private void Awake()
     {
@@ -55,6 +58,18 @@ public class Arm : MonoBehaviour
         if (heldItem && heldItem.isTemporary)
         {
             Drop(location);
+        }
+    }
+
+    public void TriggerAnimation(string triggerName)
+    {
+        if (armAnimator)
+        {
+            armAnimator.SetTrigger(animTriggerPrefix + triggerName);
+        }
+        else
+        {
+            Debug.LogError($"No arm animator set for { gameObject.name }!");
         }
     }
 

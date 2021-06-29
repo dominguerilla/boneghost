@@ -6,6 +6,7 @@ public class Weapon : ItemComponent
 {
     [SerializeField] float attackCooldown = 1.0f;
 
+
     Coroutine attackRoutine;
     bool _isAttacking = false;
 
@@ -17,6 +18,7 @@ public class Weapon : ItemComponent
     IEnumerator Attack()
     {
         _isAttacking = true;
+        equippedArm.TriggerAnimation("reach");
         yield return new WaitForSeconds(attackCooldown);
         _isAttacking = false;
         yield return null;
