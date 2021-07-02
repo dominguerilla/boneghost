@@ -5,6 +5,10 @@ using UnityEngine;
 
 namespace Mango.Actions
 {
+    /// <summary>
+    /// This class is used to modify/enable/disable player functionality through a single API. 
+    /// Things like disabling mouselook, limiting camera rotation, changing movement speed, etc.
+    /// </summary>
     public class ActionUser : MonoBehaviour
     {
         FPSControls controls;
