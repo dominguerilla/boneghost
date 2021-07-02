@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class Arm : MonoBehaviour
 {
-    [SerializeField] Transform heldItemPosition;
+    public Transform heldItemPosition;
+    public Vector3 offset;
+    public Vector3 eulerOffset;
 
-    ItemComponent heldItem;
+    [SerializeField] ItemComponent heldItem;
+    [SerializeField] Animator armAnimator;
+    [SerializeField] string animTriggerPrefix = "";
+
 
     private void Awake()
     {
@@ -21,10 +26,9 @@ public class Arm : MonoBehaviour
         return heldItemPosition;
     }
 
-    public void Hold(ItemComponent item, Vector3 eulerAngleOffset)
+    public void Hold(ItemComponent item)
     {
         heldItem = item;
-        item.Equip(this, heldItemPosition, Vector3.zero, eulerAngleOffset);
     }
 
     public void UseItem()
@@ -54,6 +58,18 @@ public class Arm : MonoBehaviour
         if (heldItem && heldItem.isTemporary)
         {
             Drop(location);
+        }
+    }
+
+    public void TriggerAnimation(string triggerName)
+    {
+        if (armAnimator)
+        {
+            armAnimator.SetTrigger(animTriggerPrefix + triggerName);
+        }
+        else
+        {
+            Debug.LogError($"No arm animator set for { gameObject.name }!");
         }
     }
 

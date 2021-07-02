@@ -1,0 +1,137 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: l_mask
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: Armature
+    m_Weight: 0
+  - m_Path: Armature/L_arm
+    m_Weight: 1
+  - m_Path: Armature/L_arm/L_elbow
+    m_Weight: 1
+  - m_Path: Armature/L_arm/L_elbow/L_wrist
+    m_Weight: 1
+  - m_Path: Armature/L_arm/L_elbow/L_wrist/L_middle
+    m_Weight: 1
+  - m_Path: Armature/L_arm/L_elbow/L_wrist/L_middle/L_middle_2
+    m_Weight: 1
+  - m_Path: Armature/L_arm/L_elbow/L_wrist/L_middle/L_middle_2/L_middle_3
+    m_Weight: 1
+  - m_Path: Armature/L_arm/L_elbow/L_wrist/L_middle/L_middle_2/L_middle_3/L_middle_4
+    m_Weight: 1
+  - m_Path: Armature/L_arm/L_elbow/L_wrist/L_middle/L_middle_2/L_middle_3/L_middle_4/L_middle_4_end
+    m_Weight: 1
+  - m_Path: Armature/L_arm/L_elbow/L_wrist/L_pink
+    m_Weight: 1
+  - m_Path: Armature/L_arm/L_elbow/L_wrist/L_pink/L_pink_2
+    m_Weight: 1
+  - m_Path: Armature/L_arm/L_elbow/L_wrist/L_pink/L_pink_2/L_pink_3
+    m_Weight: 1
+  - m_Path: Armature/L_arm/L_elbow/L_wrist/L_pink/L_pink_2/L_pink_3/L_pink_4
+    m_Weight: 1
+  - m_Path: Armature/L_arm/L_elbow/L_wrist/L_pink/L_pink_2/L_pink_3/L_pink_4/L_pink_4_end
+    m_Weight: 1
+  - m_Path: Armature/L_arm/L_elbow/L_wrist/L_point
+    m_Weight: 1
+  - m_Path: Armature/L_arm/L_elbow/L_wrist/L_point/L_point_2
+    m_Weight: 1
+  - m_Path: Armature/L_arm/L_elbow/L_wrist/L_point/L_point_2/L_point_3
+    m_Weight: 1
+  - m_Path: Armature/L_arm/L_elbow/L_wrist/L_point/L_point_2/L_point_3/L_point_4
+    m_Weight: 1
+  - m_Path: Armature/L_arm/L_elbow/L_wrist/L_point/L_point_2/L_point_3/L_point_4/L_point_4_end
+    m_Weight: 1
+  - m_Path: Armature/L_arm/L_elbow/L_wrist/L_ring
+    m_Weight: 1
+  - m_Path: Armature/L_arm/L_elbow/L_wrist/L_ring/L_ring_2
+    m_Weight: 1
+  - m_Path: Armature/L_arm/L_elbow/L_wrist/L_ring/L_ring_2/L_ring_3
+    m_Weight: 1
+  - m_Path: Armature/L_arm/L_elbow/L_wrist/L_ring/L_ring_2/L_ring_3/L_ring_4
+    m_Weight: 1
+  - m_Path: Armature/L_arm/L_elbow/L_wrist/L_ring/L_ring_2/L_ring_3/L_ring_4/L_ring_4_end
+    m_Weight: 1
+  - m_Path: Armature/L_arm/L_elbow/L_wrist/L_thumb
+    m_Weight: 1
+  - m_Path: Armature/L_arm/L_elbow/L_wrist/L_thumb/L_thumb_2
+    m_Weight: 1
+  - m_Path: Armature/L_arm/L_elbow/L_wrist/L_thumb/L_thumb_2/L_thumb_3
+    m_Weight: 1
+  - m_Path: Armature/L_arm/L_elbow/L_wrist/L_thumb/L_thumb_2/L_thumb_3/Joint_3
+    m_Weight: 1
+  - m_Path: Armature/L_arm/L_elbow/L_wrist/L_thumb/L_thumb_2/L_thumb_3/Joint_3/Joint_3_end
+    m_Weight: 1
+  - m_Path: Armature/R_arm
+    m_Weight: 0
+  - m_Path: Armature/R_arm/R_elbow
+    m_Weight: 1
+  - m_Path: Armature/R_arm/R_elbow/R_wrist
+    m_Weight: 1
+  - m_Path: Armature/R_arm/R_elbow/R_wrist/R_middle
+    m_Weight: 1
+  - m_Path: Armature/R_arm/R_elbow/R_wrist/R_middle/R_middle_2
+    m_Weight: 1
+  - m_Path: Armature/R_arm/R_elbow/R_wrist/R_middle/R_middle_2/R_middle_3
+    m_Weight: 1
+  - m_Path: Armature/R_arm/R_elbow/R_wrist/R_middle/R_middle_2/R_middle_3/R_middle_4
+    m_Weight: 1
+  - m_Path: Armature/R_arm/R_elbow/R_wrist/R_middle/R_middle_2/R_middle_3/R_middle_4/R_middle_4_end
+    m_Weight: 1
+  - m_Path: Armature/R_arm/R_elbow/R_wrist/R_pink
+    m_Weight: 1
+  - m_Path: Armature/R_arm/R_elbow/R_wrist/R_pink/R_pink_2
+    m_Weight: 1
+  - m_Path: Armature/R_arm/R_elbow/R_wrist/R_pink/R_pink_2/R_pink_3
+    m_Weight: 1
+  - m_Path: Armature/R_arm/R_elbow/R_wrist/R_pink/R_pink_2/R_pink_3/R_pink_4
+    m_Weight: 1
+  - m_Path: Armature/R_arm/R_elbow/R_wrist/R_pink/R_pink_2/R_pink_3/R_pink_4/R_pink_4_end
+    m_Weight: 1
+  - m_Path: Armature/R_arm/R_elbow/R_wrist/R_point
+    m_Weight: 1
+  - m_Path: Armature/R_arm/R_elbow/R_wrist/R_point/R_point_2
+    m_Weight: 1
+  - m_Path: Armature/R_arm/R_elbow/R_wrist/R_point/R_point_2/R_point_3
+    m_Weight: 1
+  - m_Path: Armature/R_arm/R_elbow/R_wrist/R_point/R_point_2/R_point_3/R_point_4
+    m_Weight: 1
+  - m_Path: Armature/R_arm/R_elbow/R_wrist/R_point/R_point_2/R_point_3/R_point_4/R_point_4_end
+    m_Weight: 1
+  - m_Path: Armature/R_arm/R_elbow/R_wrist/R_ring
+    m_Weight: 1
+  - m_Path: Armature/R_arm/R_elbow/R_wrist/R_ring/R_ring_2
+    m_Weight: 1
+  - m_Path: Armature/R_arm/R_elbow/R_wrist/R_ring/R_ring_2/R_ring_3
+    m_Weight: 1
+  - m_Path: Armature/R_arm/R_elbow/R_wrist/R_ring/R_ring_2/R_ring_3/R_ring_4
+    m_Weight: 1
+  - m_Path: Armature/R_arm/R_elbow/R_wrist/R_ring/R_ring_2/R_ring_3/R_ring_4/R_ring_4_end
+    m_Weight: 1
+  - m_Path: Armature/R_arm/R_elbow/R_wrist/R_thumb
+    m_Weight: 1
+  - m_Path: Armature/R_arm/R_elbow/R_wrist/R_thumb/R_thumb_2
+    m_Weight: 1
+  - m_Path: Armature/R_arm/R_elbow/R_wrist/R_thumb/R_thumb_2/R_thumb_3
+    m_Weight: 1
+  - m_Path: Armature/R_arm/R_elbow/R_wrist/R_thumb/R_thumb_2/R_thumb_3/Joint_3_2
+    m_Weight: 1
+  - m_Path: Armature/R_arm/R_elbow/R_wrist/R_thumb/R_thumb_2/R_thumb_3/Joint_3_2/Joint_3_2_end
+    m_Weight: 1
+  - m_Path: armmesh
+    m_Weight: 0
+  - m_Path: L_arm_Pole
+    m_Weight: 1
+  - m_Path: L_wrist_Goal
+    m_Weight: 1
+  - m_Path: R_arm_Pole
+    m_Weight: 0
+  - m_Path: R_wrist_Goal
+    m_Weight: 0

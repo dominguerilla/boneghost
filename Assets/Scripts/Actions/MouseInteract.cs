@@ -9,12 +9,17 @@ namespace Mango.Actions
     {
         public float maxInteractionDistance = 2f;
         public float maxDropDistance = 2f;
+        public float interactionCooldownTime = 1f;
 
         [SerializeField] Arm[] arms;
         [SerializeField] Camera cam;
+        [SerializeField] InventoryComponent inventory;
+        [SerializeField] Animator armAnim;
         Vector3[] originalArmPositions;
 
         Vector3 surfaceUnderCursor;
+        Coroutine cooldownRoutine;
+        bool interactionCoolingDown;
 
         public override void Register(FPSControls controls)
         {
@@ -66,16 +71,28 @@ namespace Mango.Actions
 
         void ReachArm(int armNum, Vector3 direction)
         {
-            if (arms.Length <= 0) return;
-            arms[armNum].transform.position += direction;
-
+            if (arms.Length <= 0 || arms[armNum].IsHoldingItem()) return;
+            //arms[armNum].transform.position += direction;
+            if (interactionCoolingDown) return;
+            cooldownRoutine = StartCoroutine(InteractionCooldown(interactionCooldownTime));
+            string triggerName = armNum % 2 == 0 ? "l_reach" : "r_reach";
+            armAnim.SetTrigger(triggerName);
         }
 
+        IEnumerator InteractionCooldown(float time)
+        {
+            interactionCoolingDown = true;
+            yield return new WaitForSeconds(time);
+            interactionCoolingDown = false;
+        }
+         
         void RetractArm(int armNum)
         {
             if (arms.Length <= 0) return;
             //arms[armNum].DropIfTemporary(surfaceUnderCursor);
-            arms[armNum].transform.localPosition = originalArmPositions[armNum];
+            //arms[armNum].transform.localPosition = originalArmPositions[armNum];
+            string triggerName = armNum % 2 == 0 ? "l_retract" : "r_retract";
+            armAnim.SetTrigger(triggerName);
         }
 
         void DropItem(int armNum)
@@ -98,11 +115,10 @@ namespace Mango.Actions
             if (Physics.Raycast(ray, out hit, maxInteractionDistance, LayerMask.GetMask("Interactable")))
             {
                 Transform objectHit = hit.transform;
-                Debug.Log($"Using arm on {hit.collider.name}");
                 ItemComponent item = objectHit.GetComponent<ItemComponent>();
                 if (item)
                 {
-                    arm.Hold(item, eulerAngleOffset);
+                    item.Interact(arm, inventory);
                     return true;
                 }
             }
@@ -134,6 +150,11 @@ namespace Mango.Actions
         Vector3 GetCameraForwardVector()
         {
             return cam.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, maxDropDistance));
+        }
+
+        public Animator GetAnimator()
+        {
+            return armAnim;
         }
 
     }

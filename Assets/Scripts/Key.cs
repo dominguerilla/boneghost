@@ -2,18 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(ItemComponent))]
-public class Key : MonoBehaviour
+public class Key : ItemComponent
 {
-    // Start is called before the first frame update
-    void Start()
+    public override void Interact(Arm arm, InventoryComponent inventory)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        inventory.Add(this.gameObject);
     }
 }
