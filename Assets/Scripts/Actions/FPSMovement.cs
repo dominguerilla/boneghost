@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Mango.Actions
 {
@@ -9,6 +10,9 @@ namespace Mango.Actions
     {
         [SerializeField]
         float moveSpeed = 5f;
+
+        public UnityEvent onMoveStart = new UnityEvent();
+        public UnityEvent onMoveEnd = new UnityEvent();
 
         CharacterController controller;
         Vector3 moveVector;
@@ -36,8 +40,9 @@ namespace Mango.Actions
         public override void Register(FPSControls controls)
         {
             base.Register(controls);
+            controls.Player.Move.started += ctx => onMoveStart.Invoke();
             controls.Player.Move.performed += ctx => this.ReceiveInput(ctx.ReadValue<Vector2>());
-            controls.Player.Move.canceled += _ => this.StopMoving();
+            controls.Player.Move.canceled += _ => { this.StopMoving(); onMoveEnd.Invoke(); };
         }
 
         public void LockMovement() {
