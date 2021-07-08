@@ -23,6 +23,7 @@ namespace Mango.Actions
         public UnityEvent onSprintEnd = new UnityEvent();
 
         FPSMovement movementControl;
+        FPSLook lookControl;
 
         private void Awake()
         {
@@ -35,6 +36,7 @@ namespace Mango.Actions
             {
                 action.Register(controls);
                 if (action is FPSMovement) movementControl = (FPSMovement)action;
+                if (action is FPSLook) lookControl = (FPSLook)action;
             }
             controls.Player.Enable();
 
@@ -48,6 +50,16 @@ namespace Mango.Actions
         public void DisableMovement()
         {
             movementControl.LockMovement();
+        }
+
+        public void EnableMouseLook()
+        {
+            lookControl.EnableMouseLook();
+        }
+
+        public void DisableMouseLook()
+        {
+            lookControl.DisableMouseLook();
         }
 
         public bool IsMoving()
