@@ -75,6 +75,22 @@ namespace Mango.Actions
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Dodge"",
+                    ""type"": ""Button"",
+                    ""id"": ""a2532908-ec3e-41d9-b41c-ef1694919059"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Sprint"",
+                    ""type"": ""Button"",
+                    ""id"": ""7160924b-aec2-46f7-89fe-7f17e502c48f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -383,6 +399,28 @@ namespace Mango.Actions
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Drop2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""28334ae3-de32-48dd-847b-366790eea306"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Dodge"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0663fcd3-c4db-44b2-a5c6-7aeef1de9983"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Sprint"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -997,6 +1035,8 @@ namespace Mango.Actions
             m_Player_Menu1 = m_Player.FindAction("Menu1", throwIfNotFound: true);
             m_Player_Drop1 = m_Player.FindAction("Drop1", throwIfNotFound: true);
             m_Player_Drop2 = m_Player.FindAction("Drop2", throwIfNotFound: true);
+            m_Player_Dodge = m_Player.FindAction("Dodge", throwIfNotFound: true);
+            m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
             m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1066,6 +1106,8 @@ namespace Mango.Actions
         private readonly InputAction m_Player_Menu1;
         private readonly InputAction m_Player_Drop1;
         private readonly InputAction m_Player_Drop2;
+        private readonly InputAction m_Player_Dodge;
+        private readonly InputAction m_Player_Sprint;
         public struct PlayerActions
         {
             private @FPSControls m_Wrapper;
@@ -1077,6 +1119,8 @@ namespace Mango.Actions
             public InputAction @Menu1 => m_Wrapper.m_Player_Menu1;
             public InputAction @Drop1 => m_Wrapper.m_Player_Drop1;
             public InputAction @Drop2 => m_Wrapper.m_Player_Drop2;
+            public InputAction @Dodge => m_Wrapper.m_Player_Dodge;
+            public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -1107,6 +1151,12 @@ namespace Mango.Actions
                     @Drop2.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDrop2;
                     @Drop2.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDrop2;
                     @Drop2.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDrop2;
+                    @Dodge.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDodge;
+                    @Dodge.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDodge;
+                    @Dodge.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDodge;
+                    @Sprint.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
+                    @Sprint.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
+                    @Sprint.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
                 }
                 m_Wrapper.m_PlayerActionsCallbackInterface = instance;
                 if (instance != null)
@@ -1132,6 +1182,12 @@ namespace Mango.Actions
                     @Drop2.started += instance.OnDrop2;
                     @Drop2.performed += instance.OnDrop2;
                     @Drop2.canceled += instance.OnDrop2;
+                    @Dodge.started += instance.OnDodge;
+                    @Dodge.performed += instance.OnDodge;
+                    @Dodge.canceled += instance.OnDodge;
+                    @Sprint.started += instance.OnSprint;
+                    @Sprint.performed += instance.OnSprint;
+                    @Sprint.canceled += instance.OnSprint;
                 }
             }
         }
@@ -1303,6 +1359,8 @@ namespace Mango.Actions
             void OnMenu1(InputAction.CallbackContext context);
             void OnDrop1(InputAction.CallbackContext context);
             void OnDrop2(InputAction.CallbackContext context);
+            void OnDodge(InputAction.CallbackContext context);
+            void OnSprint(InputAction.CallbackContext context);
         }
         public interface IUIActions
         {

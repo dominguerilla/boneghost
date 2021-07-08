@@ -66436,6 +66436,7 @@ GameObject:
   - component: {fileID: 7848365053808924969}
   - component: {fileID: 7848365053808924968}
   - component: {fileID: 7848365053808924983}
+  - component: {fileID: 2954977799419292903}
   - component: {fileID: 7848365053808924982}
   - component: {fileID: 7848365053808924981}
   - component: {fileID: 1974271726}
@@ -66481,6 +66482,26 @@ MonoBehaviour:
     _json: '{"declarations":{"collection":{"$content":[{"name":"Player Action User","value":{"$content":0,"$type":"UnityEngine.Object"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
     _objectReferences:
     - {fileID: 7848365053808924982}
+--- !u!114 &2954977799419292903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2954977799419292900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c4c5bffd4a0bc4428dc003263f5a59f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dodgeSpeed: 10
+  dodgeTime: 0.25
+  onDodgeStart:
+    m_PersistentCalls:
+      m_Calls: []
+  onDodgeEnd:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &2955490232948605997
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68923,6 +68944,7 @@ MonoBehaviour:
   - {fileID: 7848365053808924968}
   - {fileID: 7848365053808924969}
   - {fileID: 1974271726}
+  - {fileID: 2954977799419292903}
   onMoveStart:
     m_PersistentCalls:
       m_Calls:

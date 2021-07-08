@@ -66,6 +66,11 @@ namespace Mango.Actions
             _isMoving = true;
         }
 
+        public Vector3 GetMovementVector()
+        {
+            return _isMoving ? CalculateMoveDirection(moveVector) : transform.forward;
+        }
+
         Vector3 CalculateMoveDirection(Vector3 inputVector)
         {
             Vector3 forwardDir = transform.forward * inputVector.z;
