@@ -38,6 +38,16 @@ namespace Mango.Actions
 
         }
 
+        public void EnableMovement()
+        {
+            movementControl.UnlockMovement();
+        }
+
+        public void DisableMovement()
+        {
+            movementControl.LockMovement();
+        }
+
         public bool IsMoving()
         {
             return movementControl.IsMoving();
