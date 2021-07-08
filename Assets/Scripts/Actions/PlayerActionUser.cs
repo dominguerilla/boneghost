@@ -19,6 +19,8 @@ namespace Mango.Actions
         public UnityEvent onMoveEnd = new UnityEvent();
         public UnityEvent onDodgeStart = new UnityEvent();
         public UnityEvent onDodgeEnd = new UnityEvent();
+        public UnityEvent onSprintStart = new UnityEvent();
+        public UnityEvent onSprintEnd = new UnityEvent();
 
         FPSMovement movementControl;
 
@@ -71,6 +73,16 @@ namespace Mango.Actions
         public void OnDodgeEnd()
         {
             onDodgeEnd.Invoke();
+        }
+
+        public void OnSprintStart()
+        {
+            onSprintStart.Invoke();
+        }
+
+        public void OnSprintEnd()
+        {
+            onSprintEnd.Invoke();
         }
 
     }

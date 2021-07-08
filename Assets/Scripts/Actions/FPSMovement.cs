@@ -10,15 +10,20 @@ namespace Mango.Actions
     {
         [SerializeField]
         float moveSpeed = 5f;
+        [SerializeField]
+        float sprintModifier = 1.5f;
 
         public UnityEvent onMoveStart = new UnityEvent();
         public UnityEvent onMoveEnd = new UnityEvent();
+        public UnityEvent onSprintStart = new UnityEvent();
+        public UnityEvent onSprintEnd = new UnityEvent();
 
         CharacterController controller;
         Vector3 moveVector;
 
         bool _canMove = true;
         bool _isMoving = false;
+        bool _isSprinting = false;
 
         private void Start()
         {
@@ -31,8 +36,8 @@ namespace Mango.Actions
             if (_canMove && _isMoving)
             {
                 Vector3 moveDirection = CalculateMoveDirection(moveVector);
-
-                controller.Move(moveDirection * moveSpeed * Time.deltaTime);
+                float speed = _isSprinting ? moveSpeed * sprintModifier : moveSpeed;
+                controller.Move(moveDirection * speed * Time.deltaTime);
             }
             
         }
@@ -43,6 +48,8 @@ namespace Mango.Actions
             controls.Player.Move.started += ctx => onMoveStart.Invoke();
             controls.Player.Move.performed += ctx => this.ReceiveInput(ctx.ReadValue<Vector2>());
             controls.Player.Move.canceled += _ => { this.StopMoving(); onMoveEnd.Invoke(); };
+            controls.Player.Sprint.performed += _ => { onSprintStart.Invoke(); _isSprinting = true; };
+            controls.Player.Sprint.canceled += _ => { onSprintEnd.Invoke(); _isSprinting = false; };
         }
 
         public void LockMovement() {

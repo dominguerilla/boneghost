@@ -417,7 +417,7 @@ namespace Mango.Actions
                     ""name"": """",
                     ""id"": ""0663fcd3-c4db-44b2-a5c6-7aeef1de9983"",
                     ""path"": ""<Keyboard>/space"",
-                    ""interactions"": ""Hold"",
+                    ""interactions"": ""Hold(duration=0.2)"",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Sprint"",
