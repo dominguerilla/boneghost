@@ -17,6 +17,10 @@ namespace Mango.Actions
 
         public UnityEvent onMoveStart = new UnityEvent();
         public UnityEvent onMoveEnd = new UnityEvent();
+        public UnityEvent onDodgeStart = new UnityEvent();
+        public UnityEvent onDodgeEnd = new UnityEvent();
+
+        FPSMovement movementControl;
 
         private void Awake()
         {
@@ -27,10 +31,16 @@ namespace Mango.Actions
         {
             foreach (PlayerAction action in actions)
             {
-                action.Register(controls); 
+                action.Register(controls);
+                if (action is FPSMovement) movementControl = (FPSMovement)action;
             }
             controls.Player.Enable();
 
+        }
+
+        public bool IsMoving()
+        {
+            return movementControl.IsMoving();
         }
 
         public void OnMoveStart()
@@ -41,6 +51,16 @@ namespace Mango.Actions
         public void OnMoveEnd()
         {
             onMoveEnd.Invoke();
+        }
+
+        public void OnDodgeStart()
+        {
+            onDodgeStart.Invoke();
+        }
+
+        public void OnDodgeEnd()
+        {
+            onDodgeEnd.Invoke();
         }
 
     }

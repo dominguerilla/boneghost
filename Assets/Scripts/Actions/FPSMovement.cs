@@ -71,6 +71,12 @@ namespace Mango.Actions
             return _isMoving ? CalculateMoveDirection(moveVector) : transform.forward;
         }
 
+        public bool IsMoving()
+        {
+            return _isMoving;
+        }
+
+
         Vector3 CalculateMoveDirection(Vector3 inputVector)
         {
             Vector3 forwardDir = transform.forward * inputVector.z;
@@ -83,8 +89,6 @@ namespace Mango.Actions
             _isMoving = false;
 
         }
-
-        
 
         void InitializeMenuControls()
         {
