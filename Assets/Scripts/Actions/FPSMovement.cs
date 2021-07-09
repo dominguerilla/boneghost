@@ -46,10 +46,10 @@ namespace Mango.Actions
         {
             base.Register(controls);
             controls.Player.Move.started += ctx => onMoveStart.Invoke();
-            controls.Player.Move.performed += ctx => this.ReceiveInput(ctx.ReadValue<Vector2>());
-            controls.Player.Move.canceled += _ => { this.StopMoving(); onMoveEnd.Invoke(); };
+            controls.Player.Move.performed += ctx => ReceiveInput(ctx.ReadValue<Vector2>());
+            controls.Player.Move.canceled += _ => StopMoving();
             controls.Player.Sprint.performed += _ => { onSprintStart.Invoke(); _isSprinting = true; };
-            controls.Player.Sprint.canceled += _ => { onSprintEnd.Invoke(); _isSprinting = false; };
+            controls.Player.Sprint.canceled += _ => StopSprinting();
         }
 
         public void LockMovement() {
@@ -59,6 +59,19 @@ namespace Mango.Actions
         public void UnlockMovement()
         {
             _canMove = true;
+        }
+
+        public void StopSprinting()
+        {
+            onSprintEnd.Invoke(); 
+            _isSprinting = false;
+        }
+
+        void StopMoving()
+        {
+            _isMoving = false;
+            StopSprinting();
+            onMoveEnd.Invoke();
         }
 
         public void ReceiveInput(Vector2 compositeInput)
@@ -89,12 +102,6 @@ namespace Mango.Actions
             Vector3 forwardDir = transform.forward * inputVector.z;
             Vector3 sideDir = transform.right * inputVector.x;
             return (forwardDir + sideDir).normalized;
-        }
-
-        void StopMoving()
-        {
-            _isMoving = false;
-
         }
 
         void InitializeMenuControls()
