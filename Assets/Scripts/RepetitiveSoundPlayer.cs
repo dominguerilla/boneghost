@@ -14,11 +14,11 @@ public class RepetitiveSoundPlayer : MonoBehaviour
 
     Coroutine playRoutine;
     int currentIndex = 0;
-    AudioSource audioSrc;
+    [SerializeField] AudioSource audioSrc;
 
     private void Awake()
     {
-        audioSrc = GetComponent<AudioSource>();
+        if(!audioSrc) audioSrc = GetComponent<AudioSource>();
     }
 
     public void StartPlaying()
@@ -28,7 +28,7 @@ public class RepetitiveSoundPlayer : MonoBehaviour
 
     public void StopPlaying()
     {
-        StopCoroutine(playRoutine);
+        if(playRoutine != null) StopCoroutine(playRoutine);
     }
 
     IEnumerator SoundPlayRoutine(float interval)

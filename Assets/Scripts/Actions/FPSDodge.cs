@@ -13,13 +13,13 @@ namespace Mango.Actions
     public class FPSDodge : PlayerAction
     {
         [SerializeField] float dodgeSpeed = 5f;
-        [SerializeField] float dodgeTime = 1.0f;
+        [SerializeField] float dodgeTime = 0.125f;
+        [SerializeField] float dodgeCooldown = 1.0f;
         public UnityEvent onDodgeStart = new UnityEvent();
         public UnityEvent onDodgeEnd = new UnityEvent();
 
         CharacterController controller;
         bool _canDodge = true;
-        bool _isMoving = false;
         FPSMovement movementControl;
 
         private void Awake()
@@ -31,15 +31,21 @@ namespace Mango.Actions
         public override void Register(FPSControls controls)
         {
             base.Register(controls);
-            controls.Player.Dodge.started += ctx => onDodgeStart.Invoke();
+            controls.Player.Dodge.started += ctx => { if (_canDodge) onDodgeStart.Invoke(); };
             controls.Player.Dodge.performed += ctx => { StartCoroutine(Dodge()); };
-            controls.Player.Dodge.canceled += ctx => { this.StopMoving();  onDodgeEnd.Invoke(); };
+            controls.Player.Dodge.canceled += ctx => this.StopDodging();
+        }
+
+        public bool CanDodge()
+        {
+            return _canDodge;
         }
 
         IEnumerator Dodge()
         {
+            if (!_canDodge) yield break;
+            _canDodge = false;
             Vector3 moveDirection = movementControl.GetMovementVector();
-            _isMoving = true;
             float ctr = 0;
             while (ctr < dodgeTime)
             {
@@ -47,10 +53,13 @@ namespace Mango.Actions
                 ctr += Time.deltaTime;
                 yield return new WaitForEndOfFrame();
             }
+            StopDodging();
+            yield return new WaitForSeconds(dodgeCooldown);
+            _canDodge = true;
         }
 
-        void StopMoving() {
-            _isMoving = false;
+        void StopDodging() {
+            onDodgeEnd.Invoke();
         }
     }
 }

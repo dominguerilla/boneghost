@@ -24,6 +24,7 @@ namespace Mango.Actions
 
         FPSMovement movementControl;
         FPSLook lookControl;
+        FPSDodge dodgeControl;
 
         private void Awake()
         {
@@ -35,8 +36,9 @@ namespace Mango.Actions
             foreach (PlayerAction action in actions)
             {
                 action.Register(controls);
-                if (action is FPSMovement) movementControl = (FPSMovement)action;
-                if (action is FPSLook) lookControl = (FPSLook)action;
+                if (!movementControl && action is FPSMovement) movementControl = (FPSMovement)action;
+                if (!lookControl && action is FPSLook) lookControl = (FPSLook)action;
+                if (!dodgeControl && action is FPSDodge) dodgeControl = (FPSDodge)action;
             }
             controls.Player.Enable();
 
@@ -50,6 +52,16 @@ namespace Mango.Actions
         public void DisableMovement()
         {
             movementControl.LockMovement();
+        }
+
+        public void EnableSprint()
+        {
+            movementControl.EnableSprint();
+        }
+
+        public void DisableSprint()
+        {
+            movementControl.DisableSprint();
         }
 
         public void EnableMouseLook()
@@ -87,6 +99,11 @@ namespace Mango.Actions
             onDodgeEnd.Invoke();
         }
 
+        public void NotifySprintStart()
+        {
+            CustomEvent.Trigger(gameObject, "OnSprintStart");
+        }
+
         public void OnSprintStart()
         {
             onSprintStart.Invoke();
@@ -95,6 +112,16 @@ namespace Mango.Actions
         public void OnSprintEnd()
         {
             onSprintEnd.Invoke();
+        }
+
+        public void StopSprinting()
+        {
+            movementControl.StopSprinting();
+        }
+
+        public bool CanDodge()
+        {
+            return dodgeControl.CanDodge();
         }
 
     }

@@ -22,6 +22,7 @@ namespace Mango.Actions
         Vector3 moveVector;
 
         bool _canMove = true;
+        bool _canSprint = false;
         bool _isMoving = false;
         bool _isSprinting = false;
 
@@ -36,7 +37,7 @@ namespace Mango.Actions
             if (_canMove && _isMoving)
             {
                 Vector3 moveDirection = CalculateMoveDirection(moveVector);
-                float speed = _isSprinting ? moveSpeed * sprintModifier : moveSpeed;
+                float speed = _canSprint && _isSprinting ? moveSpeed * sprintModifier : moveSpeed;
                 controller.Move(moveDirection * speed * Time.deltaTime);
             }
             
@@ -48,7 +49,7 @@ namespace Mango.Actions
             controls.Player.Move.started += ctx => onMoveStart.Invoke();
             controls.Player.Move.performed += ctx => ReceiveInput(ctx.ReadValue<Vector2>());
             controls.Player.Move.canceled += _ => StopMoving();
-            controls.Player.Sprint.performed += _ => { onSprintStart.Invoke(); _isSprinting = true; };
+            controls.Player.Sprint.performed += _ => StartSprinting();
             controls.Player.Sprint.canceled += _ => StopSprinting();
         }
 
@@ -59,6 +60,25 @@ namespace Mango.Actions
         public void UnlockMovement()
         {
             _canMove = true;
+        }
+
+        public void EnableSprint()
+        {
+            _canSprint = true;
+        }
+
+        public void DisableSprint()
+        {
+            _canSprint = false;
+        }
+
+        public void StartSprinting()
+        {
+            if (_canSprint)
+            {
+                onSprintStart.Invoke(); 
+                _isSprinting = true;
+            }
         }
 
         public void StopSprinting()
@@ -94,6 +114,11 @@ namespace Mango.Actions
         public bool IsMoving()
         {
             return _isMoving;
+        }
+
+        public bool CanSprint()
+        {
+            return _canSprint;
         }
 
 
