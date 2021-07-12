@@ -50,6 +50,16 @@ namespace Mango.Actions
             mouseY = 0;
         }
 
+        public void EnableMouseLook()
+        {
+            _canLook = true;
+        }
+
+        public void DisableMouseLook()
+        {
+            _canLook = false;
+        }
+
         public override void Register(FPSControls controls)
         {
             base.Register(controls);
@@ -59,13 +69,13 @@ namespace Mango.Actions
 
         private void OnPause()
         {
-            _canLook = false;
+            DisableMouseLook();
             UnlockCursor();
         }
 
         private void OnUnpause()
         {
-            _canLook = true;
+            EnableMouseLook();
             LockCursor();
         }
 

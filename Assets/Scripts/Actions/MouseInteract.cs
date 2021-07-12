@@ -72,11 +72,9 @@ namespace Mango.Actions
         void ReachArm(int armNum, Vector3 direction)
         {
             if (arms.Length <= 0 || arms[armNum].IsHoldingItem()) return;
-            //arms[armNum].transform.position += direction;
             if (interactionCoolingDown) return;
             cooldownRoutine = StartCoroutine(InteractionCooldown(interactionCooldownTime));
-            string triggerName = armNum % 2 == 0 ? "l_reach" : "r_reach";
-            armAnim.SetTrigger(triggerName);
+            arms[armNum].TriggerAnimation("reach");
         }
 
         IEnumerator InteractionCooldown(float time)
@@ -89,10 +87,7 @@ namespace Mango.Actions
         void RetractArm(int armNum)
         {
             if (arms.Length <= 0) return;
-            //arms[armNum].DropIfTemporary(surfaceUnderCursor);
-            //arms[armNum].transform.localPosition = originalArmPositions[armNum];
-            string triggerName = armNum % 2 == 0 ? "l_retract" : "r_retract";
-            armAnim.SetTrigger(triggerName);
+            arms[armNum].TriggerAnimation("retract");
         }
 
         void DropItem(int armNum)
