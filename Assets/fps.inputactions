@@ -47,7 +47,7 @@
                 },
                 {
                     "name": "Drop1",
-                    "type": "Button",
+                    "type": "PassThrough",
                     "id": "08f84b07-cf89-408c-9f64-0fc0d5b1cf0f",
                     "expectedControlType": "Button",
                     "processors": "",
@@ -55,8 +55,24 @@
                 },
                 {
                     "name": "Drop2",
-                    "type": "Button",
+                    "type": "PassThrough",
                     "id": "4f6fd910-f008-4034-9fba-bf2a42543d53",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Dodge",
+                    "type": "Button",
+                    "id": "a2532908-ec3e-41d9-b41c-ef1694919059",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Sprint",
+                    "type": "Button",
+                    "id": "7160924b-aec2-46f7-89fe-7f17e502c48f",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -368,6 +384,28 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Drop2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "28334ae3-de32-48dd-847b-366790eea306",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Dodge",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0663fcd3-c4db-44b2-a5c6-7aeef1de9983",
+                    "path": "<Keyboard>/space",
+                    "interactions": "Hold(duration=0.1)",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Sprint",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

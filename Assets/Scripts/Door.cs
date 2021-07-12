@@ -5,11 +5,12 @@ using UnityEngine;
 public class Door : MonoBehaviour
 {
     public Key unlockingKey;
-    public Vector3 unlockedPosition;
-    public Quaternion unlockedRotation;
+    public Vector3 unlockedPositionOffset;
+    public Vector3 unlockedRotation;
 
     Vector3 startingPosition;
     Quaternion startingRotation;
+    bool _isLocked = true;
 
     // Start is called before the first frame update
     void Start()
@@ -20,8 +21,9 @@ public class Door : MonoBehaviour
 
     public void Unlock()
     {
-        this.transform.position = unlockedPosition;
-        this.transform.rotation = unlockedRotation;
+        this.transform.position += unlockedPositionOffset;
+        this.transform.Rotate(unlockedRotation);
+        _isLocked = false;
         Debug.Log($"{gameObject.name} unlocked!");
     }
 
@@ -29,6 +31,7 @@ public class Door : MonoBehaviour
     {
         this.transform.position = startingPosition;
         this.transform.rotation = startingRotation;
+        _isLocked = true;
         Debug.Log($"{gameObject.name} locked.");
     }
 
@@ -36,7 +39,7 @@ public class Door : MonoBehaviour
     {
         Debug.Log($"Colliding with {collision.gameObject.name}");
         Key key = collision.transform.GetComponent<Key>();
-        if (key && unlockingKey == key)
+        if (_isLocked && key && unlockingKey == key)
         {
             Unlock();
         }
@@ -45,13 +48,17 @@ public class Door : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log($"Trigger collision with {other.gameObject.name}");
-        Arm arm = other.GetComponent<Arm>();
-        if (!arm) return;
         
         Key key = other.transform.GetComponentInChildren<Key>();
-        if (key && unlockingKey == key)
+        if (_isLocked && key && unlockingKey == key)
         {
             Unlock();
         }
+    }
+
+    public void ToggleLock()
+    {
+        if (_isLocked) Unlock();
+        else Lock();
     }
 }

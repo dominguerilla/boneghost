@@ -2,6 +2,11 @@
 #
 # Get latest from https://github.com/github/gitignore/blob/master/Unity.gitignore
 #
+
+# Custom
+*.blend[0-9]
+*.blend[0-9].meta
+
 /[Ll]ibrary/
 /[Tt]emp/
 /[Oo]bj/
@@ -69,3 +74,5 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+
+

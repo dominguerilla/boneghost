@@ -19,11 +19,13 @@ public class ItemComponent : MonoBehaviour
     public bool isTemporary;
 
     protected Rigidbody rb;
+    protected Collider col;
     protected bool isEquipped;
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody>();    
+        rb = GetComponent<Rigidbody>();
+        col = GetComponent<Collider>();
     }
 
     void Update()
@@ -50,6 +52,7 @@ public class ItemComponent : MonoBehaviour
         this.transform.SetParent(parentObject);
         Orient(offset, eulerOffset);
         isEquipped = true;
+        arm.Hold(this);
         onEquip.Invoke();
     }
 
@@ -63,13 +66,21 @@ public class ItemComponent : MonoBehaviour
         
         onDequip.Invoke();
     }
+
+    public virtual void Interact(Arm arm, InventoryComponent inventory)
+    {
+        Equip(arm, arm.heldItemPosition, arm.offset, arm.eulerOffset);
+    }
+
     void Freeze()
     {
+        col.isTrigger = true;
         rb.isKinematic = true;
     }
 
     void Unfreeze()
     {
+        col.isTrigger = false;
         rb.isKinematic = false;
     }
     void Orient(Vector3 offset, Vector3 eulerOffset)
