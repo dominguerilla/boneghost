@@ -12,7 +12,7 @@ using UnityEngine.Events;
 public class FollowAndPlay : MonoBehaviour
 {
     public Transform target;
-    //public Vector3 offsetFromTargetForward;
+    public Vector3 offset;
     public UnityEvent onPlay = new UnityEvent();
 
     // Start is called before the first frame update
@@ -27,7 +27,7 @@ public class FollowAndPlay : MonoBehaviour
 
     public void Play()
     {
-        transform.position = target.position + transform.forward;
+        transform.position = target.position + offset;
         onPlay.Invoke();
     }
 }

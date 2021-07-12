@@ -18435,6 +18435,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1974271738}
+  offset: {x: 0, y: -0.5, z: 0}
   onPlay:
     m_PersistentCalls:
       m_Calls:
@@ -65828,6 +65829,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5840734439928076968, guid: 5381e7fe136609d40a764941f0c3443d, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5840734440183014485, guid: 5381e7fe136609d40a764941f0c3443d, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -65862,6 +65867,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5840734441316255515, guid: 5381e7fe136609d40a764941f0c3443d, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7848365055244934819, guid: 5381e7fe136609d40a764941f0c3443d, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9093160054364531422, guid: 5381e7fe136609d40a764941f0c3443d, type: 3}
