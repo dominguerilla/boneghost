@@ -1894,6 +1894,7 @@ MonoBehaviour:
   - {fileID: 1974271727}
   - {fileID: 7848365053808924969}
   - {fileID: 46054148106481156}
+  - {fileID: 1974271726}
   onMoveStart:
     m_PersistentCalls:
       m_Calls:
@@ -2020,6 +2021,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onAttackStart:
+    m_PersistentCalls:
+      m_Calls: []
+  onAttackEnd:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &5039243047087105002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2096,7 +2103,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5037503543414573859}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a9692c0255b503740913ef281f510cd0, type: 3}
   m_Name: 
@@ -3627,7 +3634,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13b4417655645974dafb27cd77ea8c6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heldItemPosition: {fileID: 0}
+  heldItemPosition: {fileID: 3400911979633691275}
   offset: {x: 0, y: 0, z: 0}
   eulerOffset: {x: 0, y: 0, z: 0}
   heldItem: {fileID: 0}
@@ -3901,7 +3908,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13b4417655645974dafb27cd77ea8c6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heldItemPosition: {fileID: 0}
+  heldItemPosition: {fileID: 8096432050399803467}
   offset: {x: 0, y: 0, z: 0}
   eulerOffset: {x: 0, y: 0, z: 0}
   heldItem: {fileID: 0}

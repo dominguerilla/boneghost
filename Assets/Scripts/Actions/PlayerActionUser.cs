@@ -21,6 +21,8 @@ namespace Mango.Actions
         public UnityEvent onDodgeEnd = new UnityEvent();
         public UnityEvent onSprintStart = new UnityEvent();
         public UnityEvent onSprintEnd = new UnityEvent();
+        public UnityEvent onAttackStart = new UnityEvent();
+        public UnityEvent onAttackEnd = new UnityEvent();
 
         FPSMovement movementControl;
         FPSLook lookControl;

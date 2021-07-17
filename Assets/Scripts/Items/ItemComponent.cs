@@ -9,7 +9,7 @@ public class ItemComponent : MonoBehaviour
     public UnityEvent onEquip = new UnityEvent();
     public UnityEvent onDequip = new UnityEvent();
 
-    [SerializeField] protected Vector3 targetLocalOrientation;
+    [SerializeField] protected Vector3 targetLocalEuler;
     [SerializeField] protected Vector3 targetLocalOffset;
     [SerializeField] protected Arm equippedArm;
 
@@ -89,6 +89,6 @@ public class ItemComponent : MonoBehaviour
         this.transform.localEulerAngles = Vector3.zero;
 
         this.transform.localPosition = targetLocalOffset + offset;
-        this.transform.localEulerAngles = targetLocalOrientation + eulerOffset;
+        this.transform.localEulerAngles = targetLocalEuler + eulerOffset;
     }
 }

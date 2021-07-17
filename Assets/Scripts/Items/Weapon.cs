@@ -18,7 +18,7 @@ public class Weapon : ItemComponent
     IEnumerator Attack()
     {
         _isAttacking = true;
-        equippedArm.TriggerAnimation("reach");
+        equippedArm.TriggerAnimation("slash");
         yield return new WaitForSeconds(attackCooldown);
         _isAttacking = false;
         yield return null;
