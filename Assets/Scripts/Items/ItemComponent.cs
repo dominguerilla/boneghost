@@ -8,6 +8,10 @@ public class ItemComponent : MonoBehaviour
 {
     public UnityEvent onEquip = new UnityEvent();
     public UnityEvent onDequip = new UnityEvent();
+    public UnityEvent onUseStart = new UnityEvent();
+    public UnityEvent onUseEnd = new UnityEvent();
+
+    [SerializeField] AudioClip onUseClip;
 
     [SerializeField] protected Vector3 targetLocalEuler;
     [SerializeField] protected Vector3 targetLocalOffset;
@@ -20,12 +24,14 @@ public class ItemComponent : MonoBehaviour
 
     protected Rigidbody rb;
     protected Collider col;
+    protected AudioSource audioSource;
     protected bool isEquipped;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         col = GetComponent<Collider>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -70,6 +76,18 @@ public class ItemComponent : MonoBehaviour
     public virtual void Interact(Arm arm, InventoryComponent inventory)
     {
         Equip(arm, arm.heldItemPosition, arm.offset, arm.eulerOffset);
+    }
+
+    public virtual void PlayOnUseSound(float delay)
+    {
+        if (audioSource)
+        {
+            audioSource.PlayOneShot(onUseClip);
+        }
+        else
+        {
+            Debug.LogError($"No Audiosource on item { gameObject.name }!");
+        }
     }
 
     void Freeze()
