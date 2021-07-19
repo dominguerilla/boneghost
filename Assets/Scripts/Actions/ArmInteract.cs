@@ -118,17 +118,21 @@ namespace Mango.Actions
                 ItemComponent item = objectHit.GetComponent<ItemComponent>();
                 if (item)
                 {
-                    item.Interact(arm, inventory);
-                    if (item is Weapon)
-                    {
-                        EquipWeapon((Weapon)item);
-                        currentWeapon.onDequip.AddListener(DequipWeapon) ;
-                    }
+                    EquipItem(item, arm);
                     return true;
                 }
             }
 
             return false;
+        }
+
+        void EquipItem(ItemComponent item, Arm arm)
+        {
+            item.Interact(arm, inventory);
+            if (item is Weapon)
+            {
+                EquipWeapon((Weapon)item);
+            }
         }
 
         void EquipWeapon(Weapon weapon)
@@ -137,6 +141,7 @@ namespace Mango.Actions
 
             currentWeapon.onUseStart.AddListener(onAttackStart.Invoke);
             currentWeapon.onUseEnd.AddListener(onAttackEnd.Invoke);
+            currentWeapon.onDequip.AddListener(DequipWeapon) ;
         }
 
         void DequipWeapon()
