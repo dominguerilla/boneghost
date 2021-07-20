@@ -6,7 +6,7 @@ using UnityEngine.Events;
 
 namespace Mango.Actions
 {
-    public class ArmInteract : PlayerAction
+    public class ArmFighter : PlayerAction
     {
         public float maxInteractionDistance = 2f;
         public float maxDropDistance = 2f;

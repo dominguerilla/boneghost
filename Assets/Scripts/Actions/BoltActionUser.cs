@@ -26,7 +26,7 @@ namespace Mango.Actions
         FPSMovement movementControl;
         FPSLook lookControl;
         FPSDodge dodgeControl;
-        ArmInteract armControl;
+        ArmFighter armControl;
 
         private void Awake()
         {
@@ -41,7 +41,7 @@ namespace Mango.Actions
                 if (!movementControl && action is FPSMovement) movementControl = (FPSMovement)action;
                 if (!lookControl && action is FPSLook) lookControl = (FPSLook)action;
                 if (!dodgeControl && action is FPSDodge) dodgeControl = (FPSDodge)action;
-                if (!armControl && action is ArmInteract) armControl = (ArmInteract)action;
+                if (!armControl && action is ArmFighter) armControl = (ArmFighter)action;
             }
             controls.Player.Enable();
 
