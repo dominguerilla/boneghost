@@ -16,6 +16,7 @@ namespace Mango.Actions
         public UnityEvent onAttackEnd = new UnityEvent();
 
         [SerializeField] Arm[] arms;
+        [SerializeField] ItemComponent[] startingItems;
         [SerializeField] Camera cam;
         [SerializeField] InventoryComponent inventory;
         [SerializeField] Animator armAnim;
@@ -24,7 +25,6 @@ namespace Mango.Actions
         Vector3 surfaceUnderCursor;
         Coroutine cooldownRoutine;
         bool interactionCoolingDown;
-        Weapon currentWeapon;
 
         public override void Register(FPSControls controls)
         {
@@ -33,8 +33,8 @@ namespace Mango.Actions
             controls.Player.Interact2.performed += _ => StartInteract(1);
             controls.Player.Interact1.canceled += _ => StopInteract(0);
             controls.Player.Interact2.canceled += _ => StopInteract(1);
-            controls.Player.Drop1.performed += _ => DropItem(0);
-            controls.Player.Drop2.performed += _ => DropItem(1);
+            //controls.Player.Drop1.performed += _ => DropItem(0);
+            //controls.Player.Drop2.performed += _ => DropItem(1);
         }
 
         private void Awake()
@@ -47,6 +47,19 @@ namespace Mango.Actions
             if (!cam)
             {
                 cam = Camera.main;
+            }
+        }
+
+        private void Start()
+        {
+            if (arms.Length == startingItems.Length)
+            {
+                EquipItem(startingItems[0], arms[0]);
+                EquipItem(startingItems[1], arms[1]);
+            }
+            else
+            {
+                Debug.LogError("Not enough arms/starting items for item initialization!");
             }
         }
 
@@ -129,27 +142,10 @@ namespace Mango.Actions
         void EquipItem(ItemComponent item, Arm arm)
         {
             item.Interact(arm, inventory);
-            if (item is Weapon)
-            {
-                EquipWeapon((Weapon)item);
-            }
+            arm.onItemUseStart.AddListener(onAttackStart.Invoke);
+            arm.onItemUseEnd.AddListener(onAttackEnd.Invoke);
         }
 
-        void EquipWeapon(Weapon weapon)
-        {
-            currentWeapon = weapon;
-
-            currentWeapon.onUseStart.AddListener(onAttackStart.Invoke);
-            currentWeapon.onUseEnd.AddListener(onAttackEnd.Invoke);
-            currentWeapon.onDequip.AddListener(DequipWeapon) ;
-        }
-
-        void DequipWeapon()
-        {
-            currentWeapon.onUseStart.RemoveListener(onAttackStart.Invoke);
-            currentWeapon.onUseEnd.RemoveListener(onAttackEnd.Invoke);
-            currentWeapon = null;
-        }
 
         private void OnDrawGizmosSelected()
         {

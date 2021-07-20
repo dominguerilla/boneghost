@@ -11,6 +11,8 @@ public class Arm : MonoBehaviour
 
     public UnityEvent onItemUseStart = new UnityEvent();
     public UnityEvent onItemUseEnd = new UnityEvent();
+    public UnityEvent onItemEquip = new UnityEvent();
+    public UnityEvent onItemDequip = new UnityEvent();
 
     [SerializeField] ItemComponent heldItem;
     [SerializeField] Animator armAnimator;
@@ -35,6 +37,7 @@ public class Arm : MonoBehaviour
         heldItem = item;
         heldItem.onUseStart.AddListener(onItemUseStart.Invoke);
         heldItem.onUseEnd.AddListener(onItemUseEnd.Invoke);
+        onItemEquip.Invoke(); 
     }
 
     public void UseItem()
@@ -58,6 +61,7 @@ public class Arm : MonoBehaviour
             heldItem.onUseStart.RemoveListener(onItemUseStart.Invoke);
             heldItem.onUseEnd.RemoveListener(onItemUseEnd.Invoke);
             heldItem = null;
+            onItemDequip.Invoke();
         }
     }
 

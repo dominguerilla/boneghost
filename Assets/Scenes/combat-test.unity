@@ -28873,6 +28873,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1174456695 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8842426875918963685, guid: acd13e6a96980ee459c81a6f2655d8be, type: 3}
+  m_PrefabInstance: {fileID: 614517429}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1174456693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 888c2461018095a4daa0c3e4e9fd8b20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1175749208
 GameObject:
   m_ObjectHideFlags: 0
@@ -56595,6 +56606,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1809671077 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8842426875918963685, guid: acd13e6a96980ee459c81a6f2655d8be, type: 3}
+  m_PrefabInstance: {fileID: 1874842736}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1809671075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 888c2461018095a4daa0c3e4e9fd8b20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1830273263
 GameObject:
   m_ObjectHideFlags: 0
@@ -68805,6 +68827,12 @@ MonoBehaviour:
   onItemUseEnd:
     m_PersistentCalls:
       m_Calls: []
+  onItemEquip:
+    m_PersistentCalls:
+      m_Calls: []
+  onItemDequip:
+    m_PersistentCalls:
+      m_Calls: []
   heldItem: {fileID: 0}
   armAnimator: {fileID: 4032852952593193230}
   animTriggerPrefix: r_
@@ -68827,6 +68855,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   onItemUseEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  onItemEquip:
+    m_PersistentCalls:
+      m_Calls: []
+  onItemDequip:
     m_PersistentCalls:
       m_Calls: []
   heldItem: {fileID: 0}
@@ -70230,6 +70264,9 @@ MonoBehaviour:
   arms:
   - {fileID: 4032852953201464658}
   - {fileID: 4032852953056239790}
+  startingItems:
+  - {fileID: 1174456695}
+  - {fileID: 1809671077}
   cam: {fileID: 0}
   inventory: {fileID: 8267697061896661154}
   armAnim: {fileID: 4032852952593193230}
