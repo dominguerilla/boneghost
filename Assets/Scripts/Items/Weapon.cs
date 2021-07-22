@@ -17,6 +17,7 @@ public class Weapon : ItemComponent
         mainCam = Camera.main;
     }
 
+
     public override void Use()
     {
         if(!_isAttacking) attackRoutine = StartCoroutine(Attack());
@@ -55,5 +56,10 @@ public class Weapon : ItemComponent
                 destructible.OnAttacked(this.gameObject);
             }
         }
+    }
+
+    public float GetAttackCooldown()
+    {
+        return attackCooldown;
     }
 }
