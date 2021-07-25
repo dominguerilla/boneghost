@@ -1,14 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-public interface IDestructible 
+public class DamageEvent : UnityEvent<Projectile>
 {
-    void OnAttacked(GameObject attacker);
+
 }
 
-public class DestructibleObject : MonoBehaviour, IDestructible
+public class Damageable : MonoBehaviour
 {
+    public DamageEvent onProjectileHit = new DamageEvent();
+
     [SerializeField] AudioClip destroySound;
     [SerializeField] ParticleSystem destroyParticles;
     AudioSource src;
@@ -21,10 +24,6 @@ public class DestructibleObject : MonoBehaviour, IDestructible
         render = GetComponent<MeshRenderer>();
         objCollider = GetComponent<Collider>();
     }
-    public void OnAttacked(GameObject attacker)
-    {
-        DestroyObject();
-    }
 
     void DestroyObject()
     {
@@ -33,5 +32,14 @@ public class DestructibleObject : MonoBehaviour, IDestructible
         render.enabled = false;
         objCollider.enabled = false;
         Destroy(this.gameObject, 1);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Projectile projectile = other.GetComponent<Projectile>();
+        if (projectile)
+        {
+            onProjectileHit.Invoke(projectile);
+        }
     }
 }

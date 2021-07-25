@@ -6,10 +6,8 @@ public class Weapon : ItemComponent
 {
     [SerializeField] float attackCooldown = 1.0f;
     [SerializeField] float soundDelay = 0f;
-    [SerializeField] Vector3 hitboxHalfExtents;
     [SerializeField] ProjectilePool projectilePool;
 
-    Coroutine attackRoutine;
     bool _isAttacking = false;
     Camera mainCam;
 
@@ -18,10 +16,9 @@ public class Weapon : ItemComponent
         mainCam = Camera.main;
     }
 
-
     public override void Use()
     {
-        if(!_isAttacking) attackRoutine = StartCoroutine(Attack());
+        if(!_isAttacking) StartCoroutine(Attack());
     }
 
     IEnumerator Attack()
@@ -30,7 +27,6 @@ public class Weapon : ItemComponent
         this.onUseStart.Invoke();
         equippedArm.TriggerAnimation("slash");
         yield return new WaitForSeconds(soundDelay);
-        //CheckForHits();
         LaunchProjectile();
         PlayOnUseSound(soundDelay);
         yield return new WaitForSeconds(attackCooldown);
@@ -42,28 +38,6 @@ public class Weapon : ItemComponent
     void LaunchProjectile()
     {
         projectilePool.Launch(mainCam.transform.position + mainCam.transform.forward, mainCam.transform.rotation, attackCooldown);
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        if (isEquipped)
-        {
-            Gizmos.matrix = mainCam.transform.localToWorldMatrix;
-            Gizmos.color = _isAttacking ? Color.red : Color.blue;
-            Gizmos.DrawCube(Vector3.zero + 2 * Vector3.forward, 2 * hitboxHalfExtents);
-        }
-    }
-
-    void CheckForHits()
-    {
-        Collider[] hitObjects = Physics.OverlapBox(mainCam.transform.position + 2 * mainCam.transform.forward, hitboxHalfExtents, Quaternion.identity, LayerMask.GetMask("Default"));
-        foreach (Collider col in hitObjects) {
-            IDestructible destructible = col.GetComponent<IDestructible>();
-            if (destructible != null)
-            {
-                destructible.OnAttacked(this.gameObject);
-            }
-        }
     }
 
     public float GetAttackCooldown()
