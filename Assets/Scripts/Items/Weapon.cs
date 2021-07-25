@@ -7,6 +7,7 @@ public class Weapon : ItemComponent
     [SerializeField] float attackCooldown = 1.0f;
     [SerializeField] float soundDelay = 0f;
     [SerializeField] Vector3 hitboxHalfExtents;
+    [SerializeField] Projectile projectile;
 
     Coroutine attackRoutine;
     bool _isAttacking = false;
@@ -29,7 +30,8 @@ public class Weapon : ItemComponent
         this.onUseStart.Invoke();
         equippedArm.TriggerAnimation("slash");
         yield return new WaitForSeconds(soundDelay);
-        CheckForHits();
+        //CheckForHits();
+        LaunchProjectile();
         PlayOnUseSound(soundDelay);
         yield return new WaitForSeconds(attackCooldown);
         _isAttacking = false;
@@ -37,12 +39,18 @@ public class Weapon : ItemComponent
         yield return null;
     }
 
-    private void OnDrawGizmos()
+    void LaunchProjectile()
+    {
+        StartCoroutine(projectile.Launch(mainCam.transform.position + mainCam.transform.forward, mainCam.transform.rotation, attackCooldown));
+    }
+
+    private void OnDrawGizmosSelected()
     {
         if (isEquipped)
         {
+            Gizmos.matrix = mainCam.transform.localToWorldMatrix;
             Gizmos.color = _isAttacking ? Color.red : Color.blue;
-            Gizmos.DrawCube(mainCam.transform.position + 2 * mainCam.transform.forward, 2 * hitboxHalfExtents);
+            Gizmos.DrawCube(Vector3.zero + 2 * Vector3.forward, 2 * hitboxHalfExtents);
         }
     }
 

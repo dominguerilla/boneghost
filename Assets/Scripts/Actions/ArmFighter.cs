@@ -105,7 +105,7 @@ namespace Mango.Actions
         void RetractArm(int armNum)
         {
             if (arms.Length <= 0) return;
-            arms[armNum].TriggerAnimation("retract");
+            if(!arms[armNum].IsHoldingItem()) arms[armNum].TriggerAnimation("retract");
         }
 
         void DropItem(int armNum)
