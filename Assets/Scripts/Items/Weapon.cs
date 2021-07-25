@@ -7,7 +7,7 @@ public class Weapon : ItemComponent
     [SerializeField] float attackCooldown = 1.0f;
     [SerializeField] float soundDelay = 0f;
     [SerializeField] Vector3 hitboxHalfExtents;
-    [SerializeField] Projectile projectile;
+    [SerializeField] ProjectilePool projectilePool;
 
     Coroutine attackRoutine;
     bool _isAttacking = false;
@@ -41,7 +41,7 @@ public class Weapon : ItemComponent
 
     void LaunchProjectile()
     {
-        StartCoroutine(projectile.Launch(mainCam.transform.position + mainCam.transform.forward, mainCam.transform.rotation, attackCooldown));
+        projectilePool.Launch(mainCam.transform.position + mainCam.transform.forward, mainCam.transform.rotation, attackCooldown);
     }
 
     private void OnDrawGizmosSelected()
