@@ -27,6 +27,7 @@ namespace Mango.Actions
         FPSLook lookControl;
         FPSDodge dodgeControl;
         ArmFighter armControl;
+        MenuActions menuControl;
 
         private void Awake()
         {
@@ -42,6 +43,8 @@ namespace Mango.Actions
                 if (!lookControl && action is FPSLook) lookControl = (FPSLook)action;
                 if (!dodgeControl && action is FPSDodge) dodgeControl = (FPSDodge)action;
                 if (!armControl && action is ArmFighter) armControl = (ArmFighter)action;
+                if (!menuControl && action is MenuActions) menuControl = (MenuActions)action;
+
             }
             controls.Player.Enable();
 
@@ -126,6 +129,31 @@ namespace Mango.Actions
         public bool CanDodge()
         {
             return dodgeControl.CanDodge();
+        }
+
+        public bool CanFight()
+        {
+            return armControl.CanFight();
+        }
+
+        public void EnableAttack()
+        {
+            armControl.SetCanFight(true);
+        }
+
+        public void DisableAttack()
+        {
+            armControl.SetCanFight(false);
+        }
+
+        public void EnablePause()
+        {
+            menuControl.SetCanPause(true);
+        }
+
+        public void DisablePause()
+        {
+            menuControl.SetCanPause(false);
         }
 
     }

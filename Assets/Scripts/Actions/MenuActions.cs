@@ -16,6 +16,7 @@ public class MenuActions : PlayerAction
 
     bool _isPaused;
     bool _inConversation;
+    bool canPause = true;
 
     public override void Register(FPSControls controls)
     {
@@ -50,7 +51,7 @@ public class MenuActions : PlayerAction
 
     public void Pause()
     {
-        if (!_isPaused) TogglePause();
+        if (canPause && !_isPaused) TogglePause();
     }
 
     public void Unpause()
@@ -58,5 +59,9 @@ public class MenuActions : PlayerAction
         if (_isPaused) TogglePause();
     }
 
+    public void SetCanPause(bool value)
+    {
+        canPause = value;
+    }
 
 }

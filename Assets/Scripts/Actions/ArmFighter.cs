@@ -25,6 +25,7 @@ namespace Mango.Actions
         Vector3 surfaceUnderCursor;
         Coroutine cooldownRoutine;
         bool interactionCoolingDown;
+        bool canFight = true;
 
         public override void Register(FPSControls controls)
         {
@@ -75,7 +76,7 @@ namespace Mango.Actions
 
         void StartInteract(int armNum)
         {
-            if (arms.Length <= 0) return;
+            if (!canFight || arms.Length <= 0) return;
             Vector3 direction = cam.transform.forward;
             ReachArm(armNum, direction);
             UseArm(arms[armNum], Vector3.zero);
@@ -83,13 +84,13 @@ namespace Mango.Actions
 
         void StopInteract(int armNum)
         {
-            if (arms.Length <= 0) return;
+            if (!canFight || arms.Length <= 0) return;
             RetractArm(armNum);
         }
 
         void ReachArm(int armNum, Vector3 direction)
         {
-            if (arms.Length <= 0 || arms[armNum].IsHoldingItem()) return;
+            if (!canFight || arms.Length <= 0 || arms[armNum].IsHoldingItem()) return;
             if (interactionCoolingDown) return;
             cooldownRoutine = StartCoroutine(InteractionCooldown(interactionCooldownTime));
             arms[armNum].TriggerAnimation("reach");
@@ -176,6 +177,17 @@ namespace Mango.Actions
         public Animator GetAnimator()
         {
             return armAnim;
+        }
+
+        public bool SetCanFight(bool value)
+        {
+            canFight = value;
+            return canFight;
+        }
+
+        public bool CanFight()
+        {
+            return canFight;
         }
 
     }

@@ -3,9 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using Bolt;
 
+public enum RACE
+{
+    BONE,
+    GHOST
+}
+
 [RequireComponent(typeof(Damageable))]
 public class PlayerStatus : MonoBehaviour
 {
+    RACE playerRace = RACE.BONE;
     Damageable hitNotifier;
 
     void Awake()
@@ -23,4 +30,8 @@ public class PlayerStatus : MonoBehaviour
         CustomEvent.Trigger(this.gameObject, "OnProjectileHit", projectile);
     }
 
+    public RACE GetRace()
+    {
+        return playerRace;
+    }
 }
