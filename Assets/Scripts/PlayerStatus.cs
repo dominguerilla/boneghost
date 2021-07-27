@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Bolt;
 
 [RequireComponent(typeof(Damageable))]
 public class PlayerStatus : MonoBehaviour
@@ -19,7 +20,7 @@ public class PlayerStatus : MonoBehaviour
 
     void OnProjectileHit(Projectile projectile)
     {
-        Debug.Log($"{gameObject.name} hit by { projectile.gameObject.name }!");
+        CustomEvent.Trigger(this.gameObject, "OnProjectileHit", projectile);
     }
 
 }
