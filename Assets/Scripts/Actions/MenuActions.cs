@@ -14,27 +14,28 @@ public class MenuActions : PlayerAction
     [SerializeField]
     GameObject pauseUI;
 
-    bool _isPaused;
-    bool _inConversation;
+    bool isPaused;
+    bool inConversation;
     bool canPause = true;
 
     public override void Register(FPSControls controls)
     {
         base.Register(controls);
-        controls.Player.Menu1.performed += _ => TogglePause();
-        controls.UI.Menu1.performed += _ => TogglePause();
+        controls.Player.Menu1.performed += TogglePause;
+        controls.UI.Menu1.performed += TogglePause;
     }
 
-    public void TogglePause()
+    public void TogglePause(InputAction.CallbackContext ctx)
     {
-        if (_inConversation) return;
+        if (inConversation) return;
+        if (!isPaused && !canPause) return;
 
-        _isPaused = !_isPaused;
-        Time.timeScale = _isPaused ? 0 : 1;
+        isPaused = !isPaused;
+        Time.timeScale = isPaused ? 0 : 1;
 
-        pauseUI.SetActive(_isPaused);
+        pauseUI.SetActive(isPaused);
 
-        if (_isPaused)
+        if (isPaused)
         {
             controls.Player.Disable();
             controls.UI.Enable();
@@ -49,19 +50,21 @@ public class MenuActions : PlayerAction
 
     }
 
-    public void Pause()
+    // Dumb hack I have to do in order to hook up Unity UI buttons to this function
+    public void TogglePause()
     {
-        if (canPause && !_isPaused) TogglePause();
-    }
-
-    public void Unpause()
-    {
-        if (_isPaused) TogglePause();
+        TogglePause(new InputAction.CallbackContext());
     }
 
     public void SetCanPause(bool value)
     {
         canPause = value;
+    }
+
+    private void OnDestroy()
+    {
+        controls.Player.Menu1.performed -= TogglePause;
+        controls.UI.Menu1.performed -= TogglePause;
     }
 
 }

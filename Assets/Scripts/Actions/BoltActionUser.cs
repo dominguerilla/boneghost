@@ -156,6 +156,16 @@ namespace Mango.Actions
             menuControl.SetCanPause(false);
         }
 
+        public void EnableDodge()
+        {
+            dodgeControl.SetCanDodge(true);
+        }
+
+        public void DisableDodge()
+        {
+            dodgeControl.SetCanDodge(false);
+        }
+
     }
 }
 
