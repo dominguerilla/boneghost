@@ -6,7 +6,7 @@ using UnityEngine.AI;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(NavMeshAgent))]
-public class Monster: MonoBehaviour, IEntity
+public class Monster: MonoBehaviour
 {
     #region PARAMETERS
     [Header("Monster Parameters")]
@@ -30,15 +30,14 @@ public class Monster: MonoBehaviour, IEntity
     protected GameObject currentTarget = null;
     protected Vector3 lastSeenPlayerPosition = Vector3.zero;
     protected bool _agentInCooldown = false;
+    [SerializeField] protected Animator anim;
 
-    [Header("Debug")]
-    // TODO: remove this
-    [SerializeField] Light monsterDebugLight;
+    int currentHuntingGroundIndex = 0;
 
-    // Start is called before the first frame update
     protected virtual void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
+        anim = GetComponent<Animator>();
         agent.enabled = monsterEnabled;
     }
     protected Vector3 GetRandomHuntingGroundPosition()
@@ -64,7 +63,7 @@ public class Monster: MonoBehaviour, IEntity
             Color lightColor = Color.red;
             while (isAlternatingLight)
             {
-                monsterDebugLight.color = lightColor;
+                //monsterDebugLight.color = lightColor;
                 yield return new WaitForSeconds(0.5f);
                 lightColor = lightColor == Color.red ? Color.blue : Color.red;
             }
@@ -93,16 +92,26 @@ public class Monster: MonoBehaviour, IEntity
         if (huntingGrounds == null || huntingGrounds.Length == 0) return;
         Vector3 huntingGroundPosition = GetRandomHuntingGroundPosition();
 
+
+        GoTo(huntingGroundPosition);
+    }
+
+    public void GoToNextHuntingGround()
+    {
+        if (huntingGrounds == null || huntingGrounds.Length == 0) return;
+        Debug.Log($"{gameObject.name} going to {huntingGrounds[currentHuntingGroundIndex]}");
+        GoTo(huntingGrounds[currentHuntingGroundIndex].transform.position);
+        currentHuntingGroundIndex = (currentHuntingGroundIndex + 1) % huntingGrounds.Length;
+    }
+
+    public void GoTo(Vector3 position)
+    {
         // Bolt can call this function before Awake has even run
         if (!agent)
         {
             agent = GetComponent<NavMeshAgent>();
         }
-        agent.SetDestination(huntingGroundPosition);
-    }
-
-    public void GoTo(Vector3 position)
-    {
+        anim.SetBool("isWalking", true);
         agent.SetDestination(position);
     }
 
@@ -152,6 +161,7 @@ public class Monster: MonoBehaviour, IEntity
 
     public void Stop()
     {
+        anim.SetBool("isWalking", false);
         this.agent.ResetPath();
     }
 
@@ -180,7 +190,7 @@ public class Monster: MonoBehaviour, IEntity
         lastSeenPlayerPosition = currentTarget.transform.position;
         currentTarget = null;
         OnLosePlayer.Invoke();
-        monsterDebugLight.color = Color.yellow;
+        //monsterDebugLight.color = Color.yellow;
     }
 
     public void EnableMonster()
@@ -221,7 +231,8 @@ public class Monster: MonoBehaviour, IEntity
 
     public virtual void Attack()
     {
-        throw new System.Exception("Not implemented!");
+        //throw new System.Exception("Not implemented!");
+        Debug.Log($"{gameObject.name} attack not implemented!");
     }
 
     public bool isEnabled()

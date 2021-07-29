@@ -22,7 +22,7 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         hitNotifier.onProjectileHit.AddListener(OnProjectileHit);
-        StartCoroutine(ShootEvery(timeBetweenProjectiles, projectileLifetime));
+        //StartCoroutine(ShootEvery(timeBetweenProjectiles, projectileLifetime));
     }
 
     IEnumerator ShootEvery(float timeBetweenProjectiles, float projectileLifetime)
