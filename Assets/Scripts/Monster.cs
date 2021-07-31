@@ -11,6 +11,7 @@ public class Monster: MonoBehaviour
     #region PARAMETERS
     [Header("Monster Parameters")]
     [SerializeField] bool monsterEnabled;
+    [SerializeField] float startingHealth = 1.0f;
     public GameObject[] huntingGrounds;
     public float huntingGroundRadius = 5f;
     public float stunTime = 2.5f;
@@ -21,9 +22,11 @@ public class Monster: MonoBehaviour
     public UnityEvent OnDetectPlayer = new UnityEvent();
     public UnityEvent OnLosePlayer = new UnityEvent();
     public UnityEvent OnDestruct = new UnityEvent();
+    public UnityEvent OnDeath = new UnityEvent();
     #endregion
 
     #region PROTECTED MEMBERS
+    protected float currentHealth;
     protected NavMeshAgent agent;
     protected bool isStunned = false;
     protected bool isAlternatingLight = false;
@@ -31,13 +34,17 @@ public class Monster: MonoBehaviour
     protected Vector3 lastSeenPlayerPosition = Vector3.zero;
     protected bool _agentInCooldown = false;
     [SerializeField] protected Animator anim;
+    [SerializeField] protected Damageable damageable;
 
     int currentHuntingGroundIndex = 0;
 
     protected virtual void Awake()
     {
+        currentHealth = startingHealth;
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
+        if (damageable) damageable.onProjectileHit.AddListener(OnProjectileHit);
+        else Debug.LogWarning($"No Damageable set on {gameObject.name}!");
         agent.enabled = monsterEnabled;
     }
     protected Vector3 GetRandomHuntingGroundPosition()
@@ -83,6 +90,11 @@ public class Monster: MonoBehaviour
     protected void OnDestroy()
     {
         DisableMonster();
+    }
+
+    protected void OnProjectileHit(Projectile projectile)
+    {
+        TakeDamage(projectile.damage);
     }
     #endregion
 
@@ -238,6 +250,26 @@ public class Monster: MonoBehaviour
     public bool isEnabled()
     {
         return monsterEnabled;
+    }
+
+    public virtual void Die()
+    {
+        anim.SetTrigger("Die");
+        OnDeath.Invoke();
+    }
+
+    public virtual void Rise()
+    {
+        anim.SetTrigger("Rise");
+    }
+
+    public virtual void TakeDamage(float damage)
+    {
+        currentHealth -= damage;
+        if (currentHealth < 0)
+        {
+            Die();
+        }
     }
     #endregion
 }

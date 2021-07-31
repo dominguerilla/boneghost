@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Damageable))]
-public class Enemy : MonoBehaviour
+public class ProjectileShooter : MonoBehaviour
 {
     [SerializeField] ProjectilePool projectilePool;
     [SerializeField] float timeBetweenProjectiles = 2.0f;
