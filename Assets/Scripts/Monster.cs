@@ -27,6 +27,7 @@ public class Monster: MonoBehaviour
 
     #region PROTECTED MEMBERS
     protected float currentHealth;
+    protected bool isAlive;
     protected NavMeshAgent agent;
     protected bool isStunned = false;
     protected bool isAlternatingLight = false;
@@ -41,6 +42,7 @@ public class Monster: MonoBehaviour
     protected virtual void Awake()
     {
         currentHealth = startingHealth;
+        isAlive = currentHealth > 0f;
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
         if (damageable) damageable.onProjectileHit.AddListener(OnProjectileHit);
@@ -255,21 +257,28 @@ public class Monster: MonoBehaviour
     public virtual void Die()
     {
         anim.SetTrigger("Die");
+        isAlive = false;
         OnDeath.Invoke();
     }
 
     public virtual void Rise()
     {
+        isAlive = true;
         anim.SetTrigger("Rise");
     }
 
     public virtual void TakeDamage(float damage)
     {
         currentHealth -= damage;
-        if (currentHealth < 0)
+        if (currentHealth <= 0f)
         {
             Die();
         }
+    }
+
+    public bool isNotDead()
+    {
+        return isAlive;
     }
     #endregion
 }
