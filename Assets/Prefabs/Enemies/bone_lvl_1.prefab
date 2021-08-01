@@ -3433,7 +3433,6 @@ GameObject:
   - component: {fileID: 6488588710678187879}
   - component: {fileID: 6488588710668777985}
   - component: {fileID: 4549248308176602067}
-  - component: {fileID: 4549248308176602064}
   - component: {fileID: 1775200361254823174}
   - component: {fileID: 1775200361254823175}
   - component: {fileID: 1775200361254823168}
@@ -3515,21 +3514,6 @@ MonoBehaviour:
   - {fileID: 716190260695182235}
   - {fileID: 716190259739054246}
   - {fileID: 716190259419393440}
---- !u!114 &4549248308176602064
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6488588710668680429}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78bbaaf53dc98af469e27a0008a24575, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectilePool: {fileID: 4549248308176602067}
-  timeBetweenProjectiles: 2
-  projectileLifetime: 2
 --- !u!114 &1775200361254823174
 MonoBehaviour:
   m_ObjectHideFlags: 0
