@@ -58,7 +58,7 @@ public class MonsterLowerHalf : Monster
             Debug.Log("BODY DETACH!");
             _isHeadDetached = true;
             DisableMonster();
-            StopAlternatingLights();
+            //StopAlternatingLights();
             head.Detach();
             onDetach.Invoke();
         }

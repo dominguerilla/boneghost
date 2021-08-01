@@ -12,8 +12,8 @@ public class Monster: MonoBehaviour
     [Header("Monster Parameters")]
     [SerializeField] bool monsterEnabled;
     [SerializeField] float startingHealth = 1.0f;
-    public GameObject[] huntingGrounds;
-    public float huntingGroundRadius = 5f;
+    //public GameObject[] huntingGrounds;
+    //public float huntingGroundRadius = 5f;
     public float stunTime = 2.5f;
     public float attackRange = 10f;
     [SerializeField] Vision vision;
@@ -27,7 +27,7 @@ public class Monster: MonoBehaviour
 
     #region PROTECTED MEMBERS
     protected float currentHealth;
-    protected bool isAlive;
+    protected bool alive;
     protected NavMeshAgent agent;
     protected bool isStunned = false;
     protected bool isAlternatingLight = false;
@@ -42,42 +42,12 @@ public class Monster: MonoBehaviour
     protected virtual void Awake()
     {
         currentHealth = startingHealth;
-        isAlive = currentHealth > 0f;
+        alive = currentHealth > 0f;
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
         if (damageable) damageable.onProjectileHit.AddListener(OnProjectileHit);
         else Debug.LogWarning($"No Damageable set on {gameObject.name}!");
         agent.enabled = monsterEnabled;
-    }
-    protected Vector3 GetRandomHuntingGroundPosition()
-    {
-        GameObject randomHuntingGround = GetRandomHuntingGround();
-        float randX = Random.Range(0.5f, huntingGroundRadius);
-        float randZ = Random.Range(0.5f, huntingGroundRadius);
-
-        Vector3 randomOffset = new Vector3(randX, 0, randZ);
-        return randomHuntingGround.transform.position + randomOffset;
-    }
-
-    protected GameObject GetRandomHuntingGround()
-    {
-        return huntingGrounds[Random.Range(0, huntingGrounds.Length)];
-    }
-
-    protected IEnumerator AlternateLightColors()
-    {
-        if (!isAlternatingLight)
-        {
-            isAlternatingLight = true;
-            Color lightColor = Color.red;
-            while (isAlternatingLight)
-            {
-                //monsterDebugLight.color = lightColor;
-                yield return new WaitForSeconds(0.5f);
-                lightColor = lightColor == Color.red ? Color.blue : Color.red;
-            }
-        }
-        yield return null;
     }
 
     protected IEnumerator StunRoutine()
@@ -98,26 +68,14 @@ public class Monster: MonoBehaviour
     {
         TakeDamage(projectile.damage);
     }
+
+    protected void LateUpdate()
+    {
+        SetAnimBool("isWalking", agent.velocity.magnitude > 0);
+    }
     #endregion
 
     #region PUBLIC MEMBERS
-    public void GoToRandomHuntingGround()
-    {
-        if (huntingGrounds == null || huntingGrounds.Length == 0) return;
-        Vector3 huntingGroundPosition = GetRandomHuntingGroundPosition();
-
-
-        GoTo(huntingGroundPosition);
-    }
-
-    public void GoToNextHuntingGround()
-    {
-        if (huntingGrounds == null || huntingGrounds.Length == 0) return;
-        Debug.Log($"{gameObject.name} going to {huntingGrounds[currentHuntingGroundIndex]}");
-        GoTo(huntingGrounds[currentHuntingGroundIndex].transform.position);
-        currentHuntingGroundIndex = (currentHuntingGroundIndex + 1) % huntingGrounds.Length;
-    }
-
     public void GoTo(Vector3 position)
     {
         // Bolt can call this function before Awake has even run
@@ -125,15 +83,13 @@ public class Monster: MonoBehaviour
         {
             agent = GetComponent<NavMeshAgent>();
         }
-        anim.SetBool("isWalking", true);
         agent.SetDestination(position);
     }
 
     public bool isAtDestination()
     {
         if (monsterEnabled) {
-            if (agent.stoppingDistance == 0) return agent.remainingDistance < 1f;
-            return agent.remainingDistance < agent.stoppingDistance;
+            return agent.remainingDistance < 0.5f && !agent.pathPending;
         }
         return true;
     }
@@ -175,7 +131,6 @@ public class Monster: MonoBehaviour
 
     public void Stop()
     {
-        anim.SetBool("isWalking", false);
         this.agent.ResetPath();
     }
 
@@ -204,7 +159,6 @@ public class Monster: MonoBehaviour
         lastSeenPlayerPosition = currentTarget.transform.position;
         currentTarget = null;
         OnLosePlayer.Invoke();
-        //monsterDebugLight.color = Color.yellow;
     }
 
     public void EnableMonster()
@@ -219,11 +173,6 @@ public class Monster: MonoBehaviour
         agent.enabled = false;
     }
 
-    public void StartAlternateLightColors()
-    {
-        StartCoroutine(AlternateLightColors());
-    }
-
     public Vector3 GetLastSeenPlayerPosition()
     {
         if (currentTarget)
@@ -231,11 +180,6 @@ public class Monster: MonoBehaviour
             return currentTarget.transform.position;
         }
         return lastSeenPlayerPosition;
-    }
-
-    public void StopAlternatingLights()
-    {
-        isAlternatingLight = false;
     }
 
     public GameObject GetCurrentTargetPlayer()
@@ -257,13 +201,13 @@ public class Monster: MonoBehaviour
     public virtual void Die()
     {
         anim.SetTrigger("Die");
-        isAlive = false;
+        alive = false;
         OnDeath.Invoke();
     }
 
     public virtual void Rise()
     {
-        isAlive = true;
+        alive = true;
         anim.SetTrigger("Rise");
     }
 
@@ -276,9 +220,14 @@ public class Monster: MonoBehaviour
         }
     }
 
-    public bool isNotDead()
+    public bool isAlive()
     {
-        return isAlive;
+        return alive;
+    }
+
+    public void SetAnimBool(string name, bool value)
+    {
+        anim.SetBool(name, value);
     }
     #endregion
 }
