@@ -12,6 +12,7 @@ public class ProjectilePool : MonoBehaviour
         availablePool = new Queue<Projectile>(startingPool);
         foreach (Projectile projectile in availablePool)
         {
+            projectile.SetPool(this);
             projectile.gameObject.SetActive(false);
         }
     }
@@ -33,18 +34,9 @@ public class ProjectilePool : MonoBehaviour
         Transform originalParent = projectile.transform.parent;
         projectile.transform.parent = null;
 
-        projectile.transform.position = origin;
-        projectile.transform.rotation = orientation;
         projectile.gameObject.SetActive(true);
-
-        float currentLifetime = 0f;
-        while (currentLifetime < lifetime)
-        {
-            currentLifetime += Time.deltaTime;
-            projectile.transform.Translate(Vector3.forward * projectile.flightSpeed * Time.deltaTime);
-
-            yield return new WaitForEndOfFrame();
-        }
+        yield return projectile.Launch(origin, orientation, lifetime);
+        
         projectile.gameObject.SetActive(false);
         projectile.transform.parent = originalParent;
         availablePool.Enqueue(projectile);

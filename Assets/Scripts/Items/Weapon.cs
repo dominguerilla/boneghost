@@ -7,10 +7,13 @@ using UnityEngine;
 /// </summary>
 public class Weapon : ItemComponent
 {
-    [SerializeField] float attackCooldown = 1.0f;
     [SerializeField] float soundDelay = 0f;
+   
+    [Header("Projectile Settings")]
+    [SerializeField] float attackCooldown = 1.0f;
+    [SerializeField] Vector3 projectileSpawnOffset;
     [SerializeField] ProjectilePool projectilePool;
-
+    
     bool _isAttacking = false;
     Camera mainCam;
 
@@ -40,7 +43,8 @@ public class Weapon : ItemComponent
 
     void LaunchProjectile()
     {
-        projectilePool.Launch(mainCam.transform.position + mainCam.transform.forward, mainCam.transform.rotation, attackCooldown);
+        Vector3 launchPosition = mainCam.transform.position + projectileSpawnOffset;
+        projectilePool.Launch(launchPosition + mainCam.transform.forward, mainCam.transform.rotation, attackCooldown);
     }
 
     public float GetAttackCooldown()
