@@ -37,7 +37,6 @@ public class Monster: MonoBehaviour
     [SerializeField] protected Animator anim;
     [SerializeField] protected Damageable damageable;
 
-    int currentHuntingGroundIndex = 0;
 
     protected virtual void Awake()
     {
