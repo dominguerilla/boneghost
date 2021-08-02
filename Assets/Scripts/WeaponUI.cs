@@ -9,19 +9,25 @@ public class WeaponUI : MonoBehaviour
     [SerializeField] GameObject UI;
     [SerializeField] Image staminaMeter;
 
-    [Header("UI Settings")]
-    [SerializeField] Vector2 anchorMin;
-    [SerializeField] Vector2 anchorMax;
-    [SerializeField] Vector3 UIposition;
-
     private void Start()
     {
-        weapon.onEquip.AddListener(EnableUI);
-        weapon.onDequip.AddListener(DisableUI);
-        weapon.onUseStart.AddListener(StartStaminaRefill);
-        staminaMeter.rectTransform.anchorMin = anchorMin;
-        staminaMeter.rectTransform.anchorMax = anchorMax;
-        staminaMeter.rectTransform.anchoredPosition = UIposition;
+        if(weapon) RegisterWeapon(weapon);
+    }
+
+    public void RegisterWeapon(Weapon weapon)
+    {
+        this.weapon = weapon;
+        this.weapon.onUseStart.AddListener(StartStaminaRefill);
+        this.weapon.onDequip.AddListener(UnregisterWeapon);
+        EnableUI();
+    }
+
+    public void UnregisterWeapon()
+    {
+        DisableUI();
+        this.weapon.onUseStart.RemoveListener(StartStaminaRefill);
+        this.weapon.onDequip.RemoveListener(UnregisterWeapon);
+        this.weapon = null;
     }
 
     void EnableUI()

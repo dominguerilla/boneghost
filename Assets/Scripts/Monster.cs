@@ -80,6 +80,7 @@ public class Monster: MonoBehaviour
     #region PUBLIC MEMBERS
     public void GoTo(Vector3 position)
     {
+        if (!monsterEnabled) return;
         // Bolt can call this function before Awake has even run
         if (!agent)
         {
@@ -133,6 +134,7 @@ public class Monster: MonoBehaviour
 
     public void Stop()
     {
+        if (!monsterEnabled) return;
         this.agent.ResetPath();
     }
 
