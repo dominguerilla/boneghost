@@ -37,6 +37,8 @@ public class Monster: MonoBehaviour
     [SerializeField] protected Animator anim;
     [SerializeField] protected Damageable damageable;
     [SerializeField] protected ProjectilePool projectilePool;
+    [SerializeField] protected AudioSource audioSource;
+    [SerializeField] protected AudioClip attackSound;
 
 
     protected virtual void Awake()
@@ -190,6 +192,7 @@ public class Monster: MonoBehaviour
     public virtual void Attack()
     {
         anim.SetTrigger("Attack");
+        if(audioSource) audioSource.PlayOneShot(attackSound);
         projectilePool.Launch((transform.position + new Vector3(0, 0.2f, 0)) + transform.forward, transform.rotation);
     }
 
