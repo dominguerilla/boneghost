@@ -8,10 +8,9 @@ namespace Mango.Actions
     [RequireComponent(typeof(CharacterController))]
     public class FPSMovement : PlayerAction
     {
-        [SerializeField]
-        float moveSpeed = 5f;
-        [SerializeField]
-        float sprintModifier = 1.5f;
+        [SerializeField] float moveSpeed = 5f;
+        [SerializeField] float sprintModifier = 1.5f;
+        [SerializeField] float gravity = -9.81f;
 
         public UnityEvent onMoveStart = new UnityEvent();
         public UnityEvent onMoveEnd = new UnityEvent();
@@ -26,6 +25,9 @@ namespace Mango.Actions
         bool _isMoving = false;
         bool _isSprinting = false;
 
+        bool isPlayerGrounded;
+        Vector3 verticalVelocity;
+
         private void Start()
         {
             controller = GetComponent<CharacterController>();
@@ -34,13 +36,19 @@ namespace Mango.Actions
 
         private void Update()
         {
-            if (_canMove && _isMoving)
+            if (!_canMove) return;
+            isPlayerGrounded = controller.isGrounded;
+            if (isPlayerGrounded && verticalVelocity.y < 0)
             {
-                Vector3 moveDirection = CalculateMoveDirection(moveVector);
-                float speed = _canSprint && _isSprinting ? moveSpeed * sprintModifier : moveSpeed;
-                controller.Move(moveDirection * speed * Time.deltaTime);
+                verticalVelocity.y = 0f;
             }
-            
+
+            Vector3 moveDirection = _isMoving ? CalculateInputDirection(moveVector) : Vector3.zero;
+            float speed = _canSprint && _isSprinting ? moveSpeed * sprintModifier : moveSpeed;
+            controller.Move(moveDirection * speed * Time.deltaTime);
+
+            verticalVelocity.y += gravity * Time.deltaTime;
+            controller.Move(verticalVelocity * Time.deltaTime);
         }
 
         public override void Register(FPSControls controls)
@@ -108,7 +116,7 @@ namespace Mango.Actions
 
         public Vector3 GetMovementVector()
         {
-            return _isMoving ? CalculateMoveDirection(moveVector) : transform.forward;
+            return _isMoving ? CalculateInputDirection(moveVector) : transform.forward;
         }
 
         public bool IsMoving()
@@ -122,7 +130,7 @@ namespace Mango.Actions
         }
 
 
-        Vector3 CalculateMoveDirection(Vector3 inputVector)
+        Vector3 CalculateInputDirection(Vector3 inputVector)
         {
             Vector3 forwardDir = transform.forward * inputVector.z;
             Vector3 sideDir = transform.right * inputVector.x;

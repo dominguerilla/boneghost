@@ -1,12 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Arm : MonoBehaviour
 {
     public Transform heldItemPosition;
     public Vector3 offset;
     public Vector3 eulerOffset;
+
+    public UnityEvent onItemUseStart = new UnityEvent();
+    public UnityEvent onItemUseEnd = new UnityEvent();
+    public UnityEvent onItemEquip = new UnityEvent();
+    public UnityEvent onItemDequip = new UnityEvent();
 
     [SerializeField] ItemComponent heldItem;
     [SerializeField] Animator armAnimator;
@@ -29,6 +35,9 @@ public class Arm : MonoBehaviour
     public void Hold(ItemComponent item)
     {
         heldItem = item;
+        heldItem.onUseStart.AddListener(onItemUseStart.Invoke);
+        heldItem.onUseEnd.AddListener(onItemUseEnd.Invoke);
+        onItemEquip.Invoke(); 
     }
 
     public void UseItem()
@@ -49,7 +58,10 @@ public class Arm : MonoBehaviour
         {
             heldItem.transform.position = location;
             heldItem.Dequip();
+            heldItem.onUseStart.RemoveListener(onItemUseStart.Invoke);
+            heldItem.onUseEnd.RemoveListener(onItemUseEnd.Invoke);
             heldItem = null;
+            onItemDequip.Invoke();
         }
     }
 
@@ -69,7 +81,7 @@ public class Arm : MonoBehaviour
         }
         else
         {
-            Debug.LogError($"No arm animator set for { gameObject.name }!");
+            Debug.LogWarning($"No arm animator set for { gameObject.name }!");
         }
     }
 
