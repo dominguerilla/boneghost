@@ -13,9 +13,11 @@ public enum RACE
 public class PlayerStatus : MonoBehaviour
 {
     [SerializeField] bool detectHits = true;
+    [SerializeField] float cooldownBetweenHits = 1.0f;
     RACE playerRace = RACE.BONE;
     Damageable hitNotifier;
 
+    bool invulnerable = false;
 
     void Awake()
     {
@@ -30,7 +32,18 @@ public class PlayerStatus : MonoBehaviour
     void OnProjectileHit(Projectile projectile)
     {
 
-        if(detectHits && projectile.type == ProjectileType.ENEMY) CustomEvent.Trigger(this.gameObject, "OnProjectileHit", projectile);
+        if (detectHits && !invulnerable && projectile.type == ProjectileType.ENEMY)
+        {
+            StartCoroutine(CooldownHit(projectile));
+        }
+    }
+
+    IEnumerator CooldownHit(Projectile projectile)
+    {
+        CustomEvent.Trigger(this.gameObject, "OnProjectileHit", projectile);
+        invulnerable = true;
+        yield return new WaitForSeconds(cooldownBetweenHits);
+        invulnerable = false;
     }
 
     public RACE GetRace()

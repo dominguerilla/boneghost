@@ -133,6 +133,7 @@ GameObject:
   - component: {fileID: 1393386952831681140}
   - component: {fileID: 2322976813011065022}
   - component: {fileID: 3564962539657531187}
+  - component: {fileID: 72438666921613956}
   m_Layer: 0
   m_Name: ghost_lvl_1
   m_TagString: Untagged
@@ -218,7 +219,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 6294163030280678705}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.25
   m_Speed: 2
   m_Acceleration: 8
   avoidancePriority: 50
@@ -227,7 +228,7 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 2
+  m_Height: 1
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
@@ -297,7 +298,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   anim: {fileID: 6294163030290194175}
-  damageable: {fileID: 0}
+  damageable: {fileID: 72438666921613956}
   projectilePool: {fileID: 2173476994303820118}
 --- !u!114 &2322976813011065022
 MonoBehaviour:
@@ -330,6 +331,20 @@ MonoBehaviour:
     _json: '{"nest":{"source":"Macro","macro":0,"embed":null}}'
     _objectReferences:
     - {fileID: 11400000, guid: 30a44ac35f31ece489ab8b85856a33cc, type: 2}
+--- !u!114 &72438666921613956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6294163030280678705}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6709afb9bfb33c3468b1e630bcd5b432, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroySound: {fileID: 0}
+  destroyParticles: {fileID: 0}
 --- !u!1 &6294163030280678707
 GameObject:
   m_ObjectHideFlags: 0
@@ -910,11 +925,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2816c846477aa554d8080c83e7f94969, type: 3}
---- !u!4 &2953230830260151833 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3950296809707670157, guid: 2816c846477aa554d8080c83e7f94969, type: 3}
-  m_PrefabInstance: {fileID: 2173476995204082836}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2953230830260151831 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3950296809707670147, guid: 2816c846477aa554d8080c83e7f94969, type: 3}
@@ -926,3 +936,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e33a3637f4f41644883c4cd38614d589, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &2953230830260151833 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3950296809707670157, guid: 2816c846477aa554d8080c83e7f94969, type: 3}
+  m_PrefabInstance: {fileID: 2173476995204082836}
+  m_PrefabAsset: {fileID: 0}
