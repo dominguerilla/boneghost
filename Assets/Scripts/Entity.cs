@@ -1,5 +1,5 @@
 using UnityEngine;
-using DialogueEditor;
+//using DialogueEditor;
 using UnityEngine.Events;
 
 public class EntityEvent : UnityEvent<GameObject> {
@@ -18,14 +18,18 @@ public class EntityEvent : UnityEvent<GameObject> {
 
     private void OnEnable()
     {
+        /*
         ConversationManager.OnConversationStarted += OnConversationEnter;
         ConversationManager.OnConversationEnded += OnConversationExit;
+        */
     }
 
     private void OnDisable()
     {
+        /*
         ConversationManager.OnConversationStarted -= OnConversationEnter;
         ConversationManager.OnConversationEnded -= OnConversationExit;
+        */
     }
 
     private void OnConversationEnter()

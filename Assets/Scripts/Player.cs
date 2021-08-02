@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-using DialogueEditor;
+//using DialogueEditor;
 
 public class Player : MonoBehaviour
 {
@@ -17,14 +17,18 @@ public class Player : MonoBehaviour
 
     private void OnEnable()
     {
+        /*
         ConversationManager.OnConversationStarted += OnConversationEnter;
         ConversationManager.OnConversationEnded += OnConversationExit;
+        */
     }
 
     private void OnDisable()
     {
+        /*
         ConversationManager.OnConversationStarted -= OnConversationEnter;
         ConversationManager.OnConversationEnded -= OnConversationExit;
+        */
     }
 
     private void Start()
