@@ -154,9 +154,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e33a3637f4f41644883c4cd38614d589, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
-  flightSpeed: 6
+  type: 1
+  flightSpeed: 3
   damage: 1
+  lifetime: 2
   maxNumberOfEntitiesDamaged: 1
 --- !u!65 &1552330367832311291
 BoxCollider:

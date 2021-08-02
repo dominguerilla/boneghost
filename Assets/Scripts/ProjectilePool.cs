@@ -24,6 +24,13 @@ public class ProjectilePool : MonoBehaviour
         else Debug.LogWarning($"Trying to launch projectile from empty pool { gameObject.name }!");
     }
 
+    public void Launch(Vector3 origin, Quaternion orientation)
+    {
+        Projectile nextProjectile = GetNextProjectile();
+        if (nextProjectile) StartCoroutine(Launch(nextProjectile, origin, orientation, nextProjectile.lifetime));
+        else Debug.LogWarning($"Trying to launch projectile from empty pool { gameObject.name }!");
+    }
+
     Projectile GetNextProjectile() {
         if(availablePool.Count > 0 ) return availablePool.Dequeue();
         return null;

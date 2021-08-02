@@ -36,6 +36,7 @@ public class Monster: MonoBehaviour
     protected bool _agentInCooldown = false;
     [SerializeField] protected Animator anim;
     [SerializeField] protected Damageable damageable;
+    [SerializeField] protected ProjectilePool projectilePool;
 
 
     protected virtual void Awake()
@@ -65,7 +66,7 @@ public class Monster: MonoBehaviour
 
     protected void OnProjectileHit(Projectile projectile)
     {
-        TakeDamage(projectile.damage);
+        if(projectile.type == ProjectileType.PLAYER) TakeDamage(projectile.damage);
     }
 
     protected void LateUpdate()
@@ -188,8 +189,8 @@ public class Monster: MonoBehaviour
 
     public virtual void Attack()
     {
-        //throw new System.Exception("Not implemented!");
-        Debug.Log($"{gameObject.name} attack not implemented!");
+        anim.SetTrigger("Attack");
+        projectilePool.Launch((transform.position + new Vector3(0, 0.2f, 0)) + transform.forward, transform.rotation);
     }
 
     public bool isEnabled()
@@ -227,6 +228,16 @@ public class Monster: MonoBehaviour
     public void SetAnimBool(string name, bool value)
     {
         anim.SetBool(name, value);
+    }
+
+    public void SetAnimTrigger(string name)
+    {
+        anim.SetTrigger(name);
+    }
+
+    public void ResetAnimTrigger(string name)
+    {
+        anim.ResetTrigger(name);
     }
     #endregion
 }

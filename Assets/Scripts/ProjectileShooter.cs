@@ -36,7 +36,7 @@ public class ProjectileShooter : MonoBehaviour
 
     void OnProjectileHit(Projectile projectile)
     {
-        Debug.Log($"{gameObject.name} hit by { projectile.gameObject.name }!");
+        //Debug.Log($"{gameObject.name} hit by { projectile.gameObject.name }!");
     }
 
     void DisableRigidbodies()

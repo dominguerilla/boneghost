@@ -674,12 +674,12 @@ MonoBehaviour:
       m_Calls: []
   onUseClip: {fileID: 8300000, guid: fdfe92ee36bc7bc40b65631db3b03e3d, type: 3}
   targetLocalEuler: {x: -90, y: 0, z: 0}
-  targetLocalOffset: {x: 0, y: -4, z: 0}
+  targetLocalOffset: {x: 0, y: -5, z: 0}
   equippedArm: {fileID: 0}
   isTemporary: 0
-  attackCooldown: 1.5
   soundDelay: 0.2
-  hitboxHalfExtents: {x: 0.5, y: 0.5, z: 2}
+  attackCooldown: 1.5
+  projectileSpawnOffset: {x: 0, y: -0.5, z: 0}
   projectilePool: {fileID: 1399699184126016664}
 --- !u!82 &1214251736479288055
 AudioSource:

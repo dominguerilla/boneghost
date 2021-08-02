@@ -12,8 +12,10 @@ public enum RACE
 [RequireComponent(typeof(Damageable))]
 public class PlayerStatus : MonoBehaviour
 {
+    [SerializeField] bool detectHits = true;
     RACE playerRace = RACE.BONE;
     Damageable hitNotifier;
+
 
     void Awake()
     {
@@ -27,7 +29,8 @@ public class PlayerStatus : MonoBehaviour
 
     void OnProjectileHit(Projectile projectile)
     {
-        CustomEvent.Trigger(this.gameObject, "OnProjectileHit", projectile);
+
+        if(detectHits && projectile.type == ProjectileType.ENEMY) CustomEvent.Trigger(this.gameObject, "OnProjectileHit", projectile);
     }
 
     public RACE GetRace()
