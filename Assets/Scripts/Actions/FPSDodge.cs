@@ -19,7 +19,7 @@ namespace Mango.Actions
         public UnityEvent onDodgeEnd = new UnityEvent();
 
         CharacterController controller;
-        bool _canDodge = true;
+        bool canDodge = true;
         FPSMovement movementControl;
 
         private void Awake()
@@ -31,20 +31,34 @@ namespace Mango.Actions
         public override void Register(FPSControls controls)
         {
             base.Register(controls);
-            controls.Player.Dodge.started += ctx => { if (_canDodge) onDodgeStart.Invoke(); };
-            controls.Player.Dodge.performed += ctx => { StartCoroutine(Dodge()); };
-            controls.Player.Dodge.canceled += ctx => this.StopDodging();
+            controls.Player.Dodge.started += InvokeDodgeStart;
+            controls.Player.Dodge.performed += StartDodge;
+            controls.Player.Dodge.canceled += StopDodging;
         }
 
         public bool CanDodge()
         {
-            return _canDodge;
+            return canDodge;
+        }
+
+        public void SetCanDodge(bool value)
+        {
+            canDodge = value;
+        }
+
+        void InvokeDodgeStart(InputAction.CallbackContext ctx)
+        {
+            if (canDodge) onDodgeStart.Invoke();
+        }
+
+        void StartDodge(InputAction.CallbackContext ctx)
+        {
+            if(canDodge) StartCoroutine(Dodge());
         }
 
         IEnumerator Dodge()
         {
-            if (!_canDodge) yield break;
-            _canDodge = false;
+            canDodge = false;
             Vector3 moveDirection = movementControl.GetMovementVector();
             float ctr = 0;
             while (ctr < dodgeTime)
@@ -53,13 +67,23 @@ namespace Mango.Actions
                 ctr += Time.deltaTime;
                 yield return new WaitForEndOfFrame();
             }
-            StopDodging();
+            // dumb hack I have to do so I can call the StopDodging() function because CallbackContexts aren't nullable
+            StopDodging(new InputAction.CallbackContext());
             yield return new WaitForSeconds(dodgeCooldown);
-            _canDodge = true;
+            canDodge = true;
         }
 
-        void StopDodging() {
+        void StopDodging(InputAction.CallbackContext ctx) {
             onDodgeEnd.Invoke();
+        }
+
+        private void OnDestroy()
+        {
+            
+            controls.Player.Dodge.started -= InvokeDodgeStart;
+            controls.Player.Dodge.performed -= StartDodge;
+            controls.Player.Dodge.canceled -= StopDodging;
+            
         }
     }
 }

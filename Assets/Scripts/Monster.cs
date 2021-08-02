@@ -6,13 +6,14 @@ using UnityEngine.AI;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(NavMeshAgent))]
-public class Monster: MonoBehaviour, IEntity
+public class Monster: MonoBehaviour
 {
     #region PARAMETERS
     [Header("Monster Parameters")]
     [SerializeField] bool monsterEnabled;
-    public GameObject[] huntingGrounds;
-    public float huntingGroundRadius = 5f;
+    [SerializeField] float startingHealth = 1.0f;
+    //public GameObject[] huntingGrounds;
+    //public float huntingGroundRadius = 5f;
     public float stunTime = 2.5f;
     public float attackRange = 10f;
     [SerializeField] Vision vision;
@@ -21,55 +22,34 @@ public class Monster: MonoBehaviour, IEntity
     public UnityEvent OnDetectPlayer = new UnityEvent();
     public UnityEvent OnLosePlayer = new UnityEvent();
     public UnityEvent OnDestruct = new UnityEvent();
+    public UnityEvent OnDeath = new UnityEvent();
     #endregion
 
     #region PROTECTED MEMBERS
+    protected float currentHealth;
+    protected bool alive;
     protected NavMeshAgent agent;
     protected bool isStunned = false;
     protected bool isAlternatingLight = false;
     protected GameObject currentTarget = null;
     protected Vector3 lastSeenPlayerPosition = Vector3.zero;
     protected bool _agentInCooldown = false;
+    [SerializeField] protected Animator anim;
+    [SerializeField] protected Damageable damageable;
+    [SerializeField] protected ProjectilePool projectilePool;
+    [SerializeField] protected AudioSource audioSource;
+    [SerializeField] protected AudioClip attackSound;
 
-    [Header("Debug")]
-    // TODO: remove this
-    [SerializeField] Light monsterDebugLight;
 
-    // Start is called before the first frame update
     protected virtual void Awake()
     {
+        currentHealth = startingHealth;
+        alive = currentHealth > 0f;
         agent = GetComponent<NavMeshAgent>();
+        anim = GetComponent<Animator>();
+        if (damageable) damageable.onProjectileHit.AddListener(OnProjectileHit);
+        else Debug.LogWarning($"No Damageable set on {gameObject.name}!");
         agent.enabled = monsterEnabled;
-    }
-    protected Vector3 GetRandomHuntingGroundPosition()
-    {
-        GameObject randomHuntingGround = GetRandomHuntingGround();
-        float randX = Random.Range(0.5f, huntingGroundRadius);
-        float randZ = Random.Range(0.5f, huntingGroundRadius);
-
-        Vector3 randomOffset = new Vector3(randX, 0, randZ);
-        return randomHuntingGround.transform.position + randomOffset;
-    }
-
-    protected GameObject GetRandomHuntingGround()
-    {
-        return huntingGrounds[Random.Range(0, huntingGrounds.Length)];
-    }
-
-    protected IEnumerator AlternateLightColors()
-    {
-        if (!isAlternatingLight)
-        {
-            isAlternatingLight = true;
-            Color lightColor = Color.red;
-            while (isAlternatingLight)
-            {
-                monsterDebugLight.color = lightColor;
-                yield return new WaitForSeconds(0.5f);
-                lightColor = lightColor == Color.red ? Color.blue : Color.red;
-            }
-        }
-        yield return null;
     }
 
     protected IEnumerator StunRoutine()
@@ -85,32 +65,33 @@ public class Monster: MonoBehaviour, IEntity
     {
         DisableMonster();
     }
+
+    protected void OnProjectileHit(Projectile projectile)
+    {
+        if(projectile.type == ProjectileType.PLAYER) TakeDamage(projectile.damage);
+    }
+
+    protected void LateUpdate()
+    {
+        SetAnimBool("isWalking", agent.velocity.magnitude > 0);
+    }
     #endregion
 
     #region PUBLIC MEMBERS
-    public void GoToRandomHuntingGround()
+    public void GoTo(Vector3 position)
     {
-        if (huntingGrounds == null || huntingGrounds.Length == 0) return;
-        Vector3 huntingGroundPosition = GetRandomHuntingGroundPosition();
-
         // Bolt can call this function before Awake has even run
         if (!agent)
         {
             agent = GetComponent<NavMeshAgent>();
         }
-        agent.SetDestination(huntingGroundPosition);
-    }
-
-    public void GoTo(Vector3 position)
-    {
         agent.SetDestination(position);
     }
 
     public bool isAtDestination()
     {
         if (monsterEnabled) {
-            if (agent.stoppingDistance == 0) return agent.remainingDistance < 1f;
-            return agent.remainingDistance < agent.stoppingDistance;
+            return agent.remainingDistance < 0.5f && !agent.pathPending;
         }
         return true;
     }
@@ -180,7 +161,6 @@ public class Monster: MonoBehaviour, IEntity
         lastSeenPlayerPosition = currentTarget.transform.position;
         currentTarget = null;
         OnLosePlayer.Invoke();
-        monsterDebugLight.color = Color.yellow;
     }
 
     public void EnableMonster()
@@ -195,11 +175,6 @@ public class Monster: MonoBehaviour, IEntity
         agent.enabled = false;
     }
 
-    public void StartAlternateLightColors()
-    {
-        StartCoroutine(AlternateLightColors());
-    }
-
     public Vector3 GetLastSeenPlayerPosition()
     {
         if (currentTarget)
@@ -209,11 +184,6 @@ public class Monster: MonoBehaviour, IEntity
         return lastSeenPlayerPosition;
     }
 
-    public void StopAlternatingLights()
-    {
-        isAlternatingLight = false;
-    }
-
     public GameObject GetCurrentTargetPlayer()
     {
         return currentTarget;
@@ -221,12 +191,56 @@ public class Monster: MonoBehaviour, IEntity
 
     public virtual void Attack()
     {
-        throw new System.Exception("Not implemented!");
+        anim.SetTrigger("Attack");
+        if(audioSource) audioSource.PlayOneShot(attackSound);
+        projectilePool.Launch((transform.position + new Vector3(0, 0.2f, 0)) + transform.forward, transform.rotation);
     }
 
     public bool isEnabled()
     {
         return monsterEnabled;
+    }
+
+    public virtual void Die()
+    {
+        anim.SetTrigger("Die");
+        alive = false;
+        OnDeath.Invoke();
+    }
+
+    public virtual void Rise()
+    {
+        alive = true;
+        anim.SetTrigger("Rise");
+    }
+
+    public virtual void TakeDamage(float damage)
+    {
+        currentHealth -= damage;
+        if (currentHealth <= 0f)
+        {
+            Die();
+        }
+    }
+
+    public bool isAlive()
+    {
+        return alive;
+    }
+
+    public void SetAnimBool(string name, bool value)
+    {
+        anim.SetBool(name, value);
+    }
+
+    public void SetAnimTrigger(string name)
+    {
+        anim.SetTrigger(name);
+    }
+
+    public void ResetAnimTrigger(string name)
+    {
+        anim.ResetTrigger(name);
     }
     #endregion
 }

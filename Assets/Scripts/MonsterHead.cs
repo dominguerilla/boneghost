@@ -78,7 +78,7 @@ public class MonsterHead : Monster
             Debug.Log("No lower half given!");
             return;
         }
-        StopAlternatingLights();
+        //StopAlternatingLights();
         attachedBody = lowerHalf;
         _isAttached = true;
         this.transform.parent = attachedBody.transform;
