@@ -49,6 +49,27 @@ namespace Mango.Actions
             controls.Player.Enable();
 
         }
+
+        protected void OnConversationStart(Transform actor)
+        {
+            DisableMovement();
+            DisableMouseLook();
+            DisableAttack();
+            DisableDodge();
+            DisablePause();
+            UnlockCursor();
+        }
+
+        protected void OnConversationEnd(Transform actor)
+        {
+            EnableMovement();
+            EnableMouseLook();
+            EnableAttack();
+            EnableDodge();
+            EnablePause();
+            LockCursor();
+        }
+
         public void NotifyEvent(string eventName)
         {
             CustomEvent.Trigger(gameObject, eventName);
@@ -164,6 +185,16 @@ namespace Mango.Actions
         public void DisableDodge()
         {
             dodgeControl.SetCanDodge(false);
+        }
+
+        public void LockCursor()
+        {
+            lookControl.LockCursor();
+        }
+
+        public void UnlockCursor()
+        {
+            lookControl.UnlockCursor();
         }
 
     }
