@@ -18,7 +18,6 @@ public class PlayerStatus : MonoBehaviour
     Damageable hitNotifier;
 
     bool invulnerable = false;
-
     void Awake()
     {
         hitNotifier = GetComponent<Damageable>();
@@ -49,5 +48,10 @@ public class PlayerStatus : MonoBehaviour
     public RACE GetRace()
     {
         return playerRace;
+    }
+
+    public void SetInvulnerable(bool value)
+    {   
+        invulnerable = value;
     }
 }
