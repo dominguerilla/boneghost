@@ -29,10 +29,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Skybox Tests/skybox-1.unity
     guid: e152a336df7b16b4fbbfb0773414a707
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/combat-test.unity
     guid: d484887d1693db84d9013296a96d4913
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/dialogue-test.unity
     guid: 1d8952f41755b1e47bc12b6e23b8b7c5
   m_configObjects: {}

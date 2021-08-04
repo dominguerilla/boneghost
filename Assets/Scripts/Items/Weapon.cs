@@ -1,18 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.Events;
 /// <summary>
 /// TODO: Consider refactoring this to take a ProjectileShooter instead of a ProjectilePool. Could make it so player could use dropped enemy weapons?
 /// </summary>
 public class Weapon : ItemComponent
 {
+    public UnityEvent onUpgrade = new UnityEvent();
+
     [SerializeField] float soundDelay = 0f;
    
     [Header("Projectile Settings")]
     [SerializeField] float attackCooldown = 1.0f;
     [SerializeField] Vector3 projectileSpawnOffset;
     [SerializeField] ProjectilePool projectilePool;
+    
     
     bool _isAttacking = false;
     Camera mainCam;
@@ -50,5 +53,10 @@ public class Weapon : ItemComponent
     public float GetAttackCooldown()
     {
         return attackCooldown;
+    }
+
+    public void SetAttackCooldown(float value)
+    {
+        attackCooldown = value;
     }
 }

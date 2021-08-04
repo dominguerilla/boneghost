@@ -91,4 +91,9 @@ public class Arm : MonoBehaviour
     {
         return heldItem != null;
     }
+
+    public ItemComponent GetItem()
+    {
+        return heldItem;
+    }
 }

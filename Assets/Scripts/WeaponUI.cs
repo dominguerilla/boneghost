@@ -19,6 +19,7 @@ public class WeaponUI : MonoBehaviour
         this.weapon = weapon;
         this.weapon.onUseStart.AddListener(StartStaminaRefill);
         this.weapon.onDequip.AddListener(UnregisterWeapon);
+        this.weapon.onUpgrade.AddListener(OnUpgrade);
         EnableUI();
     }
 
@@ -27,6 +28,7 @@ public class WeaponUI : MonoBehaviour
         DisableUI();
         this.weapon.onUseStart.RemoveListener(StartStaminaRefill);
         this.weapon.onDequip.RemoveListener(UnregisterWeapon);
+        this.weapon.onUpgrade.RemoveListener(OnUpgrade);
         this.weapon = null;
     }
 
@@ -43,6 +45,11 @@ public class WeaponUI : MonoBehaviour
     void StartStaminaRefill()
     {
         StartCoroutine(ResetAndRefillStamina(weapon.GetAttackCooldown()));
+    }
+
+    void OnUpgrade()
+    {
+        staminaMeter.color = Color.yellow;
     }
 
     IEnumerator ResetAndRefillStamina(float cooldown)

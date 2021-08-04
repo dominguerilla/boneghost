@@ -3559,7 +3559,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.25
-  m_Speed: 4
+  m_Speed: 6
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 999
@@ -3586,7 +3586,7 @@ MonoBehaviour:
   monsterEnabled: 1
   startingHealth: 1
   stunTime: 2.5
-  attackRange: 6
+  attackRange: 8
   vision: {fileID: 1775200361583223817}
   OnDetectPlayer:
     m_PersistentCalls:

@@ -147,6 +147,10 @@ namespace Mango.Actions
             arm.onItemUseEnd.AddListener(onAttackEnd.Invoke);
         }
 
+        public ItemComponent GetItem(int armIndex)
+        {
+            return arms[armIndex].GetItem();
+        }
 
         private void OnDrawGizmosSelected()
         {
