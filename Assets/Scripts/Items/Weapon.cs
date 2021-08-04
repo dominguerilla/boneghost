@@ -44,7 +44,7 @@ public class Weapon : ItemComponent
     void LaunchProjectile()
     {
         Vector3 launchPosition = mainCam.transform.position + projectileSpawnOffset;
-        projectilePool.Launch(launchPosition + mainCam.transform.forward, mainCam.transform.rotation, attackCooldown);
+        projectilePool.Launch(launchPosition + mainCam.transform.forward, mainCam.transform.rotation);
     }
 
     public float GetAttackCooldown()
