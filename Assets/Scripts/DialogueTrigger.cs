@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-using DialogueEditor;
+//using DialogueEditor;
 public class DialogueTrigger : MonoBehaviour
 {
-    public NPCConversation[] dialogues;
+    //public NPCConversation[] dialogues;
     public bool hasTriggered = false;
     int currentIndex = 0;
 
@@ -13,7 +13,7 @@ public class DialogueTrigger : MonoBehaviour
     {
         if (hasTriggered) return;
         hasTriggered = true;
-        ConversationManager.Instance.StartConversation(dialogues[currentIndex]);
+        //ConversationManager.Instance.StartConversation(dialogues[currentIndex]);
     }
 
     

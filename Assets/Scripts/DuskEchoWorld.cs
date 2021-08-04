@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using DialogueEditor;
+//using DialogueEditor;
 /// <summary>
 /// A simple blackboard for world state for the Dialogue Editor.
 /// </summary>
@@ -24,7 +24,7 @@ public class DuskEchoWorld : MonoBehaviour
 
     public void checkDrinkingIncident()
     {
-        ConversationManager.Instance.SetBool("wasDrinkingIncident", wasDrinkingIncident);
+        //ConversationManager.Instance.SetBool("wasDrinkingIncident", wasDrinkingIncident);
     }
 
     public void setDrinkingIncident(bool input)
@@ -38,7 +38,7 @@ public class DuskEchoWorld : MonoBehaviour
     /// <returns></returns>
     public void checkSaidDusksEcho()
     {
-        ConversationManager.Instance.SetBool("saidDusksEcho", saidDusksEcho);
+        //ConversationManager.Instance.SetBool("saidDusksEcho", saidDusksEcho);
     }
 
     public void setSaidDusksEcho(bool input)
@@ -48,7 +48,7 @@ public class DuskEchoWorld : MonoBehaviour
 
     public void checkTrustsPlayer()
     {
-        ConversationManager.Instance.SetBool("trustsPlayer", trustsPlayer);
+        //ConversationManager.Instance.SetBool("trustsPlayer", trustsPlayer);
     }
 
     public void setTrustsPlayer(bool input)
@@ -58,7 +58,7 @@ public class DuskEchoWorld : MonoBehaviour
 
     public void checkSaidRecipientsName()
     {
-        ConversationManager.Instance.SetBool("saidRecipientsName", saidRecipientsName);
+        //ConversationManager.Instance.SetBool("saidRecipientsName", saidRecipientsName);
     }
 
     public void setSaidRecipientsName(bool input)
@@ -68,7 +68,7 @@ public class DuskEchoWorld : MonoBehaviour
 
     public void checkIsGateOpen()
     {
-        ConversationManager.Instance.SetBool("isGateOpen", isGateOpen);
+        //ConversationManager.Instance.SetBool("isGateOpen", isGateOpen);
     }
 
     public void setIsGateOpen(bool input)
@@ -78,7 +78,7 @@ public class DuskEchoWorld : MonoBehaviour
 
     public void checkHasTalkedToBandits()
     {
-        ConversationManager.Instance.SetBool("hasTalkedToBandits", hasTalkedToBandits);
+        //ConversationManager.Instance.SetBool("hasTalkedToBandits", hasTalkedToBandits);
     }
 
     public void setHasTalkedToBandits(bool input)
@@ -88,7 +88,7 @@ public class DuskEchoWorld : MonoBehaviour
 
     public void checkWasToldAboutRaid()
     {
-        ConversationManager.Instance.SetBool("wasToldAboutRaid", wasToldAboutRaid);
+        //ConversationManager.Instance.SetBool("wasToldAboutRaid", wasToldAboutRaid);
     }
 
     public void setWasToldAboutRaid(bool input)

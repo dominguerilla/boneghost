@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-using DialogueEditor;
+//using DialogueEditor;
 
 //TODO: duplication of logic in ColorChanger
 [RequireComponent(typeof(Entity))]
 public class DialogueInteractable : MonoBehaviour
 {
 
-    public NPCConversation[] dialogue;
+   // public NPCConversation[] dialogue;
 
     Entity entity;
     int currentIndex = 0;
@@ -23,6 +23,7 @@ public class DialogueInteractable : MonoBehaviour
     }
 
     void StartConversation(GameObject caller) {
+        /*
         if (dialogue != null && dialogue[currentIndex])
         {
             ConversationManager.Instance.StartConversation(dialogue[currentIndex]);
@@ -30,7 +31,7 @@ public class DialogueInteractable : MonoBehaviour
         else
         {
             Debug.LogError($"No dialogue assigned to {gameObject.name}!");
-        }
+        }*/
     }
 
     public void ChangeConversation(int index)

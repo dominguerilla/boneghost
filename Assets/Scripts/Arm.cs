@@ -17,6 +17,7 @@ public class Arm : MonoBehaviour
     [SerializeField] ItemComponent heldItem;
     [SerializeField] Animator armAnimator;
     [SerializeField] string animTriggerPrefix = "";
+    [SerializeField] WeaponUI ui;
 
 
     private void Awake()
@@ -37,7 +38,8 @@ public class Arm : MonoBehaviour
         heldItem = item;
         heldItem.onUseStart.AddListener(onItemUseStart.Invoke);
         heldItem.onUseEnd.AddListener(onItemUseEnd.Invoke);
-        onItemEquip.Invoke(); 
+        onItemEquip.Invoke();
+        if (ui && item is Weapon) ui.RegisterWeapon((Weapon)item);
     }
 
     public void UseItem()
@@ -88,5 +90,10 @@ public class Arm : MonoBehaviour
     public bool IsHoldingItem()
     {
         return heldItem != null;
+    }
+
+    public ItemComponent GetItem()
+    {
+        return heldItem;
     }
 }

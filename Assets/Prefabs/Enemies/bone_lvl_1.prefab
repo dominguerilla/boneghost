@@ -1150,8 +1150,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 3
-  m_Center: {x: 0, y: 0, z: 2.89}
+  m_Radius: 4
+  m_Center: {x: 0, y: 0, z: 3.92}
 --- !u!114 &1775200361583223817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3531,7 +3531,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _data:
-    _json: '{"declarations":{"collection":{"$content":[{"name":"isAttacking","value":{"$content":false,"$type":"System.Boolean"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
+    _json: '{"declarations":{"collection":{"$content":[{"name":"isAttacking","value":{"$content":false,"$type":"System.Boolean"},"$version":"A"},{"name":"wander","value":{"$content":false,"$type":"System.Boolean"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
     _objectReferences: []
 --- !u!114 &1775200361254823175
 MonoBehaviour:
@@ -3548,7 +3548,7 @@ MonoBehaviour:
   _data:
     _json: '{"nest":{"source":"Macro","macro":0,"embed":null}}'
     _objectReferences:
-    - {fileID: 11400000, guid: 30a44ac35f31ece489ab8b85856a33cc, type: 2}
+    - {fileID: 11400000, guid: 8a9a040cb1443c14f976bb68ce15701e, type: 2}
 --- !u!195 &1775200361254823168
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -3559,7 +3559,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.25
-  m_Speed: 4
+  m_Speed: 6
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 999
@@ -3586,7 +3586,7 @@ MonoBehaviour:
   monsterEnabled: 1
   startingHealth: 1
   stunTime: 2.5
-  attackRange: 6
+  attackRange: 8
   vision: {fileID: 1775200361583223817}
   OnDetectPlayer:
     m_PersistentCalls:

@@ -9,19 +9,27 @@ public class WeaponUI : MonoBehaviour
     [SerializeField] GameObject UI;
     [SerializeField] Image staminaMeter;
 
-    [Header("UI Settings")]
-    [SerializeField] Vector2 anchorMin;
-    [SerializeField] Vector2 anchorMax;
-    [SerializeField] Vector3 UIposition;
-
     private void Start()
     {
-        weapon.onEquip.AddListener(EnableUI);
-        weapon.onDequip.AddListener(DisableUI);
-        weapon.onUseStart.AddListener(StartStaminaRefill);
-        staminaMeter.rectTransform.anchorMin = anchorMin;
-        staminaMeter.rectTransform.anchorMax = anchorMax;
-        staminaMeter.rectTransform.anchoredPosition = UIposition;
+        if(weapon) RegisterWeapon(weapon);
+    }
+
+    public void RegisterWeapon(Weapon weapon)
+    {
+        this.weapon = weapon;
+        this.weapon.onUseStart.AddListener(StartStaminaRefill);
+        this.weapon.onDequip.AddListener(UnregisterWeapon);
+        this.weapon.onUpgrade.AddListener(OnUpgrade);
+        EnableUI();
+    }
+
+    public void UnregisterWeapon()
+    {
+        DisableUI();
+        this.weapon.onUseStart.RemoveListener(StartStaminaRefill);
+        this.weapon.onDequip.RemoveListener(UnregisterWeapon);
+        this.weapon.onUpgrade.RemoveListener(OnUpgrade);
+        this.weapon = null;
     }
 
     void EnableUI()
@@ -37,6 +45,11 @@ public class WeaponUI : MonoBehaviour
     void StartStaminaRefill()
     {
         StartCoroutine(ResetAndRefillStamina(weapon.GetAttackCooldown()));
+    }
+
+    void OnUpgrade()
+    {
+        staminaMeter.color = Color.yellow;
     }
 
     IEnumerator ResetAndRefillStamina(float cooldown)
