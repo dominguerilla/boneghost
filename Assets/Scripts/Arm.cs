@@ -83,7 +83,7 @@ public class Arm : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning($"No arm animator set for { gameObject.name }!");
+            //Debug.LogWarning($"No arm animator set for { gameObject.name }!");
         }
     }
 

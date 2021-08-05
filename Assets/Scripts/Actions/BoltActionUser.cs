@@ -72,7 +72,7 @@ namespace Mango.Actions
 
         public void NotifyEvent(string eventName)
         {
-            CustomEvent.Trigger(gameObject, eventName);
+            CustomEvent.Trigger(this.gameObject, eventName);
         }
 
         public void EnableMovement()

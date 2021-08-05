@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-//using Bolt;
+using Bolt;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(NavMeshAgent))]
@@ -12,10 +12,7 @@ public class Monster: MonoBehaviour
     [Header("Monster Parameters")]
     [SerializeField] bool monsterEnabled;
     [SerializeField] float startingHealth = 1.0f;
-    //public GameObject[] huntingGrounds;
-    //public float huntingGroundRadius = 5f;
-    public float stunTime = 2.5f;
-    public float attackRange = 10f;
+    [SerializeField] float attackRange = 10f;
     [SerializeField] Vision vision;
 
     [Header("Events")]
@@ -23,6 +20,7 @@ public class Monster: MonoBehaviour
     public UnityEvent OnLosePlayer = new UnityEvent();
     public UnityEvent OnDestruct = new UnityEvent();
     public UnityEvent OnDeath = new UnityEvent();
+    public UnityEvent OnDamage = new UnityEvent();
     #endregion
 
     #region PROTECTED MEMBERS
@@ -31,9 +29,10 @@ public class Monster: MonoBehaviour
     protected NavMeshAgent agent;
     protected bool isStunned = false;
     protected bool isAlternatingLight = false;
-    protected GameObject currentTarget = null;
+    protected GameObject currentTarget = null; // TODO: Make this a 'target' Vector3 position?
     protected Vector3 lastSeenPlayerPosition = Vector3.zero;
     protected bool _agentInCooldown = false;
+    protected Coroutine stunRoutine;
     [SerializeField] protected Animator anim;
     [SerializeField] protected Damageable damageable;
     [SerializeField] protected ProjectilePool projectilePool;
@@ -52,13 +51,15 @@ public class Monster: MonoBehaviour
         agent.enabled = monsterEnabled;
     }
 
-    protected IEnumerator StunRoutine()
+    protected IEnumerator StunRoutine(float stunTime)
     {
         isStunned = true;
+        anim.SetBool("isStunned", true);
         bool originalState = agent.isStopped;
         agent.isStopped = true;
         yield return new WaitForSeconds(stunTime);
         agent.isStopped = originalState;
+        anim.SetBool("isStunned", false);
         isStunned = false;
     }
     protected void OnDestroy()
@@ -68,13 +69,15 @@ public class Monster: MonoBehaviour
 
     protected void OnProjectileHit(Projectile projectile)
     {
-        if(projectile.type == ProjectileType.PLAYER) TakeDamage(projectile.damage);
+        CustomEvent.Trigger(this.gameObject, "OnProjectileHit", projectile);
     }
 
     protected void LateUpdate()
     {
         SetAnimBool("isWalking", agent.velocity.magnitude > 0);
     }
+
+    
     #endregion
 
     #region PUBLIC MEMBERS
@@ -126,10 +129,19 @@ public class Monster: MonoBehaviour
         Destroy(this.gameObject, timeToDestroy);
     }
 
-    public virtual void OnSalted()
+    public virtual void Stun(float time)
     {
         if (!monsterEnabled) return;
-        if(!isStunned) StartCoroutine(StunRoutine());
+
+        if (!isStunned)
+        {
+            stunRoutine = StartCoroutine(StunRoutine(time));
+        }
+        else
+        {
+            StopCoroutine(stunRoutine);
+            stunRoutine = StartCoroutine(StunRoutine(time));
+        }
     }
 
     public void Stop()
@@ -223,6 +235,10 @@ public class Monster: MonoBehaviour
         {
             Die();
         }
+        else
+        {
+            anim.SetTrigger("Damaged");
+        }
     }
 
     public bool isAlive()
@@ -243,6 +259,11 @@ public class Monster: MonoBehaviour
     public void ResetAnimTrigger(string name)
     {
         anim.ResetTrigger(name);
+    }
+
+    public void NotifyEvent(string eventName)
+    {
+        CustomEvent.Trigger(this.gameObject, eventName);
     }
     #endregion
 }

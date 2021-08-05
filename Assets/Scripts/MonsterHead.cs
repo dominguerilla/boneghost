@@ -24,7 +24,7 @@ public class MonsterHead : Monster
         _isAttached = attachedBody != null;
     }
 
-    public void Attack(Vector3 direction)
+    public void Attack(Vector3 direction, float attackRange)
     {
         if (!_isAttackOnCooldown)
         {
