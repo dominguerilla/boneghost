@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+/// <summary>
+/// TODO:  Keep a list of 'seen' objects? That way subscribers can query and discriminate them
+/// </summary>
 public class Vision : MonoBehaviour
 {
     public UnityEvent OnDetectPlayer = new UnityEvent();

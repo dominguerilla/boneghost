@@ -17,7 +17,7 @@ public class MonsterLowerHalf : Monster
         Detach();
     }
 
-    public override void OnSalted()
+    public void Stun()
     {
         if (_isHeadDetached)
         {
@@ -30,7 +30,7 @@ public class MonsterLowerHalf : Monster
             return;
         }
 
-        base.OnSalted();
+        //base.Stun();
         
     }
 

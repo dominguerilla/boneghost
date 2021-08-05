@@ -18,6 +18,7 @@ public class Projectile : MonoBehaviour
     public int maxNumberOfEntitiesDamaged = 1;
 
     ProjectilePool pool;
+    Vector3 lastLaunchOrigin = Vector3.zero;
 
     public void SetPool(ProjectilePool pool)
     {
@@ -26,6 +27,7 @@ public class Projectile : MonoBehaviour
 
     public IEnumerator Launch(Vector3 origin, Quaternion orientation, float lifetime)
     {
+        lastLaunchOrigin = origin;
         transform.position = origin;
         transform.rotation = orientation;
 
@@ -37,5 +39,10 @@ public class Projectile : MonoBehaviour
 
             yield return new WaitForEndOfFrame();
         }
+    }
+
+    public Vector3 GetLaunchOrigin()
+    {
+        return lastLaunchOrigin;
     }
 }

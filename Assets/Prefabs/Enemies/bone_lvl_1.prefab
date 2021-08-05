@@ -3584,8 +3584,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterEnabled: 1
-  startingHealth: 1
-  stunTime: 2.5
+  startingHealth: 2
   attackRange: 8
   vision: {fileID: 1775200361583223817}
   OnDetectPlayer:
@@ -3636,6 +3635,9 @@ MonoBehaviour:
           m_StringArgument: OnDeath
           m_BoolArgument: 0
         m_CallState: 2
+  OnDamage:
+    m_PersistentCalls:
+      m_Calls: []
   anim: {fileID: 6488588710678187879}
   damageable: {fileID: -8365806052030955895}
   projectilePool: {fileID: 4549248308176602067}
