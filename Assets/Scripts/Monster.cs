@@ -231,6 +231,7 @@ public class Monster: MonoBehaviour
     public virtual void TakeDamage(float damage)
     {
         currentHealth -= damage;
+        OnDamage.Invoke();
         if (currentHealth <= 0f)
         {
             Die();
@@ -264,6 +265,15 @@ public class Monster: MonoBehaviour
     public void NotifyEvent(string eventName)
     {
         CustomEvent.Trigger(this.gameObject, eventName);
+    }
+
+    public float GetMaxHealth()
+    {
+        return startingHealth;
+    }
+
+    public float GetCurrentHealth() {
+        return currentHealth;
     }
     #endregion
 }
