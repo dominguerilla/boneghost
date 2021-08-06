@@ -15,6 +15,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1501161661232654243, guid: 360a2903c21cb784db3f89c938d6a09d, type: 3}
+      propertyPath: CurrentHealth
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 1775200361254823174, guid: 360a2903c21cb784db3f89c938d6a09d, type: 3}
       propertyPath: _data._json
       value: '{"declarations":{"collection":{"$content":[{"name":"isAttacking","value":{"$content":false,"$type":"System.Boolean"},"$version":"A"},{"name":"wander","value":{"$content":false,"$type":"System.Boolean"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
@@ -34,6 +38,22 @@ PrefabInstance:
     - target: {fileID: 3346316731170009113, guid: 360a2903c21cb784db3f89c938d6a09d, type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4721179314160748000, guid: 360a2903c21cb784db3f89c938d6a09d, type: 3}
+      propertyPath: Up.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4721179314160748000, guid: 360a2903c21cb784db3f89c938d6a09d, type: 3}
+      propertyPath: OffsetDirection.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5826962642376273524, guid: 360a2903c21cb784db3f89c938d6a09d, type: 3}
+      propertyPath: AlwaysVisible
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5826962642376273524, guid: 360a2903c21cb784db3f89c938d6a09d, type: 3}
+      propertyPath: HealthBarOffset.y
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6488588710668640461, guid: 360a2903c21cb784db3f89c938d6a09d, type: 3}
       propertyPath: m_RootOrder
