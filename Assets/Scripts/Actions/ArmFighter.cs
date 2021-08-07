@@ -32,8 +32,6 @@ namespace Mango.Actions
             base.Register(controls);
             controls.Player.Interact1.performed += _ => StartInteract(0);
             controls.Player.Interact2.performed += _ => StartInteract(1);
-            controls.Player.Interact1.canceled += _ => StopInteract(0);
-            controls.Player.Interact2.canceled += _ => StopInteract(1);
             //controls.Player.Drop1.performed += _ => DropItem(0);
             //controls.Player.Drop2.performed += _ => DropItem(1);
         }
@@ -82,12 +80,6 @@ namespace Mango.Actions
             UseArm(arms[armNum], Vector3.zero);
         }
 
-        void StopInteract(int armNum)
-        {
-            if (!canFight || arms.Length <= 0) return;
-            RetractArm(armNum);
-        }
-
         void ReachArm(int armNum, Vector3 direction)
         {
             if (!canFight || arms.Length <= 0 || arms[armNum].IsHoldingItem()) return;
@@ -101,12 +93,6 @@ namespace Mango.Actions
             interactionCoolingDown = true;
             yield return new WaitForSeconds(time);
             interactionCoolingDown = false;
-        }
-         
-        void RetractArm(int armNum)
-        {
-            if (arms.Length <= 0) return;
-            if(!arms[armNum].IsHoldingItem()) arms[armNum].TriggerAnimation("retract");
         }
 
         void DropItem(int armNum)

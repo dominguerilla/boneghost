@@ -68,7 +68,7 @@ public class PlayerStatus : MonoBehaviour
                 float originalAttackCooldown = weapon.GetAttackCooldown();
                 weapon.SetAttackCooldown(originalAttackCooldown * 0.5f);
                 weapon.onUpgrade.Invoke();
-                Debug.Log($"{weapon.gameObject.name} weapon upgraded!");
+                //Debug.Log($"{weapon.gameObject.name} weapon upgraded!");
             }
         }
     }
