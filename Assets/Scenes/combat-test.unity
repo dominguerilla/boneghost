@@ -26263,7 +26263,7 @@ MonoBehaviour:
   vertexInaccuracy: 30
   polygonInaccuracy: 2
   colorDepth: 5
-  scanlines: 0
+  scanlines: 1
   scanlineIntensity: 5
   ditherTexture: {fileID: 0}
   dithering: 1
@@ -97713,6 +97713,14 @@ PrefabInstance:
       propertyPath: startingItems.Array.data[1]
       value: 
       objectReference: {fileID: 2115648625}
+    - target: {fileID: 1119242442342938826, guid: 5381e7fe136609d40a764941f0c3443d, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1119242442342938827, guid: 5381e7fe136609d40a764941f0c3443d, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1938760479154119248, guid: 5381e7fe136609d40a764941f0c3443d, type: 3}
       propertyPath: detectHits
       value: 1
@@ -97881,6 +97889,14 @@ PrefabInstance:
     - target: {fileID: 7179145080792763867, guid: 5381e7fe136609d40a764941f0c3443d, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -164.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 8495563801477810292, guid: 5381e7fe136609d40a764941f0c3443d, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8495563801477810293, guid: 5381e7fe136609d40a764941f0c3443d, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9093160054364531422, guid: 5381e7fe136609d40a764941f0c3443d, type: 3}
       propertyPath: m_AnchorMax.y
