@@ -111209,6 +111209,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1850395171548974319, guid: 1117c8643bac03e449ef02cbecfd9023, type: 3}
+      propertyPath: exclusive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1850395171548974319, guid: 1117c8643bac03e449ef02cbecfd9023, type: 3}
       propertyPath: conversation
       value: test/strange-skeleton
       objectReference: {fileID: 0}
