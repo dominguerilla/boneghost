@@ -97635,6 +97635,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 693447100, guid: 5381e7fe136609d40a764941f0c3443d, type: 3}
+      propertyPath: verticalScanlines
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1974271726, guid: 5381e7fe136609d40a764941f0c3443d, type: 3}
       propertyPath: startingItems.Array.data[0]
       value: 
@@ -111194,7 +111198,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1850395171548974318, guid: 1117c8643bac03e449ef02cbecfd9023, type: 3}
       propertyPath: overrideName
-      value: Creepy Skeleton
+      value: Chattering skeleton
       objectReference: {fileID: 0}
     - target: {fileID: 1850395171548974318, guid: 1117c8643bac03e449ef02cbecfd9023, type: 3}
       propertyPath: events.onUse.m_PersistentCalls.m_Calls.Array.size
@@ -111258,15 +111262,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4873446301386886761, guid: 1117c8643bac03e449ef02cbecfd9023, type: 3}
       propertyPath: m_LocalScale.x
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4873446301386886761, guid: 1117c8643bac03e449ef02cbecfd9023, type: 3}
       propertyPath: m_LocalScale.y
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4873446301386886761, guid: 1117c8643bac03e449ef02cbecfd9023, type: 3}
       propertyPath: m_LocalScale.z
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4873446301386886761, guid: 1117c8643bac03e449ef02cbecfd9023, type: 3}
       propertyPath: m_LocalPosition.x
@@ -111312,6 +111316,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bare "Bones" NPC
       objectReference: {fileID: 0}
+    - target: {fileID: 4873446301398490883, guid: 1117c8643bac03e449ef02cbecfd9023, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6e2a3bd5026928b4eabc035e825f3f01, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1117c8643bac03e449ef02cbecfd9023, type: 3}
 --- !u!1001 &8720030027955530952
