@@ -9,11 +9,10 @@ public class ProjectilePool : MonoBehaviour
 
     private void Start()
     {
-        availablePool = new Queue<Projectile>(startingPool);
-        foreach (Projectile projectile in availablePool)
+        availablePool = new Queue<Projectile>();
+        foreach (Projectile projectile in startingPool)
         {
-            projectile.SetPool(this);
-            projectile.gameObject.SetActive(false);
+            AddToPool(projectile);
         }
     }
 
@@ -31,6 +30,13 @@ public class ProjectilePool : MonoBehaviour
         else Debug.LogWarning($"Trying to launch projectile from empty pool { gameObject.name }!");
     }
 
+    public void AddToPool(Projectile projectile)
+    {
+        projectile.SetPool(this);
+        projectile.gameObject.SetActive(false);
+        availablePool.Enqueue(projectile);
+    }
+
     Projectile GetNextProjectile() {
         if(availablePool.Count > 0 ) return availablePool.Dequeue();
         return null;
@@ -38,14 +44,7 @@ public class ProjectilePool : MonoBehaviour
 
     IEnumerator Launch(Projectile projectile, Vector3 origin, Quaternion orientation, float lifetime)
     {
-        Transform originalParent = projectile.transform.parent;
-        projectile.transform.parent = null;
-
         projectile.gameObject.SetActive(true);
         yield return projectile.Launch(origin, orientation, lifetime);
-        
-        projectile.gameObject.SetActive(false);
-        projectile.transform.parent = originalParent;
-        availablePool.Enqueue(projectile);
     }
 }

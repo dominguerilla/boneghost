@@ -27,6 +27,9 @@ public class Projectile : MonoBehaviour
 
     public IEnumerator Launch(Vector3 origin, Quaternion orientation, float lifetime)
     {
+        Transform originalParent = transform.parent;
+        transform.parent = null;
+
         lastLaunchOrigin = origin;
         transform.position = origin;
         transform.rotation = orientation;
@@ -39,6 +42,9 @@ public class Projectile : MonoBehaviour
 
             yield return new WaitForEndOfFrame();
         }
+
+        transform.parent = originalParent;
+        this.pool.AddToPool(this);
     }
 
     public Vector3 GetLaunchOrigin()
