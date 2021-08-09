@@ -3877,6 +3877,7 @@ MonoBehaviour:
   OnDamage:
     m_PersistentCalls:
       m_Calls: []
+  bodyCollider: {fileID: 6488588710668777985}
   anim: {fileID: 6488588710678187879}
   damageable: {fileID: -8365806052030955895}
   projectilePool: {fileID: 4549248308176602067}

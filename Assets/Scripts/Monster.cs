@@ -33,6 +33,8 @@ public class Monster: MonoBehaviour
     protected Vector3 lastSeenPlayerPosition = Vector3.zero;
     protected bool _agentInCooldown = false;
     protected Coroutine stunRoutine;
+    [Tooltip("Disabled when monster dies and enabled when it rises")]
+    [SerializeField] protected Collider bodyCollider;
     [SerializeField] protected Animator anim;
     [SerializeField] protected Damageable damageable;
     [SerializeField] protected ProjectilePool projectilePool;
@@ -219,12 +221,14 @@ public class Monster: MonoBehaviour
     {
         anim.SetTrigger("Die");
         alive = false;
+        if (bodyCollider) bodyCollider.enabled = false;
         OnDeath.Invoke();
     }
 
     public virtual void Rise()
     {
         alive = true;
+        if (bodyCollider) bodyCollider.enabled = true;
         anim.SetTrigger("Rise");
     }
 
