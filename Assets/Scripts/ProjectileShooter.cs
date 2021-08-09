@@ -30,7 +30,7 @@ public class ProjectileShooter : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(timeBetweenProjectiles);
-            projectilePool.Launch((transform.position + new Vector3(0, 0.2f, 0)) + transform.forward, transform.rotation, projectileLifetime);
+            projectilePool.Launch((transform.position + new Vector3(0, 0.2f, 0)) + transform.forward, transform.rotation);
         }
     }
 
