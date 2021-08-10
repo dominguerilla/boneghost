@@ -1070,7 +1070,7 @@ MonoBehaviour:
   type: 1
   damage: 1
   flightSpeed: 8
-  lifetime: 1
+  lifetime: 3
   maxNumberOfEntitiesDamaged: 1
 --- !u!54 &6644433616967614429
 Rigidbody:
