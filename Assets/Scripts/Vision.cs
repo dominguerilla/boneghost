@@ -8,10 +8,12 @@ using UnityEngine.Events;
 /// </summary>
 public class Vision : MonoBehaviour
 {
+    [SerializeField] LayerMask ignoreLayers;
+    [SerializeField] Transform eyePosition;
+
     public UnityEvent OnDetectPlayer = new UnityEvent();
     public UnityEvent OnLosePlayer = new UnityEvent();
 
-    [SerializeField] Transform eyePosition;
     GameObject seenTarget;
 
     bool sawPlayer = false;
@@ -56,7 +58,7 @@ public class Vision : MonoBehaviour
     bool CanSee(GameObject other)
     {
         RaycastHit hit;
-        if (Physics.Raycast(eyePosition.position, other.transform.position - eyePosition.position, out hit)) {
+        if (Physics.Raycast(eyePosition.position, other.transform.position - eyePosition.position, out hit, maxDistance: Mathf.Infinity, layerMask: ~ignoreLayers)) {
             if (hit.transform.tag == "Player")
             {
                 return true;

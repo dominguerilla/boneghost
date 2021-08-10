@@ -33,6 +33,8 @@ public class Monster: MonoBehaviour
     protected Vector3 lastSeenPlayerPosition = Vector3.zero;
     protected bool _agentInCooldown = false;
     protected Coroutine stunRoutine;
+    [Tooltip("Disabled when monster dies and enabled when it rises")]
+    [SerializeField] protected Collider bodyCollider;
     [SerializeField] protected Animator anim;
     [SerializeField] protected Damageable damageable;
     [SerializeField] protected ProjectilePool projectilePool;
@@ -206,8 +208,12 @@ public class Monster: MonoBehaviour
     public virtual void Attack()
     {
         anim.SetTrigger("Attack");
-        if(audioSource) audioSource.PlayOneShot(attackSound);
-        projectilePool.Launch((transform.position + new Vector3(0, 0.2f, 0)) + transform.forward, transform.rotation);
+        
+        if (audioSource) audioSource.PlayOneShot(attackSound);
+
+        Vector3 projectileOrigin = (transform.position + new Vector3(0, 0.2f, 0)) + transform.forward;
+        projectilePool.SetMaxDistance(attackRange);
+        projectilePool.Launch(projectileOrigin, transform.rotation);
     }
 
     public bool isEnabled()
@@ -219,12 +225,14 @@ public class Monster: MonoBehaviour
     {
         anim.SetTrigger("Die");
         alive = false;
+        if (bodyCollider) bodyCollider.enabled = false;
         OnDeath.Invoke();
     }
 
     public virtual void Rise()
     {
         alive = true;
+        if (bodyCollider) bodyCollider.enabled = true;
         anim.SetTrigger("Rise");
     }
 
