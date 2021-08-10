@@ -32,13 +32,16 @@ public class Projectile : MonoBehaviour
     protected Vector3 GetTargetLocation(Vector3 projectileOrigin, Vector3 direction, float maxDistance)
     {
         RaycastHit hit;
-        if (Physics.Raycast(projectileOrigin, direction, out hit, maxDistance, ~LayerMask.GetMask("Player", "Enemy", "Interactable", "UI")))
+        Ray ray = new Ray(projectileOrigin, direction);
+        if (Physics.Raycast(ray, out hit, maxDistance, ~LayerMask.GetMask("Player", "Enemy", "UI", "Projectile")))
         {
+            Debug.Log($"{gameObject.name} targeting raycast hit {hit.collider.name} : {hit.point}");
             return hit.point;
         }
         else
         {
-            return projectileOrigin + (direction * maxDistance);
+            Debug.Log($"{gameObject.name} targeting ray: {ray.GetPoint(maxDistance)}");
+            return ray.GetPoint(maxDistance);
         }
     }
 

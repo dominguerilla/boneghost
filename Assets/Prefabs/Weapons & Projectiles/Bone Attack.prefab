@@ -13,10 +13,10 @@ GameObject:
   - component: {fileID: 3950296809707670147}
   - component: {fileID: 1552330367832311291}
   - component: {fileID: 1742107412556898742}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Bone Attack
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -155,8 +155,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
-  flightSpeed: 3
   damage: 1
+  flightSpeed: 3
   lifetime: 2
   maxNumberOfEntitiesDamaged: 1
 --- !u!65 &1552330367832311291
@@ -171,7 +171,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.23553777, y: 0.24109367, z: 1.0552471}
-  m_Center: {x: 0.010596919, y: 0.0052095093, z: 0.47603533}
+  m_Center: {x: 0.010596919, y: 0.0052095093, z: -0.5}
 --- !u!54 &1742107412556898742
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -200,7 +200,7 @@ GameObject:
   - component: {fileID: 3950296809935598893}
   - component: {fileID: 3950296809935598892}
   - component: {fileID: 3950296809935598883}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -215,7 +215,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3950296809935598881}
   m_LocalRotation: {x: 0.70710707, y: -0, z: -0, w: 0.70710653}
-  m_LocalPosition: {x: 0.125, y: 0, z: 0}
+  m_LocalPosition: {x: 0.12499836, y: 0.0000009536743, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3950296809707670157}
