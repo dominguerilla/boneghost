@@ -13,6 +13,7 @@ public class Weapon : ItemComponent
    
     [Header("Projectile Settings")]
     [SerializeField] float attackCooldown = 1.0f;
+    [SerializeField] float attackRange = 1.0f;
     [SerializeField] Vector3 projectileSpawnOffset;
     [SerializeField] ProjectilePool projectilePool;
     
@@ -47,6 +48,7 @@ public class Weapon : ItemComponent
     void LaunchProjectile()
     {
         Vector3 launchPosition = mainCam.transform.position + projectileSpawnOffset;
+        projectilePool.SetMaxDistance(attackRange);
         projectilePool.Launch(launchPosition + mainCam.transform.forward, mainCam.transform.rotation);
     }
 

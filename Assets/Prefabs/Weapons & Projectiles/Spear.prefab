@@ -1514,7 +1514,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7669489298558373983}
-  m_LocalRotation: {x: -0, y: 0.9238794, z: -0, w: 0.38268393}
+  m_LocalRotation: {x: 0, y: 0.92387956, z: 0, w: 0.38268343}
   m_LocalPosition: {x: 25.55, y: 6.9308167, z: 84.69}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1584,8 +1584,12 @@ MonoBehaviour:
   targetLocalOffset: {x: 0, y: -5, z: 0}
   equippedArm: {fileID: 0}
   isTemporary: 0
+  onUpgrade:
+    m_PersistentCalls:
+      m_Calls: []
   soundDelay: 0.2
   attackCooldown: 1.5
+  attackRange: 6
   projectileSpawnOffset: {x: 0, y: -0.5, z: 0}
   projectilePool: {fileID: 1399699184126016664}
 --- !u!82 &1214251736479288055
@@ -2695,9 +2699,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  flightSpeed: 12
   damage: 1
-  lifetime: 2
+  flightSpeed: 10
+  lifetime: 0.5
   maxNumberOfEntitiesDamaged: 1
 --- !u!54 &134302847907890914
 Rigidbody:
@@ -2883,9 +2887,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  flightSpeed: 12
   damage: 1
-  lifetime: 2
+  flightSpeed: 10
+  lifetime: 0.5
   maxNumberOfEntitiesDamaged: 1
 --- !u!54 &134302848795621772
 Rigidbody:
@@ -3071,9 +3075,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  flightSpeed: 12
   damage: 1
-  lifetime: 2
+  flightSpeed: 10
+  lifetime: 0.5
   maxNumberOfEntitiesDamaged: 1
 --- !u!54 &134302848678472839
 Rigidbody:

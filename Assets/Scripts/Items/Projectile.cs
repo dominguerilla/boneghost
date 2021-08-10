@@ -19,8 +19,11 @@ public class Projectile : MonoBehaviour
 
     ProjectilePool pool;
     Vector3 lastLaunchOrigin = Vector3.zero;
+    Vector3 lastTargetLocation = Vector3.zero;
     Transform originalParent;
 
+    bool _isLaunching = false;
+    
     private void Start()
     {
         originalParent = transform.parent;
@@ -29,7 +32,7 @@ public class Projectile : MonoBehaviour
     protected Vector3 GetTargetLocation(Vector3 projectileOrigin, Vector3 direction, float maxDistance)
     {
         RaycastHit hit;
-        if (Physics.Raycast(projectileOrigin, direction, out hit, maxDistance, ~LayerMask.GetMask("Player", "Enemy")))
+        if (Physics.Raycast(projectileOrigin, direction, out hit, maxDistance, ~LayerMask.GetMask("Player", "Enemy", "Interactable", "UI")))
         {
             return hit.point;
         }
@@ -44,18 +47,28 @@ public class Projectile : MonoBehaviour
         this.pool = pool;
     }
 
+    private void OnDrawGizmos()
+    {
+        if (_isLaunching)
+        {
+            Gizmos.DrawLine(lastLaunchOrigin, lastTargetLocation);
+        }
+    }
+
     public IEnumerator Launch(Vector3 origin, Quaternion orientation, float lifetime, float maxDistance)
     {
+        _isLaunching = true;
         transform.parent = null;
-
-        lastLaunchOrigin = origin;
         transform.position = origin;
         transform.rotation = orientation;
 
-        Vector3 targetLocation = GetTargetLocation(origin, transform.forward, maxDistance);
+        lastLaunchOrigin = origin;
+        lastTargetLocation = GetTargetLocation(origin, transform.forward, maxDistance);
+
+        float distanceToTarget = Vector3.Distance(origin, lastTargetLocation);
 
         float currentLifetime = 0f;
-        while (currentLifetime < lifetime)
+        while (currentLifetime < lifetime && Vector3.Distance(origin, transform.position) < distanceToTarget)
         {
             currentLifetime += Time.deltaTime;
             transform.Translate(Vector3.forward * flightSpeed * Time.deltaTime);
@@ -73,6 +86,7 @@ public class Projectile : MonoBehaviour
 
     public void ReturnToPool()
     {
+        _isLaunching = false;
         transform.parent = originalParent;
         this.pool.AddToPool(this);
     }
