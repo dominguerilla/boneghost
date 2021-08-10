@@ -12,8 +12,8 @@ public enum ProjectileType
 public class Projectile : MonoBehaviour
 {
     public ProjectileType type;
-    public float flightSpeed = 3f;
     public float damage = 1.0f;
+    public float flightSpeed = 3f;
     public float lifetime = 2.0f;
     public int maxNumberOfEntitiesDamaged = 1;
 
@@ -26,18 +26,33 @@ public class Projectile : MonoBehaviour
         originalParent = transform.parent;
     }
 
+    protected Vector3 GetTargetLocation(Vector3 projectileOrigin, Vector3 direction, float maxDistance)
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(projectileOrigin, direction, out hit, maxDistance, ~LayerMask.GetMask("Player", "Enemy")))
+        {
+            return hit.point;
+        }
+        else
+        {
+            return projectileOrigin + (direction * maxDistance);
+        }
+    }
+
     public void SetPool(ProjectilePool pool)
     {
         this.pool = pool;
     }
 
-    public IEnumerator Launch(Vector3 origin, Quaternion orientation, float lifetime)
+    public IEnumerator Launch(Vector3 origin, Quaternion orientation, float lifetime, float maxDistance)
     {
         transform.parent = null;
 
         lastLaunchOrigin = origin;
         transform.position = origin;
         transform.rotation = orientation;
+
+        Vector3 targetLocation = GetTargetLocation(origin, transform.forward, maxDistance);
 
         float currentLifetime = 0f;
         while (currentLifetime < lifetime)

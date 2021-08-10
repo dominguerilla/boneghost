@@ -208,8 +208,12 @@ public class Monster: MonoBehaviour
     public virtual void Attack()
     {
         anim.SetTrigger("Attack");
-        if(audioSource) audioSource.PlayOneShot(attackSound);
-        projectilePool.Launch((transform.position + new Vector3(0, 0.2f, 0)) + transform.forward, transform.rotation);
+        
+        if (audioSource) audioSource.PlayOneShot(attackSound);
+
+        Vector3 projectileOrigin = (transform.position + new Vector3(0, 0.2f, 0)) + transform.forward;
+        projectilePool.SetMaxDistance(attackRange);
+        projectilePool.Launch(projectileOrigin, transform.rotation);
     }
 
     public bool isEnabled()
