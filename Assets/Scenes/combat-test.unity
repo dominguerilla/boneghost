@@ -97977,7 +97977,7 @@ PrefabInstance:
       objectReference: {fileID: 2115648625}
     - target: {fileID: 1938760479154119248, guid: 5381e7fe136609d40a764941f0c3443d, type: 3}
       propertyPath: detectHits
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5019081662670271877, guid: 5381e7fe136609d40a764941f0c3443d, type: 3}
       propertyPath: m_CullingMask.m_Bits
