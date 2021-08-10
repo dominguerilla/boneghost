@@ -34,13 +34,11 @@ public class Projectile : MonoBehaviour
         RaycastHit hit;
         Ray ray = new Ray(projectileOrigin, direction);
         if (Physics.Raycast(ray, out hit, maxDistance, ~LayerMask.GetMask("Player", "Enemy", "UI", "Projectile")))
-        {
-            Debug.Log($"{gameObject.name} targeting raycast hit {hit.collider.name} : {hit.point}");
+        {   
             return hit.point;
         }
         else
         {
-            Debug.Log($"{gameObject.name} targeting ray: {ray.GetPoint(maxDistance)}");
             return ray.GetPoint(maxDistance);
         }
     }
