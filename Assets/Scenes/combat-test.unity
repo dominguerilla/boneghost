@@ -52482,6 +52482,43 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!1 &1307618216 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4873446301386986057, guid: 1117c8643bac03e449ef02cbecfd9023, type: 3}
+  m_PrefabInstance: {fileID: 7442949407348009756}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1307618217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1307618216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a64578247383140469c45370654a984a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actor: Chattering Skeleton
+  persistentDataName: 
+  portrait: {fileID: 0}
+  spritePortrait: {fileID: 21300000, guid: a3e9fbf910e63dd4cb992cebfbb4fc0b, type: 3}
+  barkUISettings:
+    barkUI: {fileID: 0}
+    barkUIOffset: {x: 0, y: 2, z: 0}
+  standardDialogueUISettings:
+    subtitlePanelNumber: 0
+    customSubtitlePanel: {fileID: 0}
+    customSubtitlePanelOffset: {x: 0, y: 0, z: 0}
+    menuPanelNumber: 0
+    customMenuPanel: {fileID: 0}
+    customMenuPanelOffset: {x: 0, y: 0, z: 0}
+    useMenuPanelFor: 0
+    portraitAnimatorController: {fileID: 0}
+    setSubtitleColor: 0
+    applyColorToPrependedName: 0
+    prependActorNameSeparator: ': '
+    subtitleColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1316547322
 GameObject:
   m_ObjectHideFlags: 0
@@ -98139,10 +98176,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 693447100, guid: 5381e7fe136609d40a764941f0c3443d, type: 3}
-      propertyPath: verticalScanlines
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1974271726, guid: 5381e7fe136609d40a764941f0c3443d, type: 3}
       propertyPath: startingItems.Array.data[0]
       value: 
@@ -98151,14 +98184,6 @@ PrefabInstance:
       propertyPath: startingItems.Array.data[1]
       value: 
       objectReference: {fileID: 2115648625}
-    - target: {fileID: 1938760479154119248, guid: 5381e7fe136609d40a764941f0c3443d, type: 3}
-      propertyPath: detectHits
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5019081662670271877, guid: 5381e7fe136609d40a764941f0c3443d, type: 3}
-      propertyPath: m_CullingMask.m_Bits
-      value: 1975
-      objectReference: {fileID: 0}
     - target: {fileID: 5035360442687476233, guid: 5381e7fe136609d40a764941f0c3443d, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -111421,6 +111446,10 @@ PrefabInstance:
       propertyPath: dialogueTimeMode
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 33357887996836552, guid: 80de6ce072aa9ef46ba3d9a1644949e0, type: 3}
+      propertyPath: displaySettings.dialogueUI
+      value: 
+      objectReference: {fileID: 196456, guid: d1b7749dcc0beaf4f8d455f24cc4f0f7, type: 3}
     - target: {fileID: 624265911734491532, guid: 80de6ce072aa9ef46ba3d9a1644949e0, type: 3}
       propertyPath: m_RootOrder
       value: 21

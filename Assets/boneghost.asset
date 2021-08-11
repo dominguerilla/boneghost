@@ -63,7 +63,7 @@ MonoBehaviour:
   - id: 2
     fields:
     - title: Name
-      value: upgrade_skeleton
+      value: Chattering Skeleton
       type: 0
       typeString: 
     - title: Pictures
@@ -71,7 +71,7 @@ MonoBehaviour:
       type: 3
       typeString: CustomFieldType_Files
     - title: Description
-      value: 
+      value: A skeleton that provides an upgrade.
       type: 0
       typeString: 
     - title: IsPlayer
@@ -283,7 +283,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 205
-        y: 70
+        y: 71
         width: 160
         height: 30
     - id: 2

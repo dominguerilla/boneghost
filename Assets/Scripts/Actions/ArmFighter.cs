@@ -56,7 +56,7 @@ namespace Mango.Actions
                 EquipItem(startingItems[0], arms[0]);
                 EquipItem(startingItems[1], arms[1]);
             }
-            else
+            else if (arms.Length > 0 && startingItems.Length > 0)
             {
                 Debug.LogError("Not enough arms/starting items for item initialization!");
             }
