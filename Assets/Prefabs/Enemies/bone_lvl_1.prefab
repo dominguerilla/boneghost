@@ -1117,6 +1117,7 @@ GameObject:
   - component: {fileID: 1775200361583223823}
   - component: {fileID: 1775200361583223816}
   - component: {fileID: 1775200361583223817}
+  - component: {fileID: 7849459248683909509}
   m_Layer: 9
   m_Name: Vision
   m_TagString: Untagged
@@ -1198,6 +1199,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!135 &7849459248683909509
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1775200361583223818}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.7
+  m_Center: {x: 0, y: 0.43, z: 0}
 --- !u!1 &1775200362420629274
 GameObject:
   m_ObjectHideFlags: 0
@@ -4886,13 +4900,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd50a4d1576a7e74eb4bee69c0ccb283, type: 3}
---- !u!4 &4126552394954731792 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4154057899596678, guid: cd50a4d1576a7e74eb4bee69c0ccb283, type: 3}
-  m_PrefabInstance: {fileID: 4128313896751278742}
-  m_PrefabAsset: {fileID: 0}
 --- !u!198 &4290569050048137380 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 198613909333910066, guid: cd50a4d1576a7e74eb4bee69c0ccb283, type: 3}
+  m_PrefabInstance: {fileID: 4128313896751278742}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4126552394954731792 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4154057899596678, guid: cd50a4d1576a7e74eb4bee69c0ccb283, type: 3}
   m_PrefabInstance: {fileID: 4128313896751278742}
   m_PrefabAsset: {fileID: 0}
