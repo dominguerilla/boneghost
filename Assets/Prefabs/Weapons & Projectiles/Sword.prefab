@@ -266,14 +266,19 @@ MonoBehaviour:
   onUseEnd:
     m_PersistentCalls:
       m_Calls: []
-  onUseClip: {fileID: 8300000, guid: fdfe92ee36bc7bc40b65631db3b03e3d, type: 3}
+  onUseClip: {fileID: 8300000, guid: 1648283dfeb23ec45a6f0b21b9d2da1a, type: 3}
   targetLocalEuler: {x: 342.26556, y: 280.914, z: 333.5777}
   targetLocalOffset: {x: 0, y: 0, z: 0}
   equippedArm: {fileID: 0}
   isTemporary: 0
-  attackCooldown: 2
+  onUpgrade:
+    m_PersistentCalls:
+      m_Calls: []
   soundDelay: 0.2
-  hitboxHalfExtents: {x: 1, y: 1, z: 1}
+  attackCooldown: 2
+  attackRange: 1
+  projectileSpawnOffset: {x: 0, y: 0, z: 0}
+  projectilePool: {fileID: 0}
 --- !u!82 &8362592331778025087
 AudioSource:
   m_ObjectHideFlags: 0
@@ -385,9 +390,6 @@ MonoBehaviour:
   weapon: {fileID: 1061575244731153644}
   UI: {fileID: 1048530485}
   staminaMeter: {fileID: 497474355}
-  anchorMin: {x: 0, y: 0}
-  anchorMax: {x: 0, y: 0}
-  UIposition: {x: 130, y: 90, z: 0}
 --- !u!1 &1061575245139326996
 GameObject:
   m_ObjectHideFlags: 0
