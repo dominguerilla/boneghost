@@ -77,7 +77,7 @@ namespace Mango.Actions
             if (!canFight || arms.Length <= 0) return;
             Vector3 direction = cam.transform.forward;
             ReachArm(armNum, direction);
-            UseArm(arms[armNum], Vector3.zero);
+            UseArm(arms[armNum]);
         }
 
         void ReachArm(int armNum, Vector3 direction)
@@ -101,7 +101,7 @@ namespace Mango.Actions
             arms[armNum].Drop(surfaceUnderCursor);
         }
 
-        bool UseArm(Arm arm, Vector3 eulerAngleOffset)
+        bool UseArm(Arm arm)
         {
             if (arm.IsHoldingItem())
             {
