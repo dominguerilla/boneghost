@@ -19,7 +19,7 @@ namespace Mango.Actions
         public UnityEvent onDodgeEnd = new UnityEvent();
 
         CharacterController controller;
-        bool canDodge = true;
+        bool canDodge = true, isCoolingDown = false;
         FPSMovement movementControl;
 
         private void Awake()
@@ -38,7 +38,7 @@ namespace Mango.Actions
 
         public bool CanDodge()
         {
-            return canDodge;
+            return canDodge && !isCoolingDown;
         }
 
         public void SetCanDodge(bool value)
@@ -48,17 +48,17 @@ namespace Mango.Actions
 
         void InvokeDodgeStart(InputAction.CallbackContext ctx)
         {
-            if (canDodge) onDodgeStart.Invoke();
+            if (canDodge && !isCoolingDown) onDodgeStart.Invoke();
         }
 
         void StartDodge(InputAction.CallbackContext ctx)
         {
-            if(canDodge) StartCoroutine(Dodge());
+            if(canDodge && !isCoolingDown) StartCoroutine(Dodge());
         }
 
         IEnumerator Dodge()
         {
-            canDodge = false;
+            isCoolingDown = true;
             Vector3 moveDirection = movementControl.GetMovementVector();
             float ctr = 0;
             while (ctr < dodgeTime)
@@ -70,7 +70,7 @@ namespace Mango.Actions
             // dumb hack I have to do so I can call the StopDodging() function because CallbackContexts aren't nullable
             StopDodging(new InputAction.CallbackContext());
             yield return new WaitForSeconds(dodgeCooldown);
-            canDodge = true;
+            isCoolingDown = false;
         }
 
         void StopDodging(InputAction.CallbackContext ctx) {
