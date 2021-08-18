@@ -81,10 +81,6 @@ public class Arm : MonoBehaviour
         {
             armAnimator.SetTrigger(animTriggerPrefix + triggerName);
         }
-        else
-        {
-            //Debug.LogWarning($"No arm animator set for { gameObject.name }!");
-        }
     }
 
     public bool IsHoldingItem()
