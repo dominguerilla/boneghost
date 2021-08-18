@@ -2517,34 +2517,10 @@ MonoBehaviour:
   - {fileID: 1974271726}
   onMoveStart:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 46054148106481158}
-        m_TargetAssemblyTypeName: Bolt.EventMachine`2[[Bolt.StateGraph, Bolt.State.Runtime
-        m_MethodName: TriggerUnityEvent
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: OnMoveStart
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   onMoveEnd:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 46054148106481158}
-        m_TargetAssemblyTypeName: Bolt.EventMachine`2[[Bolt.StateGraph, Bolt.State.Runtime
-        m_MethodName: TriggerUnityEvent
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: OnMoveEnd
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   onDodgeStart:
     m_PersistentCalls:
       m_Calls:
@@ -2815,30 +2791,30 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1974271729}
-        m_TargetAssemblyTypeName: Mango.Actions.PlayerActionUser, Assembly-CSharp
-        m_MethodName: OnMoveStart
-        m_Mode: 1
+        m_TargetAssemblyTypeName: Mango.Actions.BoltActionUser, Assembly-CSharp
+        m_MethodName: NotifyEvent
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: OnMoveStart
           m_BoolArgument: 0
         m_CallState: 2
   onMoveEnd:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1974271729}
-        m_TargetAssemblyTypeName: Mango.Actions.PlayerActionUser, Assembly-CSharp
-        m_MethodName: OnMoveEnd
-        m_Mode: 1
+        m_TargetAssemblyTypeName: Mango.Actions.BoltActionUser, Assembly-CSharp
+        m_MethodName: NotifyEvent
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: OnMoveEnd
           m_BoolArgument: 0
         m_CallState: 2
   onSprintStart:
@@ -2995,9 +2971,9 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 0.34509805, g: 0.43529415, b: 0.48627454, a: 1}
+  m_Color: {r: 0.3066038, g: 0.83697313, b: 1, a: 1}
   m_Intensity: 1
-  m_Range: 1.5
+  m_Range: 3
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -3086,15 +3062,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 624654ff0a68ee844994f728ddf3d991, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectAt: 1
+  selectAt: 0
   layerMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 129
   distanceFrom: 0
   maxSelectionDistance: 30
   runRaycasts: 1
   raycastAll: 0
-  useDefaultGUI: 1
+  useDefaultGUI: 0
   guiSkin: {fileID: 0}
   guiStyleName: label
   alignment: 1
@@ -3420,7 +3396,7 @@ MonoBehaviour:
   vertexInaccuracy: 30
   polygonInaccuracy: 2
   colorDepth: 5
-  scanlines: 1
+  scanlines: 0
   scanlineIntensity: 5
   ditherTexture: {fileID: 0}
   dithering: 1

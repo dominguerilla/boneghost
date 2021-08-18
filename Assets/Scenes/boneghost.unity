@@ -93081,26 +93081,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 693447100, guid: 5381e7fe136609d40a764941f0c3443d, type: 3}
-      propertyPath: downscale
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 693447100, guid: 5381e7fe136609d40a764941f0c3443d, type: 3}
-      propertyPath: scanlines
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 693447100, guid: 5381e7fe136609d40a764941f0c3443d, type: 3}
-      propertyPath: customRes.x
-      value: 640
-      objectReference: {fileID: 0}
-    - target: {fileID: 693447100, guid: 5381e7fe136609d40a764941f0c3443d, type: 3}
-      propertyPath: customRes.y
-      value: 480
-      objectReference: {fileID: 0}
-    - target: {fileID: 693447100, guid: 5381e7fe136609d40a764941f0c3443d, type: 3}
-      propertyPath: postProcessing
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1974271726, guid: 5381e7fe136609d40a764941f0c3443d, type: 3}
       propertyPath: startingItems.Array.data[0]
       value: 
@@ -93109,42 +93089,6 @@ PrefabInstance:
       propertyPath: startingItems.Array.data[1]
       value: 
       objectReference: {fileID: 2115648625}
-    - target: {fileID: 1974271735, guid: 5381e7fe136609d40a764941f0c3443d, type: 3}
-      propertyPath: m_Range
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1974271735, guid: 5381e7fe136609d40a764941f0c3443d, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1974271735, guid: 5381e7fe136609d40a764941f0c3443d, type: 3}
-      propertyPath: m_Color.g
-      value: 0.83697313
-      objectReference: {fileID: 0}
-    - target: {fileID: 1974271735, guid: 5381e7fe136609d40a764941f0c3443d, type: 3}
-      propertyPath: m_Color.r
-      value: 0.3066038
-      objectReference: {fileID: 0}
-    - target: {fileID: 1938760479154119248, guid: 5381e7fe136609d40a764941f0c3443d, type: 3}
-      propertyPath: detectHits
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4577585344758414236, guid: 5381e7fe136609d40a764941f0c3443d, type: 3}
-      propertyPath: selectAt
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4577585344758414236, guid: 5381e7fe136609d40a764941f0c3443d, type: 3}
-      propertyPath: alignment
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4577585344758414236, guid: 5381e7fe136609d40a764941f0c3443d, type: 3}
-      propertyPath: useDefaultGUI
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4577585344758414236, guid: 5381e7fe136609d40a764941f0c3443d, type: 3}
-      propertyPath: layerMask.m_Bits
-      value: 129
-      objectReference: {fileID: 0}
     - target: {fileID: 5035360442687476233, guid: 5381e7fe136609d40a764941f0c3443d, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -93192,10 +93136,6 @@ PrefabInstance:
     - target: {fileID: 5037503543414573859, guid: 5381e7fe136609d40a764941f0c3443d, type: 3}
       propertyPath: m_Name
       value: NewPlayer
-      objectReference: {fileID: 0}
-    - target: {fileID: 5840734439993137383, guid: 5381e7fe136609d40a764941f0c3443d, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5381e7fe136609d40a764941f0c3443d, type: 3}
