@@ -8,10 +8,6 @@ namespace Mango.Actions
 {
     public class ArmFighter : PlayerAction
     {
-        public float maxInteractionDistance = 2f;
-        public float maxDropDistance = 2f;
-        public float interactionCooldownTime = 1f;
-
         public UnityEvent onAttackStart = new UnityEvent();
         public UnityEvent onAttackEnd = new UnityEvent();
 
@@ -22,9 +18,6 @@ namespace Mango.Actions
         [SerializeField] Animator armAnim;
         Vector3[] originalArmPositions;
 
-        Vector3 surfaceUnderCursor;
-        Coroutine cooldownRoutine;
-        bool interactionCoolingDown;
         bool canFight = true;
 
         public override void Register(FPSControls controls)
@@ -73,10 +66,10 @@ namespace Mango.Actions
             Attack(arms[armNum]);
         }
 
-        void DropItem(int armNum)
+        void DropItem(int armNum, Vector3 location)
         {
             if (arms.Length <= 0) return;
-            arms[armNum].Drop(surfaceUnderCursor);
+            arms[armNum].Drop(location);
         }
 
         bool Attack(Arm arm)
