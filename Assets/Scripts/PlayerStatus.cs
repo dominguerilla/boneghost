@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Bolt;
 using Mango.Actions;
+using UnityEngine.Events;
 
 public enum RACE
 {
@@ -23,6 +24,8 @@ public class PlayerStatus : MonoBehaviour
 {
     [SerializeField] bool detectHits = true;
     [SerializeField] float cooldownBetweenHits = 1.0f;
+    public UnityEvent onDamageTaken = new UnityEvent();
+
     Damageable hitNotifier;
 
     bool invulnerable = false;
@@ -42,6 +45,7 @@ public class PlayerStatus : MonoBehaviour
         if (detectHits && !invulnerable && projectile.type == ProjectileType.ENEMY)
         {
             StartCoroutine(CooldownHit(projectile));
+            onDamageTaken.Invoke();
         }
     }
 
