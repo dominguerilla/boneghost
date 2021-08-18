@@ -7,7 +7,15 @@ using Mango.Actions;
 public enum RACE
 {
     BONE,
-    GHOST
+    GHOST,
+    DEMON
+}
+
+public enum CLASS
+{
+    SAMURAI,
+    NINJA,
+    MONK
 }
 
 [RequireComponent(typeof(Damageable))]
@@ -15,7 +23,6 @@ public class PlayerStatus : MonoBehaviour
 {
     [SerializeField] bool detectHits = true;
     [SerializeField] float cooldownBetweenHits = 1.0f;
-    RACE playerRace = RACE.BONE;
     Damageable hitNotifier;
 
     bool invulnerable = false;
@@ -44,11 +51,6 @@ public class PlayerStatus : MonoBehaviour
         invulnerable = true;
         yield return new WaitForSeconds(cooldownBetweenHits);
         invulnerable = false;
-    }
-
-    public RACE GetRace()
-    {
-        return playerRace;
     }
 
     public void SetInvulnerable(bool value)

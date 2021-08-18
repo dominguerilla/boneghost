@@ -30,8 +30,8 @@ namespace Mango.Actions
         public override void Register(FPSControls controls)
         {
             base.Register(controls);
-            controls.Player.Interact1.performed += _ => StartInteract(0);
-            controls.Player.Interact2.performed += _ => StartInteract(1);
+            controls.Player.Interact1.performed += _ => StartAttack(0);
+            controls.Player.Interact2.performed += _ => StartAttack(1);
             //controls.Player.Drop1.performed += _ => DropItem(0);
             //controls.Player.Drop2.performed += _ => DropItem(1);
         }
@@ -67,32 +67,10 @@ namespace Mango.Actions
             GUI.Box(new Rect(Screen.width / 2, Screen.height / 2, 10, 10), "");
         }
 
-        private void FixedUpdate()
-        {
-            surfaceUnderCursor = GetSurfaceUnderCursor();
-        }
-
-        void StartInteract(int armNum)
+        void StartAttack(int armNum)
         {
             if (!canFight || arms.Length <= 0) return;
-            Vector3 direction = cam.transform.forward;
-            ReachArm(armNum, direction);
-            UseArm(arms[armNum]);
-        }
-
-        void ReachArm(int armNum, Vector3 direction)
-        {
-            if (!canFight || arms.Length <= 0 || arms[armNum].IsHoldingItem()) return;
-            if (interactionCoolingDown) return;
-            cooldownRoutine = StartCoroutine(InteractionCooldown(interactionCooldownTime));
-            arms[armNum].TriggerAnimation("reach");
-        }
-
-        IEnumerator InteractionCooldown(float time)
-        {
-            interactionCoolingDown = true;
-            yield return new WaitForSeconds(time);
-            interactionCoolingDown = false;
+            Attack(arms[armNum]);
         }
 
         void DropItem(int armNum)
@@ -101,28 +79,13 @@ namespace Mango.Actions
             arms[armNum].Drop(surfaceUnderCursor);
         }
 
-        bool UseArm(Arm arm)
+        bool Attack(Arm arm)
         {
             if (arm.IsHoldingItem())
             {
                 arm.UseItem();
-                return false;
-            }
 
-            RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Pointer.current.position.ReadValue());
-            
-            if (Physics.Raycast(ray, out hit, maxInteractionDistance, LayerMask.GetMask("Interactable")))
-            {
-                Transform objectHit = hit.transform;
-                ItemComponent item = objectHit.GetComponent<ItemComponent>();
-                if (item)
-                {
-                    EquipItem(item, arm);
-                    return true;
-                }
             }
-
             return false;
         }
 
@@ -136,32 +99,6 @@ namespace Mango.Actions
         public ItemComponent GetItem(int armIndex)
         {
             return arms[armIndex].GetItem();
-        }
-
-        private void OnDrawGizmosSelected()
-        {
-            if (Application.isPlaying) Debug.DrawLine(cam.transform.position, surfaceUnderCursor, Color.red);
-        }
-
-        Vector3 GetSurfaceUnderCursor()
-        {
-            RaycastHit hit;
-            Ray cameraForward = GetCameraForward();
-            if (Physics.Raycast(cameraForward, out hit, maxDropDistance,LayerMask.GetMask("Default")))
-            {
-                return hit.point;
-            }
-            return GetCameraForwardVector();
-        }
-
-        Ray GetCameraForward()
-        {
-            return cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, maxDropDistance));
-        }
-
-        Vector3 GetCameraForwardVector()
-        {
-            return cam.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, maxDropDistance));
         }
 
         public Animator GetAnimator()
