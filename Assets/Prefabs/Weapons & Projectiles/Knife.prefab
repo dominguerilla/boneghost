@@ -690,7 +690,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   onUseClip: {fileID: 8300000, guid: 1648283dfeb23ec45a6f0b21b9d2da1a, type: 3}
-  targetLocalEuler: {x: -90, y: 0, z: 0}
+  targetLocalEuler: {x: -90, y: 0, z: 90}
   targetLocalOffset: {x: 0, y: 0, z: 0}
   equippedArm: {fileID: 0}
   isTemporary: 0
