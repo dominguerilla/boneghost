@@ -29,6 +29,8 @@ namespace Mango.Actions
         ArmFighter armControl;
         MenuActions menuControl;
 
+        public bool isInitialized { get; private set; }
+
         private void Awake()
         {
             controls = new FPSControls();
@@ -47,27 +49,47 @@ namespace Mango.Actions
 
             }
             controls.Player.Enable();
-
+            isInitialized = true;
         }
 
         protected void OnConversationStart(Transform actor)
+        {
+            LockMovementUnlockCursor();
+        }
+
+        protected void OnConversationEnd(Transform actor)
+        {
+            UnlockMovementLockCursor();
+        }
+
+        public void LockMovementUnlockCursor()
+        {
+            LockMovement();
+            UnlockCursor();
+        }
+
+        public void UnlockMovementLockCursor()
+        {
+            UnlockMovement();
+            LockCursor();
+        }
+
+        public void LockMovement()
         {
             DisableMovement();
             DisableMouseLook();
             DisableAttack();
             DisableDodge();
             DisablePause();
-            UnlockCursor();
         }
 
-        protected void OnConversationEnd(Transform actor)
+        public void UnlockMovement()
         {
             EnableMovement();
             EnableMouseLook();
             EnableAttack();
             EnableDodge();
             EnablePause();
-            LockCursor();
         }
 
         public void NotifyEvent(string eventName)
@@ -196,7 +218,7 @@ namespace Mango.Actions
         {
             lookControl.UnlockCursor();
         }
-
+        
     }
 }
 

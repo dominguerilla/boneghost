@@ -32,12 +32,12 @@ public class WeaponUI : MonoBehaviour
         this.weapon = null;
     }
 
-    void EnableUI()
+    public void EnableUI()
     {
         UI.SetActive(true);
     }
 
-    void DisableUI()
+    public void DisableUI()
     {
         UI.SetActive(false);
     }

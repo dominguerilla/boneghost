@@ -25,6 +25,7 @@ public class PlayerStatus : MonoBehaviour
     [SerializeField] bool detectHits = true;
     [SerializeField] float cooldownBetweenHits = 1.0f;
     public UnityEvent onDamageTaken = new UnityEvent();
+    public UnityEvent onDeath = new UnityEvent();
 
     Damageable hitNotifier;
 
@@ -60,6 +61,11 @@ public class PlayerStatus : MonoBehaviour
     public void SetInvulnerable(bool value)
     {   
         invulnerable = value;
+    }
+
+    public void InvokeDeath()
+    {
+        onDeath.Invoke();
     }
 
     public void UpgradeWeapon(int armIndex)
