@@ -6,6 +6,7 @@ using UnityEngine.Events;
 
 namespace Mango.Actions
 {
+    // TODO: Move Item Equip/Dequip logic to a separate inventory system (InventoryComponent?)
     public class ArmFighter : PlayerAction
     {
         public UnityEvent onAttackStart = new UnityEvent();
@@ -16,7 +17,6 @@ namespace Mango.Actions
         [SerializeField] Camera cam;
         [SerializeField] InventoryComponent inventory;
         [SerializeField] Animator armAnim;
-        Vector3[] originalArmPositions;
 
         bool canFight = true;
 
@@ -25,17 +25,10 @@ namespace Mango.Actions
             base.Register(controls);
             controls.Player.Interact1.performed += _ => StartAttack(0);
             controls.Player.Interact2.performed += _ => StartAttack(1);
-            //controls.Player.Drop1.performed += _ => DropItem(0);
-            //controls.Player.Drop2.performed += _ => DropItem(1);
         }
 
         private void Awake()
         {
-            originalArmPositions = new Vector3[arms.Length];
-            for (int i = 0; i < arms.Length; i++)
-            {
-                originalArmPositions[i] = arms[i].transform.localPosition;
-            }
             if (!cam)
             {
                 cam = Camera.main;
@@ -44,17 +37,10 @@ namespace Mango.Actions
 
         private void Start()
         {
-            if (arms.Length == startingItems.Length)
-            {
-                EquipItem(startingItems[0], arms[0]);
-                EquipItem(startingItems[1], arms[1]);
-            }
-            else if (arms.Length > 0 && startingItems.Length > 0)
-            {
-                Debug.LogError("Not enough arms/starting items for item initialization!");
-            }
+            EquipItems();
         }
 
+        // TODO: Use a different cursor manager?
         void OnGUI()
         {
             GUI.Box(new Rect(Screen.width / 2, Screen.height / 2, 10, 10), "");
@@ -66,12 +52,6 @@ namespace Mango.Actions
             Attack(arms[armNum]);
         }
 
-        void DropItem(int armNum, Vector3 location)
-        {
-            if (arms.Length <= 0) return;
-            arms[armNum].Drop(location);
-        }
-
         bool Attack(Arm arm)
         {
             if (arm.IsHoldingItem())
@@ -80,18 +60,6 @@ namespace Mango.Actions
 
             }
             return false;
-        }
-
-        void EquipItem(ItemComponent item, Arm arm)
-        {
-            item.Interact(arm, inventory);
-            arm.onItemUseStart.AddListener(onAttackStart.Invoke);
-            arm.onItemUseEnd.AddListener(onAttackEnd.Invoke);
-        }
-
-        public ItemComponent GetItem(int armIndex)
-        {
-            return arms[armIndex].GetItem();
         }
 
         public Animator GetAnimator()
@@ -110,6 +78,32 @@ namespace Mango.Actions
             return canFight;
         }
 
+    #region InventoryLogic
+        void EquipItem(ItemComponent item, Arm arm)
+        {
+            item.Interact(arm, inventory);
+            arm.onItemUseStart.AddListener(onAttackStart.Invoke);
+            arm.onItemUseEnd.AddListener(onAttackEnd.Invoke);
+        }
+
+        public ItemComponent GetItem(int armIndex)
+        {
+            return arms[armIndex].GetItem();
+        }
+
+        void EquipItems()
+        {
+            if (arms.Length == startingItems.Length)
+            {
+                EquipItem(startingItems[0], arms[0]);
+                EquipItem(startingItems[1], arms[1]);
+            }
+            else if (arms.Length > 0 && startingItems.Length > 0)
+            {
+                Debug.LogError("Not enough arms/starting items for item initialization!");
+            }
+        }
     }
+    #endregion
 }
 
