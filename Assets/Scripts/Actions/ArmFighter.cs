@@ -13,7 +13,7 @@ namespace Mango.Actions
         public UnityEvent onAttackEnd = new UnityEvent();
 
         [SerializeField] Arm[] arms;
-        [SerializeField] ItemComponent[] startingItems;
+        [SerializeField] Weapon[] startingWeapons;
         [SerializeField] Camera cam;
         [SerializeField] InventoryComponent inventory;
         [SerializeField] Animator armAnim;
@@ -79,9 +79,9 @@ namespace Mango.Actions
         }
 
     #region InventoryLogic
-        void EquipItem(ItemComponent item, Arm arm)
+        void EquipWeapon(Weapon weapon, Arm arm)
         {
-            item.Interact(arm, inventory);
+            weapon.Interact(arm, inventory);
             arm.onItemUseStart.AddListener(onAttackStart.Invoke);
             arm.onItemUseEnd.AddListener(onAttackEnd.Invoke);
         }
@@ -93,12 +93,12 @@ namespace Mango.Actions
 
         void EquipItems()
         {
-            if (arms.Length == startingItems.Length)
+            if (arms.Length == startingWeapons.Length)
             {
-                EquipItem(startingItems[0], arms[0]);
-                EquipItem(startingItems[1], arms[1]);
+                EquipWeapon(startingWeapons[0], arms[0]);
+                EquipWeapon(startingWeapons[1], arms[1]);
             }
-            else if (arms.Length > 0 && startingItems.Length > 0)
+            else if (arms.Length > 0 && startingWeapons.Length > 0)
             {
                 Debug.LogError("Not enough arms/starting items for item initialization!");
             }
