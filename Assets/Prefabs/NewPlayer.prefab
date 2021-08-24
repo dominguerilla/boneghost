@@ -1734,7 +1734,7 @@ MonoBehaviour:
   arms:
   - {fileID: 4940260132509495361}
   - {fileID: 4940260131417106088}
-  startingItems:
+  startingWeapons:
   - {fileID: 0}
   - {fileID: 0}
   cam: {fileID: 0}
@@ -3456,7 +3456,9 @@ MonoBehaviour:
     L. CLICK
     FOR LEFT WEAPON
 
-    R. CLICK FOR RIGHT WEAPON'
+    R. CLICK FOR RIGHT WEAPON
+
+    E TO INTERACT/TALK'
 --- !u!1 &7507937867128983166
 GameObject:
   m_ObjectHideFlags: 0
