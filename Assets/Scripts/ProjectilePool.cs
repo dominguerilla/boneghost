@@ -16,6 +16,7 @@ public class ProjectilePool : MonoBehaviour
         {
             AddToPool(projectile);
         }
+        ApplyColor(Color.blue);
     }
 
     public void Launch(Vector3 origin, Quaternion rotation)
@@ -35,6 +36,15 @@ public class ProjectilePool : MonoBehaviour
     public void SetMaxDistance(float value)
     {
         this.maxDistance = value;
+    }
+
+    public void ApplyColor(Color color)
+    {
+        foreach (Projectile proj in availablePool)
+        {
+            Renderer projRenderer = proj.GetComponentInChildren<MeshRenderer>();
+            projRenderer.material.SetColor("Main Color", color);
+        }
     }
 
     Projectile GetNextProjectile() {
