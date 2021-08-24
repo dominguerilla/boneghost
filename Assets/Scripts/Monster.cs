@@ -21,6 +21,7 @@ public class Monster: MonoBehaviour
     public UnityEvent OnDestruct = new UnityEvent();
     public UnityEvent OnDeath = new UnityEvent();
     public UnityEvent OnDamage = new UnityEvent();
+    public UnityEvent OnAttack = new UnityEvent();
     #endregion
 
     #region PROTECTED MEMBERS
@@ -38,8 +39,6 @@ public class Monster: MonoBehaviour
     [SerializeField] protected Animator anim;
     [SerializeField] protected Damageable damageable;
     [SerializeField] protected ProjectilePool projectilePool;
-    [SerializeField] protected AudioSource audioSource;
-    [SerializeField] protected AudioClip attackSound;
 
 
     protected virtual void Awake()
@@ -166,17 +165,23 @@ public class Monster: MonoBehaviour
 
     public void TriggerOnDetectPlayer()
     {
-        if (!monsterEnabled) return;
-        currentTarget = vision.GetSeenTarget();
         OnDetectPlayer.Invoke();
     }
 
     public void TriggerOnLosePlayer()
     {
         if (!monsterEnabled) return;
-        lastSeenPlayerPosition = currentTarget.transform.position;
-        currentTarget = null;
-        OnLosePlayer.Invoke();
+        if (currentTarget)
+        {
+            lastSeenPlayerPosition = currentTarget.transform.position;
+            SetTarget(null);
+            OnLosePlayer.Invoke();
+        }
+    }
+
+    public void SetTarget(GameObject target)
+    {
+        currentTarget = target;
     }
 
     public void EnableMonster()
@@ -200,7 +205,7 @@ public class Monster: MonoBehaviour
         return lastSeenPlayerPosition;
     }
 
-    public GameObject GetCurrentTargetPlayer()
+    public GameObject GetCurrentTarget()
     {
         return currentTarget;
     }
@@ -208,9 +213,7 @@ public class Monster: MonoBehaviour
     public virtual void Attack()
     {
         anim.SetTrigger("Attack");
-        
-        if (audioSource) audioSource.PlayOneShot(attackSound);
-
+        OnAttack.Invoke();
         Vector3 projectileOrigin = (transform.position + new Vector3(0, 0.2f, 0)) + transform.forward;
         projectilePool.SetMaxDistance(attackRange);
         projectilePool.Launch(projectileOrigin, transform.rotation);
