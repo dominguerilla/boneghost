@@ -12,8 +12,8 @@ public class Weapon : ItemComponent
     [SerializeField] float soundDelay = 0f;
    
     [Header("Projectile Settings")]
-    [SerializeField] float attackCooldown = 1.0f;
-    [SerializeField] float attackRange = 1.0f;
+    [SerializeField] float baseAttackCooldown = 1.0f;
+    [SerializeField] float baseAttackRange = 1.0f;
     [SerializeField] Vector3 projectileSpawnOffset;
     [SerializeField] ProjectilePool projectilePool;
     
@@ -39,7 +39,7 @@ public class Weapon : ItemComponent
         yield return new WaitForSeconds(soundDelay);
         LaunchProjectile();
         PlayOnUseSound(soundDelay);
-        yield return new WaitForSeconds(attackCooldown);
+        yield return new WaitForSeconds(baseAttackCooldown);
         _isAttacking = false;
         this.onUseEnd.Invoke();
         yield return null;
@@ -48,22 +48,22 @@ public class Weapon : ItemComponent
     void LaunchProjectile()
     {
         Vector3 launchPosition = mainCam.transform.position + projectileSpawnOffset;
-        projectilePool.SetMaxDistance(attackRange);
+        projectilePool.SetMaxDistance(baseAttackRange);
         projectilePool.Launch(launchPosition + mainCam.transform.forward, mainCam.transform.rotation);
     }
 
     public float GetAttackCooldown()
     {
-        return attackCooldown;
+        return baseAttackCooldown;
     }
 
     public void SetAttackCooldown(float value)
     {
-        attackCooldown = value;
+        baseAttackCooldown = value;
     }
 
-    public void ApplyColor(Color color)
+    public void ApplyStatus(Status status)
     {
-        projectilePool.ApplyColor(color);
+        projectilePool.ApplyStats(status);
     }
 }

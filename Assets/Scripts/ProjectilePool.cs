@@ -37,12 +37,19 @@ public class ProjectilePool : MonoBehaviour
         this.maxDistance = value;
     }
 
-    public void ApplyColor(Color color)
+    void ApplyColor(Projectile projectile, Color color)
     {
+        Renderer projRenderer = projectile.GetComponentInChildren<MeshRenderer>();
+        projRenderer.material.SetColor("_Color", color);
+    }
+
+    public void ApplyStats(Status status)
+    {
+        Color color = status.raceStatus.weaponColor;
         foreach (Projectile proj in availablePool)
         {
-            Renderer projRenderer = proj.GetComponentInChildren<MeshRenderer>();
-            projRenderer.material.SetColor("_Color", color);
+            ApplyColor(proj, color);
+            proj.SetBonusFactors(status.raceStatus.STR, status.raceStatus.DEX, status.raceStatus.INT);
         }
     }
 

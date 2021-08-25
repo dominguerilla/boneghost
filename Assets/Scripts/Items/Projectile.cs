@@ -18,6 +18,8 @@ public class Projectile : MonoBehaviour
     [SerializeField] int maxNumberOfEntitiesDamaged = 1;
 
     float damageFactor = 1.0f;
+    float speedFactor = 1.0f;
+    float rangeFactor = 1.0f;
 
     ProjectilePool pool;
     Vector3 lastLaunchOrigin = Vector3.zero;
@@ -66,15 +68,15 @@ public class Projectile : MonoBehaviour
         transform.rotation = orientation;
 
         lastLaunchOrigin = origin;
-        lastTargetLocation = GetTargetLocation(origin, transform.forward, maxDistance);
+        lastTargetLocation = GetTargetLocation(origin, transform.forward, rangeFactor * maxDistance);
 
         float distanceToTarget = Vector3.Distance(origin, lastTargetLocation);
 
         float currentLifetime = 0f;
         while (currentLifetime < baseLifetime && Vector3.Distance(origin, transform.position) < distanceToTarget)
         {
-            currentLifetime += Time.deltaTime;
-            transform.Translate(Vector3.forward * baseFlightSpeed * Time.deltaTime);
+            //currentLifetime += Time.deltaTime;
+            transform.Translate(Vector3.forward * baseFlightSpeed * speedFactor * Time.deltaTime);
 
             yield return new WaitForEndOfFrame();
         }
@@ -97,5 +99,12 @@ public class Projectile : MonoBehaviour
     public float GetTotalDamage()
     {
         return damageFactor * baseDamage;
+    }
+
+    public void SetBonusFactors(float damageFactor, float speedFactor, float rangeFactor)
+    {
+        this.damageFactor = damageFactor;
+        this.speedFactor = speedFactor;
+        this.rangeFactor = rangeFactor;
     }
 }

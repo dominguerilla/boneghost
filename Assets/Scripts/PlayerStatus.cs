@@ -106,7 +106,7 @@ public class PlayerStatus : MonoBehaviour
     public void ApplyRaceChange()
     {
         CustomEvent.Trigger(this.gameObject, "OnRaceChange", currentStatus.raceStatus.race);
-        ChangeWeaponColor(currentStatus);
+        inventory.ApplyStatus(currentStatus);
         onRaceChange.Invoke();
     }
 
@@ -123,11 +123,5 @@ public class PlayerStatus : MonoBehaviour
     public void InvokeDeath()
     {
         onDeath.Invoke();
-    }
-
-    void ChangeWeaponColor(Status status)
-    {
-
-        inventory.ApplyWeaponColor(status.raceStatus.weaponColor);
     }
 }

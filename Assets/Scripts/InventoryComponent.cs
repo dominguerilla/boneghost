@@ -54,10 +54,12 @@ public class InventoryComponent : MonoBehaviour
         }
     }
 
-    public void ApplyWeaponColor(Color color)
+    public void ApplyStatus(Status status)
     {
-        equippedWeaponLeft.ApplyColor(color);
-        equippedWeaponRight.ApplyColor(color);
+        equippedWeaponLeft.ApplyStatus(status);
+        equippedWeaponRight.ApplyStatus(status);
     }
+
+
 }
 

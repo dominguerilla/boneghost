@@ -504,8 +504,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   soundDelay: 0.2
-  attackCooldown: 1.5
-  attackRange: 6
+  baseAttackCooldown: 1
+  baseAttackRange: 8
   projectileSpawnOffset: {x: 0, y: -0.5, z: 0}
   projectilePool: {fileID: 1399699184126016664}
 --- !u!82 &1214251736479288055
