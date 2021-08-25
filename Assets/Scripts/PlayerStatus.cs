@@ -17,6 +17,7 @@ public class PlayerStatus : MonoBehaviour
     [SerializeField] InventoryComponent inventory;
 
     public UnityEvent onDamageTaken = new UnityEvent();
+    public UnityEvent onRaceChange = new UnityEvent();
     public UnityEvent onDeath = new UnityEvent();
 
     Damageable hitNotifier;
@@ -91,6 +92,9 @@ public class PlayerStatus : MonoBehaviour
             case "DEMON":
                 race = RaceConfig.DEMON;
                 break;
+            case "VOID":
+                race = RaceConfig.VOID;
+                break;
             default:
                 Debug.LogError($"RACE {newRace} NOT FOUND!");
                 race = RaceConfig.MORTAL;
@@ -103,6 +107,7 @@ public class PlayerStatus : MonoBehaviour
     {
         CustomEvent.Trigger(this.gameObject, "OnRaceChange", currentStatus.raceStatus.race);
         ChangeWeaponColor(currentStatus);
+        onRaceChange.Invoke();
     }
 
     public CLASS GetClass()
@@ -110,9 +115,9 @@ public class PlayerStatus : MonoBehaviour
         return currentStatus.jobClass;
     }
 
-    public RACE GetRace()
+    public RaceStatus GetRace()
     {
-        return currentStatus.raceStatus.race;
+        return currentStatus.raceStatus;
     }
 
     public void InvokeDeath()
