@@ -16,7 +16,6 @@ public class ProjectilePool : MonoBehaviour
         {
             AddToPool(projectile);
         }
-        ApplyColor(Color.blue);
     }
 
     public void Launch(Vector3 origin, Quaternion rotation)
@@ -43,7 +42,7 @@ public class ProjectilePool : MonoBehaviour
         foreach (Projectile proj in availablePool)
         {
             Renderer projRenderer = proj.GetComponentInChildren<MeshRenderer>();
-            projRenderer.material.SetColor("Main Color", color);
+            projRenderer.material.SetColor("_Color", color);
         }
     }
 
