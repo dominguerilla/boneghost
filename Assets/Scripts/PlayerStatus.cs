@@ -24,8 +24,11 @@ public class PlayerStatus : MonoBehaviour
 {
     public bool isInitialized { get; private set; }
 
+    [Header("Player Settings")]
     [SerializeField] bool detectHits = true;
     [SerializeField] float cooldownBetweenHits = 1.0f;
+    [SerializeField] InventoryComponent inventory;
+
     [SerializeField] CLASS currentClass;
     [SerializeField] RACE currentRace;
     public UnityEvent onDamageTaken = new UnityEvent();
@@ -33,12 +36,10 @@ public class PlayerStatus : MonoBehaviour
 
     Damageable hitNotifier;
     bool invulnerable = false;
-    ArmFighter armControls;
 
     void Awake()
     {
         hitNotifier = GetComponent<Damageable>();
-        armControls = GetComponent<ArmFighter>();
     }
 
     private void Start()
@@ -133,23 +134,6 @@ public class PlayerStatus : MonoBehaviour
         onDeath.Invoke();
     }
 
-    public void UpgradeWeapon(int armIndex)
-    {
-        ArmFighter armFighter = GetComponent<ArmFighter>();
-        if (armFighter)
-        {
-            ItemComponent item = armFighter.GetItem(armIndex);
-            if (item && item is Weapon)
-            {
-                Weapon weapon = (Weapon)item;
-                float originalAttackCooldown = weapon.GetAttackCooldown();
-                weapon.SetAttackCooldown(originalAttackCooldown * 0.5f);
-                weapon.onUpgrade.Invoke();
-                //Debug.Log($"{weapon.gameObject.name} weapon upgraded!");
-            }
-        }
-    }
-
     void ChangeWeaponColor(RACE race)
     {
         Color classColor;
@@ -168,8 +152,6 @@ public class PlayerStatus : MonoBehaviour
                 classColor = Color.white;
                 break;
         }
-
-        if(!armControls) armControls = GetComponent<ArmFighter>();
-        armControls.ApplyColor(classColor);
+        inventory.ApplyWeaponColor(classColor);
     }
 }

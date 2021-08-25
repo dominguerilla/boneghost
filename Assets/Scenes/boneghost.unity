@@ -104730,41 +104730,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 55281230, guid: 5381e7fe136609d40a764941f0c3443d, type: 3}
-      propertyPath: spritePortrait
-      value: 
-      objectReference: {fileID: 21300000, guid: cbec76dbc3997c74facf823f4453e358, type: 3}
-    - target: {fileID: 1974271726, guid: 5381e7fe136609d40a764941f0c3443d, type: 3}
+    - target: {fileID: 2999870862376093505, guid: 5381e7fe136609d40a764941f0c3443d, type: 3}
       propertyPath: startingWeapons.Array.data[0]
       value: 
       objectReference: {fileID: 891201352}
-    - target: {fileID: 1974271726, guid: 5381e7fe136609d40a764941f0c3443d, type: 3}
+    - target: {fileID: 2999870862376093505, guid: 5381e7fe136609d40a764941f0c3443d, type: 3}
       propertyPath: startingWeapons.Array.data[1]
       value: 
       objectReference: {fileID: 2115648625}
-    - target: {fileID: 46054148106481157, guid: 5381e7fe136609d40a764941f0c3443d, type: 3}
-      propertyPath: _data._json
-      value: '{"declarations":{"collection":{"$content":[{"name":"Bolt Action User","value":{"$content":0,"$type":"UnityEngine.Object"},"$version":"A"},{"name":"Death
-        UI","value":{"$content":1,"$type":"UnityEngine.Object"},"$version":"A"},{"name":"Character
-        Portrait","value":{"$content":2,"$type":"UnityEngine.Object"},"$version":"A"},{"name":"Status
-        Text","value":{"$content":3,"$type":"UnityEngine.Object"},"$version":"A"},{"name":"PlayerStatus","value":{"$content":4,"$type":"UnityEngine.Object"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 46054148106481157, guid: 5381e7fe136609d40a764941f0c3443d, type: 3}
-      propertyPath: _data._objectReferences.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 46054148106481157, guid: 5381e7fe136609d40a764941f0c3443d, type: 3}
-      propertyPath: _data._objectReferences.Array.data[4]
-      value: 
-      objectReference: {fileID: 976734058}
-    - target: {fileID: 1938760478403447634, guid: 5381e7fe136609d40a764941f0c3443d, type: 3}
-      propertyPath: m_PreserveAspect
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1938760479154119248, guid: 5381e7fe136609d40a764941f0c3443d, type: 3}
-      propertyPath: currentRace
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5035360442687476233, guid: 5381e7fe136609d40a764941f0c3443d, type: 3}
       propertyPath: m_RootOrder
       value: 1
