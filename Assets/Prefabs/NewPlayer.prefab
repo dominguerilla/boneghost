@@ -726,10 +726,10 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: ee7fe7f887d079c4d96956eaf045a4c5, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
+  m_Type: 3
+  m_PreserveAspect: 1
   m_FillCenter: 1
-  m_FillMethod: 4
+  m_FillMethod: 0
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
@@ -892,7 +892,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: BONE
+  m_Text: RACE
 --- !u!1 &1938760479746105618
 GameObject:
   m_ObjectHideFlags: 0
@@ -902,6 +902,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1938760479746105617}
+  - component: {fileID: 1062453979}
   m_Layer: 8
   m_Name: Status
   m_TagString: Untagged
@@ -932,6 +933,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0.00024414062, y: 103.29004}
   m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0}
+--- !u!114 &1062453979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1938760479746105618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 875206d2eb2b5bb488b5b7cc23aba240, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerStatus: {fileID: 1938760479154119248}
+  statusText: {fileID: 1938760479104779090}
 --- !u!1 &2754710685453221818
 GameObject:
   m_ObjectHideFlags: 0
@@ -1113,7 +1128,7 @@ GameObject:
   - component: {fileID: 2999870862376093506}
   - component: {fileID: 2999870862376093505}
   m_Layer: 8
-  m_Name: State
+  m_Name: Inventory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1145,6 +1160,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57335b6f52e500b4695ece4c3d85337f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startingWeapons:
+  - {fileID: 0}
+  - {fileID: 0}
+  arms:
+  - {fileID: 4940260132509495361}
+  - {fileID: 4940260131417106088}
 --- !u!1 &3730311199942807872
 GameObject:
   m_ObjectHideFlags: 0
@@ -1703,42 +1724,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onAttackStart:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1974271729}
-        m_TargetAssemblyTypeName: Mango.Actions.BoltActionUser, Assembly-CSharp
-        m_MethodName: NotifyEvent
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: OnAttackStart
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   onAttackEnd:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1974271729}
-        m_TargetAssemblyTypeName: Mango.Actions.BoltActionUser, Assembly-CSharp
-        m_MethodName: NotifyEvent
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: OnAttackEnd
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   arms:
   - {fileID: 4940260132509495361}
   - {fileID: 4940260131417106088}
-  startingWeapons:
-  - {fileID: 0}
-  - {fileID: 0}
   cam: {fileID: 0}
-  inventory: {fileID: 2999870862376093505}
   armAnim: {fileID: 0}
 --- !u!114 &1974271727
 MonoBehaviour:
@@ -1920,12 +1913,13 @@ MonoBehaviour:
     _json: '{"declarations":{"collection":{"$content":[{"name":"Bolt Action User","value":{"$content":0,"$type":"UnityEngine.Object"},"$version":"A"},{"name":"Death
       UI","value":{"$content":1,"$type":"UnityEngine.Object"},"$version":"A"},{"name":"Character
       Portrait","value":{"$content":2,"$type":"UnityEngine.Object"},"$version":"A"},{"name":"Status
-      Text","value":{"$content":3,"$type":"UnityEngine.Object"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
+      Text","value":{"$content":3,"$type":"UnityEngine.Object"},"$version":"A"},{"name":"PlayerStatus","value":{"$content":4,"$type":"UnityEngine.Object"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
     _objectReferences:
     - {fileID: 1974271729}
     - {fileID: 2754710685453221818}
     - {fileID: 1938760478403447634}
     - {fileID: 1938760479104779090}
+    - {fileID: 1938760479154119248}
 --- !u!114 &46054148106481158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2018,12 +2012,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   detectHits: 1
   cooldownBetweenHits: 1
+  inventory: {fileID: 2999870862376093505}
   onDamageTaken:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 265560619361020764}
         m_TargetAssemblyTypeName: MoreMountains.Feedbacks.MMFeedbacks, MoreMountains.Feedbacks
         m_MethodName: PlayFeedbacks
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onRaceChange:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1062453979}
+        m_TargetAssemblyTypeName: StatusUpdater, Assembly-CSharp
+        m_MethodName: UpdateStatusText
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2287,7 +2297,7 @@ MonoBehaviour:
   actor: Player
   persistentDataName: 
   portrait: {fileID: 0}
-  spritePortrait: {fileID: 21300000, guid: ee7fe7f887d079c4d96956eaf045a4c5, type: 3}
+  spritePortrait: {fileID: 21300000, guid: cbec76dbc3997c74facf823f4453e358, type: 3}
   barkUISettings:
     barkUI: {fileID: 0}
     barkUIOffset: {x: 0, y: 2, z: 0}

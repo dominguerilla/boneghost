@@ -5,40 +5,28 @@ using Bolt;
 using Mango.Actions;
 using UnityEngine.Events;
 
-public enum RACE
-{
-    BONE,
-    GHOST,
-    DEMON
-}
-
-public enum CLASS
-{
-    SAMURAI,
-    NINJA,
-    MONK
-}
 
 [RequireComponent(typeof(Damageable))]
 public class PlayerStatus : MonoBehaviour
 {
     public bool isInitialized { get; private set; }
 
+    [Header("Player Settings")]
     [SerializeField] bool detectHits = true;
     [SerializeField] float cooldownBetweenHits = 1.0f;
-    [SerializeField] CLASS currentClass;
-    [SerializeField] RACE currentRace;
+    [SerializeField] InventoryComponent inventory;
+
     public UnityEvent onDamageTaken = new UnityEvent();
+    public UnityEvent onRaceChange = new UnityEvent();
     public UnityEvent onDeath = new UnityEvent();
 
     Damageable hitNotifier;
     bool invulnerable = false;
-    ArmFighter armControls;
+    Status currentStatus = new Status(RaceConfig.MORTAL, CLASS.NONE);
 
     void Awake()
     {
         hitNotifier = GetComponent<Damageable>();
-        armControls = GetComponent<ArmFighter>();
     }
 
     private void Start()
@@ -71,42 +59,48 @@ public class PlayerStatus : MonoBehaviour
     }
 
     public void SetClass(CLASS newClass){
-        if (newClass != currentClass)
+        if (newClass != currentStatus.jobClass)
         {
-            currentClass = newClass;
-            CustomEvent.Trigger(this.gameObject, "OnClassChange", currentClass);
+            currentStatus.jobClass = newClass;
+            CustomEvent.Trigger(this.gameObject, "OnClassChange", currentStatus.jobClass);
         }
     }
 
     /// <summary>
     /// Change player race, notifying Bolt. Only triggers if newClass is different from the current class.
     /// </summary>
-    public void SetRace(RACE newRace)
+    public void SetRace(RaceStatus newRace)
     {
-        if ( newRace != currentRace)
+        if ( newRace.race != currentStatus.raceStatus.race)
         {
-            currentRace = newRace;
+            currentStatus.raceStatus = newRace;
             ApplyRaceChange();
         }
     }
 
     public void SetRace(string newRace)
     {
-        RACE race;
+        RaceStatus race;
         switch (newRace)
         {
             case "BONE":
-                race = RACE.BONE;
+                race = RaceConfig.BONE;
                 break;
             case "GHOST":
-                race = RACE.GHOST;
+                race = RaceConfig.GHOST;
                 break;
             case "DEMON":
-                race = RACE.DEMON;
+                race = RaceConfig.DEMON;
+                break;
+            case "VOID":
+                race = RaceConfig.VOID;
+                break;
+            case "MORTAL":
+                race = RaceConfig.MORTAL;
                 break;
             default:
                 Debug.LogError($"RACE {newRace} NOT FOUND!");
-                race = RACE.BONE;
+                race = RaceConfig.MORTAL;
                 break;
         }
         SetRace(race);
@@ -114,62 +108,23 @@ public class PlayerStatus : MonoBehaviour
 
     public void ApplyRaceChange()
     {
-        CustomEvent.Trigger(this.gameObject, "OnRaceChange", currentRace);
-        ChangeWeaponColor(currentRace);
+        CustomEvent.Trigger(this.gameObject, "OnRaceChange", currentStatus.raceStatus.race);
+        inventory.ApplyStatus(currentStatus);
+        onRaceChange.Invoke();
     }
 
     public CLASS GetClass()
     {
-        return currentClass;
+        return currentStatus.jobClass;
     }
 
-    public RACE GetRace()
+    public RaceStatus GetRace()
     {
-        return currentRace;
+        return currentStatus.raceStatus;
     }
 
     public void InvokeDeath()
     {
         onDeath.Invoke();
-    }
-
-    public void UpgradeWeapon(int armIndex)
-    {
-        ArmFighter armFighter = GetComponent<ArmFighter>();
-        if (armFighter)
-        {
-            ItemComponent item = armFighter.GetItem(armIndex);
-            if (item && item is Weapon)
-            {
-                Weapon weapon = (Weapon)item;
-                float originalAttackCooldown = weapon.GetAttackCooldown();
-                weapon.SetAttackCooldown(originalAttackCooldown * 0.5f);
-                weapon.onUpgrade.Invoke();
-                //Debug.Log($"{weapon.gameObject.name} weapon upgraded!");
-            }
-        }
-    }
-
-    void ChangeWeaponColor(RACE race)
-    {
-        Color classColor;
-        switch (race)
-        {
-            case RACE.BONE:
-                classColor = Color.blue;
-                break;
-            case RACE.GHOST:
-                classColor = Color.green;
-                break;
-            case RACE.DEMON:
-                classColor = Color.red;
-                break;
-            default:
-                classColor = Color.white;
-                break;
-        }
-
-        if(!armControls) armControls = GetComponent<ArmFighter>();
-        armControls.ApplyColor(classColor);
     }
 }

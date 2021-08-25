@@ -21,7 +21,7 @@ public class ProjectilePool : MonoBehaviour
     public void Launch(Vector3 origin, Quaternion rotation)
     {
         Projectile nextProjectile = GetNextProjectile();
-        if (nextProjectile) StartCoroutine(Launch(nextProjectile, origin, rotation, nextProjectile.lifetime, maxDistance));
+        if (nextProjectile) StartCoroutine(Launch(nextProjectile, origin, rotation, maxDistance));
         else Debug.LogWarning($"Trying to launch projectile from empty pool { gameObject.name }!");
     }
 
@@ -37,12 +37,19 @@ public class ProjectilePool : MonoBehaviour
         this.maxDistance = value;
     }
 
-    public void ApplyColor(Color color)
+    void ApplyColor(Projectile projectile, Color color)
     {
+        Renderer projRenderer = projectile.GetComponentInChildren<MeshRenderer>();
+        projRenderer.material.SetColor("_Color", color);
+    }
+
+    public void ApplyStats(Status status)
+    {
+        Color color = status.raceStatus.weaponColor;
         foreach (Projectile proj in availablePool)
         {
-            Renderer projRenderer = proj.GetComponentInChildren<MeshRenderer>();
-            projRenderer.material.SetColor("_Color", color);
+            ApplyColor(proj, color);
+            proj.SetBonusFactors(status.raceStatus.STR, status.raceStatus.DEX, status.raceStatus.INT);
         }
     }
 
@@ -51,9 +58,9 @@ public class ProjectilePool : MonoBehaviour
         return null;
     }
 
-    IEnumerator Launch(Projectile projectile, Vector3 origin, Quaternion orientation, float lifetime, float maxDistance)
+    IEnumerator Launch(Projectile projectile, Vector3 origin, Quaternion orientation, float maxDistance)
     {
         projectile.gameObject.SetActive(true);
-        yield return projectile.Launch(origin, orientation, lifetime, maxDistance);
+        yield return projectile.Launch(origin, orientation, maxDistance);
     }
 }

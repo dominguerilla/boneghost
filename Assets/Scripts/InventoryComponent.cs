@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class InventoryComponent : MonoBehaviour
 {
+    [SerializeField] Weapon[] startingWeapons;
+    [SerializeField] Arm[] arms;
     List<GameObject> inventory;
-    
+    Weapon equippedWeaponLeft, equippedWeaponRight;
+
     // Start is called before the first frame update
     void Start()
     {
         inventory = new List<GameObject>();
+        EquipStartingItems();
     }
 
     public void Add(GameObject item){
@@ -25,4 +29,37 @@ public class InventoryComponent : MonoBehaviour
             item.SetActive(true);
         }
     }
+
+    Weapon EquipWeapon(Weapon weapon, Arm arm)
+    {
+        weapon.Interact(arm, this);
+        return weapon;
+    }
+
+    public ItemComponent GetItem(int armIndex)
+    {
+        return arms[armIndex].GetItem();
+    }
+
+    void EquipStartingItems()
+    {
+        if (arms.Length == startingWeapons.Length)
+        {
+            equippedWeaponLeft = EquipWeapon(startingWeapons[0], arms[0]);
+            equippedWeaponRight = EquipWeapon(startingWeapons[1], arms[1]);
+        }
+        else if (arms.Length > 0 && startingWeapons.Length > 0)
+        {
+            Debug.LogError("Not enough arms/starting items for item initialization!");
+        }
+    }
+
+    public void ApplyStatus(Status status)
+    {
+        equippedWeaponLeft.ApplyStatus(status);
+        equippedWeaponRight.ApplyStatus(status);
+    }
+
+
 }
+

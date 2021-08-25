@@ -8,18 +8,21 @@ using UnityEngine.Events;
 public class Weapon : ItemComponent
 {
     public UnityEvent onUpgrade = new UnityEvent();
+    public UnityEvent onStatusApplied = new UnityEvent();
 
     [SerializeField] float soundDelay = 0f;
    
     [Header("Projectile Settings")]
-    [SerializeField] float attackCooldown = 1.0f;
-    [SerializeField] float attackRange = 1.0f;
+    [SerializeField] float baseAttackCooldown = 1.0f;
+    [SerializeField] float baseAttackRange = 1.0f;
     [SerializeField] Vector3 projectileSpawnOffset;
     [SerializeField] ProjectilePool projectilePool;
     
     
     bool _isAttacking = false;
     Camera mainCam;
+    float cooldownFactor = 1.0f;
+    Color weaponColor = Color.white;
 
     private void Start()
     {
@@ -31,6 +34,23 @@ public class Weapon : ItemComponent
         if(!_isAttacking) StartCoroutine(Attack());
     }
 
+    public float GetAttackCooldown()
+    {
+        return baseAttackCooldown * cooldownFactor;
+    }
+    public void ApplyStatus(Status status)
+    {
+        this.weaponColor = status.raceStatus.weaponColor;
+        this.cooldownFactor = CalculateCooldown(status);
+        projectilePool.ApplyStats(status);
+        onStatusApplied.Invoke();
+    }
+
+    public Color GetWeaponColor()
+    {
+        return this.weaponColor;
+    }
+
     IEnumerator Attack()
     {
         _isAttacking = true;
@@ -39,7 +59,7 @@ public class Weapon : ItemComponent
         yield return new WaitForSeconds(soundDelay);
         LaunchProjectile();
         PlayOnUseSound(soundDelay);
-        yield return new WaitForSeconds(attackCooldown);
+        yield return new WaitForSeconds(baseAttackCooldown * cooldownFactor);
         _isAttacking = false;
         this.onUseEnd.Invoke();
         yield return null;
@@ -48,22 +68,16 @@ public class Weapon : ItemComponent
     void LaunchProjectile()
     {
         Vector3 launchPosition = mainCam.transform.position + projectileSpawnOffset;
-        projectilePool.SetMaxDistance(attackRange);
+        projectilePool.SetMaxDistance(baseAttackRange);
         projectilePool.Launch(launchPosition + mainCam.transform.forward, mainCam.transform.rotation);
     }
 
-    public float GetAttackCooldown()
+    float CalculateCooldown(Status status)
     {
-        return attackCooldown;
+        float DEX = status.raceStatus.DEX;
+        return 1 / DEX;
     }
 
-    public void SetAttackCooldown(float value)
-    {
-        attackCooldown = value;
-    }
 
-    public void ApplyColor(Color color)
-    {
-        projectilePool.ApplyColor(color);
-    }
+
 }

@@ -15,12 +15,9 @@ namespace Mango.Actions
         public UnityEvent onAttackEnd = new UnityEvent();
 
         [SerializeField] Arm[] arms;
-        [SerializeField] Weapon[] startingWeapons;
         [SerializeField] Camera cam;
-        [SerializeField] InventoryComponent inventory;
         [SerializeField] Animator armAnim;
 
-        Weapon equippedWeaponLeft, equippedWeaponRight;
         bool canFight = true;
 
         public override void Register(FPSControls controls)
@@ -40,7 +37,6 @@ namespace Mango.Actions
 
         private void Start()
         {
-            EquipItems();
             isInitialized = true;
         }
 
@@ -81,40 +77,6 @@ namespace Mango.Actions
         {
             return canFight;
         }
-
-    #region InventoryLogic
-        Weapon EquipWeapon(Weapon weapon, Arm arm)
-        {
-            weapon.Interact(arm, inventory);
-            arm.onItemUseStart.AddListener(onAttackStart.Invoke);
-            arm.onItemUseEnd.AddListener(onAttackEnd.Invoke);
-            return weapon;
-        }
-
-        public ItemComponent GetItem(int armIndex)
-        {
-            return arms[armIndex].GetItem();
-        }
-
-        void EquipItems()
-        {
-            if (arms.Length == startingWeapons.Length)
-            {
-                equippedWeaponLeft = EquipWeapon(startingWeapons[0], arms[0]);
-                equippedWeaponRight = EquipWeapon(startingWeapons[1], arms[1]);
-            }
-            else if (arms.Length > 0 && startingWeapons.Length > 0)
-            {
-                Debug.LogError("Not enough arms/starting items for item initialization!");
-            }
-        }
-
-        public void ApplyColor(Color color)
-        {
-            equippedWeaponLeft.ApplyColor(color);
-            equippedWeaponRight.ApplyColor(color);
-        }
     }
-    #endregion
 }
 

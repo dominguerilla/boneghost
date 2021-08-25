@@ -23,6 +23,10 @@ PrefabInstance:
       propertyPath: CurrentHealth
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 1775200361254823168, guid: 360a2903c21cb784db3f89c938d6a09d, type: 3}
+      propertyPath: m_Speed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 1775200361254823174, guid: 360a2903c21cb784db3f89c938d6a09d, type: 3}
       propertyPath: _data._json
       value: '{"declarations":{"collection":{"$content":[{"name":"isAttacking","value":{"$content":false,"$type":"System.Boolean"},"$version":"A"},{"name":"wander","value":{"$content":false,"$type":"System.Boolean"},"$version":"A"},{"name":"Vision","value":{"$content":0,"$type":"UnityEngine.Object"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
