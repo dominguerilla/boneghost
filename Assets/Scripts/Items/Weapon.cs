@@ -20,6 +20,7 @@ public class Weapon : ItemComponent
     
     bool _isAttacking = false;
     Camera mainCam;
+    float cooldownFactor = 1.0f;
 
     private void Start()
     {
@@ -39,7 +40,7 @@ public class Weapon : ItemComponent
         yield return new WaitForSeconds(soundDelay);
         LaunchProjectile();
         PlayOnUseSound(soundDelay);
-        yield return new WaitForSeconds(baseAttackCooldown);
+        yield return new WaitForSeconds(baseAttackCooldown * cooldownFactor);
         _isAttacking = false;
         this.onUseEnd.Invoke();
         yield return null;
@@ -54,16 +55,17 @@ public class Weapon : ItemComponent
 
     public float GetAttackCooldown()
     {
-        return baseAttackCooldown;
+        return baseAttackCooldown * cooldownFactor;
     }
-
-    public void SetAttackCooldown(float value)
-    {
-        baseAttackCooldown = value;
-    }
-
     public void ApplyStatus(Status status)
     {
+        this.cooldownFactor = CalculateCooldown(status);
         projectilePool.ApplyStats(status);
+    }
+
+    float CalculateCooldown(Status status)
+    {
+        float DEX = status.raceStatus.DEX;
+        return 1 / DEX;
     }
 }
