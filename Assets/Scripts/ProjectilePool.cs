@@ -21,7 +21,7 @@ public class ProjectilePool : MonoBehaviour
     public void Launch(Vector3 origin, Quaternion rotation)
     {
         Projectile nextProjectile = GetNextProjectile();
-        if (nextProjectile) StartCoroutine(Launch(nextProjectile, origin, rotation, nextProjectile.lifetime, maxDistance));
+        if (nextProjectile) StartCoroutine(Launch(nextProjectile, origin, rotation, maxDistance));
         else Debug.LogWarning($"Trying to launch projectile from empty pool { gameObject.name }!");
     }
 
@@ -51,9 +51,9 @@ public class ProjectilePool : MonoBehaviour
         return null;
     }
 
-    IEnumerator Launch(Projectile projectile, Vector3 origin, Quaternion orientation, float lifetime, float maxDistance)
+    IEnumerator Launch(Projectile projectile, Vector3 origin, Quaternion orientation, float maxDistance)
     {
         projectile.gameObject.SetActive(true);
-        yield return projectile.Launch(origin, orientation, lifetime, maxDistance);
+        yield return projectile.Launch(origin, orientation, maxDistance);
     }
 }

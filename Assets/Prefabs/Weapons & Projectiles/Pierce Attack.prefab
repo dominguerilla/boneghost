@@ -151,7 +151,7 @@ GameObject:
   - component: {fileID: 1552330367832311291}
   - component: {fileID: 1742107412556898742}
   m_Layer: 10
-  m_Name: Bone Attack
+  m_Name: Pierce Attack
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -186,9 +186,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
-  damage: 1
-  flightSpeed: 3
-  lifetime: 2
+  baseDamage: 1
+  baseFlightSpeed: 10
+  baseLifetime: 2
   maxNumberOfEntitiesDamaged: 1
 --- !u!65 &1552330367832311291
 BoxCollider:

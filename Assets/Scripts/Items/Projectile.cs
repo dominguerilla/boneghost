@@ -12,12 +12,12 @@ public enum ProjectileType
 public class Projectile : MonoBehaviour
 {
     public ProjectileType type;
-    public float damage = 1.0f;
-    public float flightSpeed = 3f;
-    public float lifetime = 2.0f;
-    public int maxNumberOfEntitiesDamaged = 1;
+    [SerializeField] float baseDamage = 1.0f;
+    [SerializeField] float baseFlightSpeed = 3f;
+    [SerializeField] float baseLifetime = 2.0f;
+    [SerializeField] int maxNumberOfEntitiesDamaged = 1;
 
-    public float damageFactor = 1.0f;
+    float damageFactor = 1.0f;
 
     ProjectilePool pool;
     Vector3 lastLaunchOrigin = Vector3.zero;
@@ -58,7 +58,7 @@ public class Projectile : MonoBehaviour
         }
     }
 
-    public IEnumerator Launch(Vector3 origin, Quaternion orientation, float lifetime, float maxDistance)
+    public IEnumerator Launch(Vector3 origin, Quaternion orientation,  float maxDistance)
     {
         _isLaunching = true;
         transform.parent = null;
@@ -71,10 +71,10 @@ public class Projectile : MonoBehaviour
         float distanceToTarget = Vector3.Distance(origin, lastTargetLocation);
 
         float currentLifetime = 0f;
-        while (currentLifetime < lifetime && Vector3.Distance(origin, transform.position) < distanceToTarget)
+        while (currentLifetime < baseLifetime && Vector3.Distance(origin, transform.position) < distanceToTarget)
         {
             currentLifetime += Time.deltaTime;
-            transform.Translate(Vector3.forward * flightSpeed * Time.deltaTime);
+            transform.Translate(Vector3.forward * baseFlightSpeed * Time.deltaTime);
 
             yield return new WaitForEndOfFrame();
         }
@@ -96,6 +96,6 @@ public class Projectile : MonoBehaviour
 
     public float GetTotalDamage()
     {
-        return damageFactor * damage;
+        return damageFactor * baseDamage;
     }
 }

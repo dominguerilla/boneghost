@@ -927,7 +927,7 @@ GameObject:
   - component: {fileID: 6644433616967614429}
   - component: {fileID: 7835847419164654638}
   m_Layer: 10
-  m_Name: Ghost Attack
+  m_Name: Wide Attack
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -1068,9 +1068,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
-  damage: 1
-  flightSpeed: 8
-  lifetime: 3
+  baseDamage: 1
+  baseFlightSpeed: 15
+  baseLifetime: 2
   maxNumberOfEntitiesDamaged: 1
 --- !u!54 &6644433616967614429
 Rigidbody:

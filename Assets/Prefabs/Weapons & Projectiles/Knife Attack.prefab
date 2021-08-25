@@ -1068,9 +1068,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  damage: 1
-  flightSpeed: 12
-  lifetime: 10
+  baseDamage: 0.5
+  baseFlightSpeed: 15
+  baseLifetime: 2
   maxNumberOfEntitiesDamaged: 1
 --- !u!54 &8709652332938575152
 Rigidbody:
