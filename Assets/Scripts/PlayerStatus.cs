@@ -95,6 +95,9 @@ public class PlayerStatus : MonoBehaviour
             case "VOID":
                 race = RaceConfig.VOID;
                 break;
+            case "MORTAL":
+                race = RaceConfig.MORTAL;
+                break;
             default:
                 Debug.LogError($"RACE {newRace} NOT FOUND!");
                 race = RaceConfig.MORTAL;
