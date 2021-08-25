@@ -61,4 +61,9 @@ public class Weapon : ItemComponent
     {
         attackCooldown = value;
     }
+
+    public void ApplyColor(Color color)
+    {
+        projectilePool.ApplyColor(color);
+    }
 }

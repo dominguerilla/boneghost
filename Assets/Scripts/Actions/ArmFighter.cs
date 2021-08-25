@@ -9,6 +9,8 @@ namespace Mango.Actions
     // TODO: Move Item Equip/Dequip logic to a separate inventory system (InventoryComponent?)
     public class ArmFighter : PlayerAction
     {
+        public bool isInitialized { get; private set; }
+
         public UnityEvent onAttackStart = new UnityEvent();
         public UnityEvent onAttackEnd = new UnityEvent();
 
@@ -18,6 +20,7 @@ namespace Mango.Actions
         [SerializeField] InventoryComponent inventory;
         [SerializeField] Animator armAnim;
 
+        Weapon equippedWeaponLeft, equippedWeaponRight;
         bool canFight = true;
 
         public override void Register(FPSControls controls)
@@ -38,6 +41,7 @@ namespace Mango.Actions
         private void Start()
         {
             EquipItems();
+            isInitialized = true;
         }
 
         // TODO: Use a different cursor manager?
@@ -79,11 +83,12 @@ namespace Mango.Actions
         }
 
     #region InventoryLogic
-        void EquipWeapon(Weapon weapon, Arm arm)
+        Weapon EquipWeapon(Weapon weapon, Arm arm)
         {
             weapon.Interact(arm, inventory);
             arm.onItemUseStart.AddListener(onAttackStart.Invoke);
             arm.onItemUseEnd.AddListener(onAttackEnd.Invoke);
+            return weapon;
         }
 
         public ItemComponent GetItem(int armIndex)
@@ -95,13 +100,19 @@ namespace Mango.Actions
         {
             if (arms.Length == startingWeapons.Length)
             {
-                EquipWeapon(startingWeapons[0], arms[0]);
-                EquipWeapon(startingWeapons[1], arms[1]);
+                equippedWeaponLeft = EquipWeapon(startingWeapons[0], arms[0]);
+                equippedWeaponRight = EquipWeapon(startingWeapons[1], arms[1]);
             }
             else if (arms.Length > 0 && startingWeapons.Length > 0)
             {
                 Debug.LogError("Not enough arms/starting items for item initialization!");
             }
+        }
+
+        public void ApplyColor(Color color)
+        {
+            equippedWeaponLeft.ApplyColor(color);
+            equippedWeaponRight.ApplyColor(color);
         }
     }
     #endregion

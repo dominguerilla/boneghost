@@ -218,7 +218,6 @@ namespace Mango.Actions
         {
             lookControl.UnlockCursor();
         }
-        
     }
 }
 
