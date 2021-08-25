@@ -17,6 +17,8 @@ public class Projectile : MonoBehaviour
     public float lifetime = 2.0f;
     public int maxNumberOfEntitiesDamaged = 1;
 
+    public float damageFactor = 1.0f;
+
     ProjectilePool pool;
     Vector3 lastLaunchOrigin = Vector3.zero;
     Vector3 lastTargetLocation = Vector3.zero;
@@ -90,5 +92,10 @@ public class Projectile : MonoBehaviour
         _isLaunching = false;
         transform.parent = originalParent;
         this.pool.AddToPool(this);
+    }
+
+    public float GetTotalDamage()
+    {
+        return damageFactor * damage;
     }
 }
