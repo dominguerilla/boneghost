@@ -37,7 +37,7 @@ public class Projectile : MonoBehaviour
     {
         RaycastHit hit;
         Ray ray = new Ray(projectileOrigin, direction);
-        if (Physics.Raycast(ray, out hit, maxDistance, ~LayerMask.GetMask("Player", "Enemy", "UI", "Projectile")))
+        if (Physics.Raycast(ray, out hit, maxDistance, ~LayerMask.GetMask("Player", "Enemy", "Interactable", "UI", "Projectile")))
         {   
             return hit.point;
         }

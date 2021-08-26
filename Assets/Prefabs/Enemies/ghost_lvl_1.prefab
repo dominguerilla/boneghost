@@ -1225,7 +1225,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ignoreLayers:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 1664
   eyePosition: {fileID: 8941992979914928354}
   OnDetectPlayer:
     m_PersistentCalls:

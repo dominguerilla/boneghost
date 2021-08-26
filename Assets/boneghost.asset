@@ -177,6 +177,20 @@ MonoBehaviour:
       value: Whether or not the player has the crypt key.
       type: 0
       typeString: 
+  - id: 7
+    fields:
+    - title: Name
+      value: PlayerSpawnPoint
+      type: 0
+      typeString: 
+    - title: Initial Value
+      value: CryptEntrance
+      type: 0
+      typeString: CustomFieldType_Text
+    - title: Description
+      value: The player's current spawnpoint.
+      type: 0
+      typeString: 
   conversations:
   - id: 1
     fields:
