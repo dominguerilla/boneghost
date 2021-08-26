@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class InventoryComponent : MonoBehaviour
 {
+    public bool isInitialized { get; private set; }
+
     [SerializeField] Weapon[] startingWeapons;
     [SerializeField] Arm[] arms;
     List<GameObject> inventory;
@@ -14,6 +16,7 @@ public class InventoryComponent : MonoBehaviour
     {
         inventory = new List<GameObject>();
         EquipStartingItems();
+        isInitialized = true;
     }
 
     public void Add(GameObject item){

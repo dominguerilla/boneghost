@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1775200361583223816}
   - component: {fileID: 1775200361583223817}
   - component: {fileID: 7849459248683909509}
+  - component: {fileID: 4855423773987284257}
   m_Layer: 9
   m_Name: Vision
   m_TagString: Untagged
@@ -31,7 +32,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1775200362420629273}
-  - {fileID: 3852928257195041066}
   m_Father: {fileID: 6488588710668640461}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -107,6 +107,19 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.7
   m_Center: {x: 0, y: 0.43, z: 0}
+--- !u!135 &4855423773987284257
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1775200361583223818}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Radius: 2.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1775200362420629274
 GameObject:
   m_ObjectHideFlags: 0
@@ -798,50 +811,6 @@ MonoBehaviour:
   MinPitch: 0.8
   MaxPitch: 1.2
   SfxAudioMixerGroup: {fileID: 0}
---- !u!1 &6450137378418665700
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3852928257195041066}
-  - component: {fileID: 591321485035264245}
-  m_Layer: 9
-  m_Name: ExtraSpatialAwareness
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3852928257195041066
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6450137378418665700}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1775200361583223823}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &591321485035264245
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6450137378418665700}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 2.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6488588710668680353
 GameObject:
   m_ObjectHideFlags: 0
@@ -2071,9 +2040,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _data:
-    _json: '{"declarations":{"collection":{"$content":[{"name":"isAttacking","value":{"$content":false,"$type":"System.Boolean"},"$version":"A"},{"name":"wander","value":{"$content":false,"$type":"System.Boolean"},"$version":"A"},{"name":"Vision","value":{"$content":0,"$type":"UnityEngine.Object"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
+    _json: '{"declarations":{"collection":{"$content":[{"name":"wander","value":{"$content":false,"$type":"System.Boolean"},"$version":"A"},{"name":"Vision","value":{"$content":0,"$type":"UnityEngine.Object"},"$version":"A"},{"name":"AlertVisionCollider","value":{"$content":1,"$type":"UnityEngine.Object"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
     _objectReferences:
     - {fileID: 1775200361583223817}
+    - {fileID: 4855423773987284257}
 --- !u!114 &1775200361254823175
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2143,33 +2113,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 6450137378418665700}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
   OnLosePlayer:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6450137378418665700}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   OnDestruct:
     m_PersistentCalls:
       m_Calls: []
@@ -3104,11 +3050,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f15b688fa519f0049a80a38b716d1012, type: 3}
---- !u!4 &7068476639913425081 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3910229008343233331, guid: f15b688fa519f0049a80a38b716d1012, type: 3}
-  m_PrefabInstance: {fileID: 6078639714990443402}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &7068476639913425079 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3910229008343233341, guid: f15b688fa519f0049a80a38b716d1012, type: 3}
@@ -3120,6 +3061,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e33a3637f4f41644883c4cd38614d589, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &7068476639913425081 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3910229008343233331, guid: f15b688fa519f0049a80a38b716d1012, type: 3}
+  m_PrefabInstance: {fileID: 6078639714990443402}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7999594190056146133
 PrefabInstance:
   m_ObjectHideFlags: 0

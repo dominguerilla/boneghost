@@ -36,8 +36,20 @@ public class PlayerStatus : MonoBehaviour
     private void Start()
     {
         hitNotifier.onProjectileHit.AddListener(OnProjectileHit);
+        StartCoroutine(WaitToInitialize());
+    }
+
+    private IEnumerator WaitToInitialize()
+    {
+        bool isInventoryInitialized = inventory.isInitialized;
+        while (!isInventoryInitialized)
+        {
+            isInventoryInitialized = inventory.isInitialized;
+            yield return new WaitForEndOfFrame();
+        }
         SetRaceOnStart(startingRace);
         isInitialized = true;
+        
     }
 
     void SetRaceOnStart(RACE race)
