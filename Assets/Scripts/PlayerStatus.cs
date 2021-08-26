@@ -12,10 +12,14 @@ public class PlayerStatus : MonoBehaviour
     public bool isInitialized { get; private set; }
 
     [Header("Player Settings")]
-    [SerializeField] bool detectHits = true;
+    [SerializeField] RACE startingRace;
     [SerializeField] float cooldownBetweenHits = 1.0f;
     [SerializeField] InventoryComponent inventory;
 
+    [Header("Debug")]
+    [SerializeField] bool detectHits = true;
+
+    [Header("Events")]
     public UnityEvent onDamageTaken = new UnityEvent();
     public UnityEvent onRaceChange = new UnityEvent();
     public UnityEvent onDeath = new UnityEvent();
@@ -32,7 +36,26 @@ public class PlayerStatus : MonoBehaviour
     private void Start()
     {
         hitNotifier.onProjectileHit.AddListener(OnProjectileHit);
+        StartCoroutine(WaitToInitialize());
+    }
+
+    private IEnumerator WaitToInitialize()
+    {
+        bool isInventoryInitialized = inventory.isInitialized;
+        while (!isInventoryInitialized)
+        {
+            isInventoryInitialized = inventory.isInitialized;
+            yield return new WaitForEndOfFrame();
+        }
+        SetRaceOnStart(startingRace);
         isInitialized = true;
+        
+    }
+
+    void SetRaceOnStart(RACE race)
+    {
+        RaceStatus raceStat = RaceConfig.GetRaceStatus(race);
+        SetRace(raceStat);
     }
 
     void OnProjectileHit(Projectile projectile)

@@ -9,7 +9,7 @@ public class ProjectilePool : MonoBehaviour
 
     float maxDistance = 10f;
 
-    private void Start()
+    private void Awake()
     {
         availablePool = new Queue<Projectile>();
         foreach (Projectile projectile in startingPool)
