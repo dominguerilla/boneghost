@@ -7,13 +7,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 342159227410527513, guid: e9776d8796b62504bb435b142326af23, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9970f9a2126b879419ea28c94e9e4e88, type: 2}
     - target: {fileID: 342159227415569523, guid: e9776d8796b62504bb435b142326af23, type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 342159227415569523, guid: e9776d8796b62504bb435b142326af23, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -15.289465
+      value: -15.289457
       objectReference: {fileID: 0}
     - target: {fileID: 342159227415569523, guid: e9776d8796b62504bb435b142326af23, type: 3}
       propertyPath: m_LocalPosition.y
@@ -21,7 +25,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 342159227415569523, guid: e9776d8796b62504bb435b142326af23, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -57.841812
+      value: -71.84181
       objectReference: {fileID: 0}
     - target: {fileID: 342159227415569523, guid: e9776d8796b62504bb435b142326af23, type: 3}
       propertyPath: m_LocalRotation.w
@@ -53,7 +57,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 342159227415803987, guid: e9776d8796b62504bb435b142326af23, type: 3}
       propertyPath: m_Name
-      value: bone_lvl_3
+      value: bone_lvl_3 Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 2539874507536751173, guid: e9776d8796b62504bb435b142326af23, type: 3}
+      propertyPath: attackRange
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2539874507536751173, guid: e9776d8796b62504bb435b142326af23, type: 3}
+      propertyPath: startingHealth
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3213590160969795209, guid: e9776d8796b62504bb435b142326af23, type: 3}
+      propertyPath: MaxPitch
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3213590160969795209, guid: e9776d8796b62504bb435b142326af23, type: 3}
+      propertyPath: MinPitch
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 4960151685094604013, guid: e9776d8796b62504bb435b142326af23, type: 3}
       propertyPath: m_Mesh
