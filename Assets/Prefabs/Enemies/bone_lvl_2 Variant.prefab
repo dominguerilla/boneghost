@@ -29,7 +29,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1775200361254823168, guid: 360a2903c21cb784db3f89c938d6a09d, type: 3}
       propertyPath: m_Speed
-      value: 10
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1775200361254823174, guid: 360a2903c21cb784db3f89c938d6a09d, type: 3}
       propertyPath: _data._json
@@ -47,6 +47,14 @@ PrefabInstance:
       propertyPath: _data._objectReferences.Array.data[1]
       value: 
       objectReference: {fileID: 5048894026848772279}
+    - target: {fileID: 1775200361583223816, guid: 360a2903c21cb784db3f89c938d6a09d, type: 3}
+      propertyPath: m_Radius
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1775200361583223816, guid: 360a2903c21cb784db3f89c938d6a09d, type: 3}
+      propertyPath: m_Center.z
+      value: 3.52
+      objectReference: {fileID: 0}
     - target: {fileID: 1902347125680240723, guid: 360a2903c21cb784db3f89c938d6a09d, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -189,7 +197,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9046873365196168955, guid: 360a2903c21cb784db3f89c938d6a09d, type: 3}
       propertyPath: startingHealth
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 360a2903c21cb784db3f89c938d6a09d, type: 3}
