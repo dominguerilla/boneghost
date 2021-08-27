@@ -131,6 +131,36 @@ MonoBehaviour:
       value: True
       type: 2
       typeString: CustomFieldType_Boolean
+  - id: 2
+    fields:
+    - title: Name
+      value: Kill the Flames
+      type: 0
+      typeString: 
+    - title: Pictures
+      value: '[]'
+      type: 3
+      typeString: CustomFieldType_Files
+    - title: Description
+      value: 
+      type: 0
+      typeString: 
+    - title: Success Description
+      value: 
+      type: 0
+      typeString: 
+    - title: Failure Description
+      value: 
+      type: 0
+      typeString: 
+    - title: State
+      value: unassigned
+      type: 0
+      typeString: 
+    - title: Is Item
+      value: False
+      type: 2
+      typeString: CustomFieldType_Boolean
   locations: []
   variables:
   - id: 2
@@ -224,7 +254,7 @@ MonoBehaviour:
       type: 0
       typeString: 
     - title: Initial Value
-      value: false
+      value: False
       type: 2
       typeString: CustomFieldType_Boolean
     - title: Description
@@ -238,11 +268,25 @@ MonoBehaviour:
       type: 0
       typeString: 
     - title: Initial Value
-      value: false
+      value: False
       type: 2
       typeString: CustomFieldType_Boolean
     - title: Description
       value: 
+      type: 0
+      typeString: 
+  - id: 10
+    fields:
+    - title: Name
+      value: Crypt.isDoorOpen
+      type: 0
+      typeString: 
+    - title: Initial Value
+      value: False
+      type: 2
+      typeString: CustomFieldType_Boolean
+    - title: Description
+      value: Whether or not the crypt's entrance has opened.
       type: 0
       typeString: 
   conversations:
@@ -3036,7 +3080,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: The door rumbles open.
+        value: 
         type: 0
         typeString: 
       - title: Sequence
@@ -3054,7 +3098,13 @@ MonoBehaviour:
       delaySimStatus: 0
       falseConditionAction: Block
       conditionPriority: 2
-      outgoingLinks: []
+      outgoingLinks:
+      - originConversationID: 7
+        originDialogueID: 3
+        destinationConversationID: 7
+        destinationDialogueID: 4
+        isConnector: 0
+        priority: 2
       conditionsString: Variable["HasCryptKey"] == true
       userScript: 
       onExecute:
@@ -3066,9 +3116,58 @@ MonoBehaviour:
         y: 328
         width: 160
         height: 30
+    - id: 4
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: 
+      - title: Description
+        value: 
+        type: 0
+        typeString: 
+      - title: Actor
+        value: -1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: 
+      - title: Dialogue Text
+        value: The door rumbles open.
+        type: 0
+        typeString: 
+      - title: Sequence
+        value: 
+        type: 0
+        typeString: 
+      conversationID: 7
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks: []
+      conditionsString: 
+      userScript: Variable["Crypt.isDoorOpen"] = true
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 375.5357
+        y: 445.85712
+        width: 160
+        height: 30
     entryGroups: []
     canvasScrollPosition: {x: 0, y: 0}
-    canvasZoom: 1
+    canvasZoom: 1.1199999
   - id: 8
     fields:
     - title: Title
@@ -3161,12 +3260,6 @@ MonoBehaviour:
         originDialogueID: 0
         destinationConversationID: 8
         destinationDialogueID: 7
-        isConnector: 0
-        priority: 2
-      - originConversationID: 8
-        originDialogueID: 0
-        destinationConversationID: 8
-        destinationDialogueID: 29
         isConnector: 0
         priority: 2
       conditionsString: 
@@ -3958,8 +4051,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 939
-        y: 834
+        x: 950.92664
+        y: 860.6055
         width: 160
         height: 30
     - id: 15
@@ -4376,7 +4469,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: How can I be sure that you're to be trusted?
+        value: Where is this torch?
         type: 0
         typeString: 
       - title: Sequence
@@ -4394,13 +4487,7 @@ MonoBehaviour:
       - originConversationID: 8
         originDialogueID: 22
         destinationConversationID: 8
-        destinationDialogueID: 25
-        isConnector: 0
-        priority: 2
-      - originConversationID: 8
-        originDialogueID: 22
-        destinationConversationID: 8
-        destinationDialogueID: 32
+        destinationDialogueID: 33
         isConnector: 0
         priority: 2
       conditionsString: 
@@ -4576,8 +4663,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 1052.9999
-        y: 1421
+        x: 1580.835
+        y: 1147.8041
         width: 160
         height: 30
     - id: 26
@@ -4632,8 +4719,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 1066.9999
-        y: 1477
+        x: 1594.835
+        y: 1203.8041
         width: 160
         height: 30
     - id: 27
@@ -4687,8 +4774,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 1098.9999
-        y: 1558
+        x: 1626.835
+        y: 1284.8041
         width: 160
         height: 30
     - id: 28
@@ -4742,57 +4829,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 1084
-        y: 1605
-        width: 160
-        height: 30
-    - id: 29
-      fields:
-      - title: Title
-        value: 
-        type: 0
-        typeString: 
-      - title: Description
-        value: 
-        type: 0
-        typeString: 
-      - title: Actor
-        value: 1
-        type: 5
-        typeString: CustomFieldType_Actor
-      - title: Conversant
-        value: 3
-        type: 5
-        typeString: CustomFieldType_Actor
-      - title: Menu Text
-        value: 
-        type: 0
-        typeString: 
-      - title: Dialogue Text
-        value: 
-        type: 0
-        typeString: 
-      - title: Sequence
-        value: 
-        type: 0
-        typeString: 
-      conversationID: 8
-      isRoot: 0
-      isGroup: 0
-      nodeColor: 
-      delaySimStatus: 0
-      falseConditionAction: Block
-      conditionPriority: 2
-      outgoingLinks: []
-      conditionsString: 
-      userScript: 
-      onExecute:
-        m_PersistentCalls:
-          m_Calls: []
-      canvasRect:
-        serializedVersion: 2
-        x: 497
-        y: 153
+        x: 1611.8351
+        y: 1331.8041
         width: 160
         height: 30
     - id: 30
@@ -4846,8 +4884,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 1095
-        y: 1673
+        x: 1622.8351
+        y: 1399.8041
         width: 160
         height: 30
     - id: 31
@@ -4901,8 +4939,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 1082
-        y: 1758
+        x: 1609.8351
+        y: 1484.8041
         width: 160
         height: 30
     - id: 32
@@ -4950,8 +4988,57 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 841.7059
-        y: 1810.1177
+        x: 1369.541
+        y: 1536.9218
+        width: 160
+        height: 30
+    - id: 33
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: 
+      - title: Description
+        value: 
+        type: 0
+        typeString: 
+      - title: Actor
+        value: 3
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: 
+      - title: Dialogue Text
+        value: 
+        type: 0
+        typeString: 
+      - title: Sequence
+        value: 
+        type: 0
+        typeString: 
+      conversationID: 8
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks: []
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 853.41284
+        y: 1438.1193
         width: 160
         height: 30
     entryGroups:
@@ -4963,8 +5050,8 @@ MonoBehaviour:
         width: 234
         height: 585
       color: {r: 1, g: 1, b: 1, a: 0.5}
-    canvasScrollPosition: {x: 32.941162, y: 1020.6543}
-    canvasZoom: 0.8500001
+    canvasScrollPosition: {x: 44.329956, y: 12.371155}
+    canvasZoom: 0.97
   syncInfo:
     syncActors: 0
     syncItems: 0

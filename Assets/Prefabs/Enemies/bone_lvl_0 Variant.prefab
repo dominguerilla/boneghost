@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   once: 0
-  conversation: GreenBoyBarks
+  conversation: Barks/Cocky
   condition:
     luaConditions: []
     questConditions: []
@@ -241,6 +241,18 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1902347125680240723, guid: 360a2903c21cb784db3f89c938d6a09d, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2394103783545304844, guid: 360a2903c21cb784db3f89c938d6a09d, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2414415839057650714, guid: 360a2903c21cb784db3f89c938d6a09d, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3346316730850561297, guid: 360a2903c21cb784db3f89c938d6a09d, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -256,6 +268,14 @@ PrefabInstance:
     - target: {fileID: 3346316731170009113, guid: 360a2903c21cb784db3f89c938d6a09d, type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4219709638371502425, guid: 360a2903c21cb784db3f89c938d6a09d, type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5986619680497246763, guid: 360a2903c21cb784db3f89c938d6a09d, type: 3}
+      propertyPath: m_RootOrder
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 6488588710668640461, guid: 360a2903c21cb784db3f89c938d6a09d, type: 3}
       propertyPath: m_RootOrder
@@ -303,7 +323,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6488588710668680429, guid: 360a2903c21cb784db3f89c938d6a09d, type: 3}
       propertyPath: m_Name
-      value: bone_lvl_0
+      value: bone_lvl_0 Variant
       objectReference: {fileID: 0}
     - target: {fileID: 6488588710682341799, guid: 360a2903c21cb784db3f89c938d6a09d, type: 3}
       propertyPath: m_Materials.Array.data[0]
