@@ -1388,6 +1388,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3114198149444486432}
+  - component: {fileID: 575409779}
   m_Layer: 8
   m_Name: DodgeStamina
   m_TagString: Untagged
@@ -1415,6 +1416,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 128, y: 156.7}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &575409779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3114198149444486435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8736486099fed6047a7291de5e90eeab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetImage: {fileID: 3114198151125508477}
 --- !u!1 &3114198149742426605
 GameObject:
   m_ObjectHideFlags: 0
@@ -1975,10 +1989,10 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 553f615332baa0d4a842d5600f824551, type: 3}
-  m_Type: 0
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 4
+  m_FillMethod: 0
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
@@ -2346,7 +2360,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5037503543414573859}
-  m_LocalRotation: {x: -0, y: 0.0101480335, z: -0, w: -0.99994856}
+  m_LocalRotation: {x: 0, y: 0.010148966, z: -0, w: -0.99994856}
   m_LocalPosition: {x: -14.041871, y: 13.484001, z: 108.83029}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2656,6 +2670,7 @@ MonoBehaviour:
   dodgeSpeed: 9
   dodgeTime: 0.4
   dodgeCooldown: 1
+  dodgeCooldownBar: {fileID: 575409779}
   onDodgeStart:
     m_PersistentCalls:
       m_Calls:
@@ -2943,7 +2958,7 @@ MonoBehaviour:
     height: 64
   useKey: 101
   useButton: 
-  defaultUseMessage: 
+  defaultUseMessage: E TO TALK/INTERACT
   broadcastToChildren: 1
   actorTransform: {fileID: 0}
   tooFarMessage: 

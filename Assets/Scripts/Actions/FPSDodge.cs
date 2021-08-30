@@ -15,6 +15,8 @@ namespace Mango.Actions
         [SerializeField] float dodgeSpeed = 5f;
         [SerializeField] float dodgeTime = 0.125f;
         [SerializeField] float dodgeCooldown = 1.0f;
+        [Tooltip("If specified, starts updating the dodge stamina bar image's fill amount gradually.")]
+        [SerializeField] ImageFiller dodgeCooldownBar;
         public UnityEvent onDodgeStart = new UnityEvent();
         public UnityEvent onDodgeEnd = new UnityEvent();
 
@@ -69,6 +71,7 @@ namespace Mango.Actions
             }
             // dumb hack I have to do so I can call the StopDodging() function because CallbackContexts aren't nullable
             StopDodging(new InputAction.CallbackContext());
+            if (dodgeCooldownBar) dodgeCooldownBar.ResetAndFillImage(dodgeCooldown);
             yield return new WaitForSeconds(dodgeCooldown);
             isCoolingDown = false;
         }
