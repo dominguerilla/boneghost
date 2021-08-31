@@ -97,7 +97,7 @@ MonoBehaviour:
       type: 3
       typeString: CustomFieldType_Files
     - title: Description
-      value: Your truest friend.
+      value: Your guide.
       type: 0
       typeString: CustomFieldType_Text
     - title: IsPlayer
@@ -105,11 +105,11 @@ MonoBehaviour:
       type: 2
       typeString: CustomFieldType_Boolean
     - title: Display Name
-      value: MARK
+      value: Marcus
       type: 0
       typeString: CustomFieldType_Text
     portrait: {fileID: 0}
-    spritePortrait: {fileID: 21300000, guid: 2ad73a99e4ffd2a4583517e7527625b3, type: 3}
+    spritePortrait: {fileID: 21300000, guid: a4d65ad2628f3cc46aac757fcebd8867, type: 3}
     alternatePortraits: []
     spritePortraits: []
   - id: 4
@@ -2138,7 +2138,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 510
-        y: 184
+        y: 183.31506
         width: 160
         height: 30
     - id: 2
@@ -3394,7 +3394,7 @@ MonoBehaviour:
   - id: 8
     fields:
     - title: Title
-      value: Marcus/First Dialogue
+      value: Marcus/TorchQuestInitial
       type: 0
       typeString: 
     - title: Description
@@ -5383,7 +5383,7 @@ MonoBehaviour:
         width: 234
         height: 585
       color: {r: 1, g: 1, b: 1, a: 0.5}
-    canvasScrollPosition: {x: 86.48262, y: 818.4093}
+    canvasScrollPosition: {x: 110.89099, y: 63.366272}
     canvasZoom: 1.010001
   - id: 9
     fields:
@@ -6053,8 +6053,8 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: L-Click to use your sword! It's not very effective for damage here,
-          but it can stun your foes.
+        value: L-Click to use your sword! It's fast and does great damage, but has
+          a short range!
         type: 0
         typeString: 
       - title: Sequence
@@ -6103,8 +6103,8 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: R-Click to use your spear! It has good range and inflicts a good deal
-          of damage.
+        value: R-Click to use your spear! It has good range, but is slower and does
+          less damage!
         type: 0
         typeString: 
       - title: Sequence
@@ -6175,7 +6175,7 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 604
+        x: 605
         y: 481
         width: 160
         height: 30
@@ -6251,7 +6251,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: Practice fighting on me! Test out the range of your weapons!
+        value: Practice fighting on me! Test out the range of your steel!
         type: 0
         typeString: 
       - title: Sequence
@@ -6278,7 +6278,7 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 183, y: 0}
+    canvasScrollPosition: {x: 0, y: 0}
     canvasZoom: 1
   - id: 12
     fields:
@@ -7029,7 +7029,7 @@ MonoBehaviour:
       userScript: 'Variable["Player.currentForm"] = "GHOST";
 
         Variable["RespawnAlertMessage"]
-        = "You coalesce from the edges of the air, cloaked in a verdant shroud."'
+        = "You coalesce from the edges of the air, cloaked in a azure shroud."'
       onExecute:
         m_PersistentCalls:
           m_Calls: []
@@ -8397,6 +8397,157 @@ MonoBehaviour:
     entryGroups: []
     canvasScrollPosition: {x: 1.0308838, y: 1.0309143}
     canvasZoom: 0.97
+  - id: 16
+    fields:
+    - title: Title
+      value: Marcus/Guide
+      type: 0
+      typeString: 
+    - title: Description
+      value: 
+      type: 0
+      typeString: 
+    - title: Actor
+      value: 3
+      type: 5
+      typeString: CustomFieldType_Actor
+    - title: Conversant
+      value: 1
+      type: 5
+      typeString: CustomFieldType_Actor
+    overrideSettings:
+      useOverrides: 0
+      overrideSubtitleSettings: 0
+      showNPCSubtitlesDuringLine: 1
+      showNPCSubtitlesWithResponses: 1
+      showPCSubtitlesDuringLine: 0
+      skipPCSubtitleAfterResponseMenu: 0
+      subtitleCharsPerSecond: 30
+      minSubtitleSeconds: 2
+      continueButton: 0
+      overrideSequenceSettings: 0
+      defaultSequence: 
+      defaultPlayerSequence: 
+      defaultResponseMenuSequence: 
+      overrideInputSettings: 0
+      alwaysForceResponseMenu: 1
+      includeInvalidEntries: 0
+      responseTimeout: 0
+      cancelSubtitle:
+        key: 27
+        buttonName: 
+      cancelConversation:
+        key: 27
+        buttonName: 
+    nodeColor: 
+    dialogueEntries:
+    - id: 0
+      fields:
+      - title: Title
+        value: START
+        type: 0
+        typeString: 
+      - title: Description
+        value: 
+        type: 0
+        typeString: 
+      - title: Actor
+        value: 3
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: 
+      - title: Dialogue Text
+        value: 
+        type: 0
+        typeString: 
+      - title: Sequence
+        value: None()
+        type: 0
+        typeString: 
+      conversationID: 16
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 16
+        originDialogueID: 0
+        destinationConversationID: 16
+        destinationDialogueID: 1
+        isConnector: 0
+        priority: 2
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 241
+        y: 63
+        width: 160
+        height: 30
+    - id: 1
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: 
+      - title: Description
+        value: 
+        type: 0
+        typeString: 
+      - title: Actor
+        value: 3
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: 
+      - title: Dialogue Text
+        value: 
+        type: 0
+        typeString: 
+      - title: Sequence
+        value: 
+        type: 0
+        typeString: 
+      conversationID: 16
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks: []
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 257
+        y: 241
+        width: 160
+        height: 30
+    entryGroups: []
+    canvasScrollPosition: {x: 0, y: 0}
+    canvasZoom: 1
   syncInfo:
     syncActors: 0
     syncItems: 0
