@@ -56,11 +56,11 @@ public struct RaceStatus
 }
 
 public static class RaceConfig{
-    public static RaceStatus BONE = new RaceStatus("BONE", RACE.BONE, 0.8f, 2.0f, 1.5f, Color.blue);
-    public static RaceStatus GHOST = new RaceStatus("GHOST", RACE.GHOST, 1.5f, 0.8f, 1.8f, Color.green);
-    public static RaceStatus DEMON = new RaceStatus("DEMON", RACE.DEMON, 2.0f, 1.5f, 0.8f, Color.red);
+    public static RaceStatus BONE = new RaceStatus("BONE", RACE.BONE, 0.8f, 2.0f, 1.5f, Color.white);
+    public static RaceStatus GHOST = new RaceStatus("GHOST", RACE.GHOST, 1.5f, 1.0f, 1.8f, Color.blue);
+    public static RaceStatus DEMON = new RaceStatus("DEMON", RACE.DEMON, 2.0f, 1.5f, 1.1f, Color.red);
     public static RaceStatus VOID = new RaceStatus("VOID", RACE.VOID, 2.0f, 2.0f, 1.8f, Color.magenta);
-    public static RaceStatus MORTAL = new RaceStatus("MORTAL", RACE.MORTAL, 1.0f, 1.0f, 1.0f, Color.white);
+    public static RaceStatus MORTAL = new RaceStatus("MORTAL", RACE.MORTAL, 1.0f, 1.0f, 1.0f, Color.green);
 
     public static RaceStatus GetRaceStatus(RACE race)
     {
