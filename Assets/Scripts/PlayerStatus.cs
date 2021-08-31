@@ -82,12 +82,6 @@ public class PlayerStatus : MonoBehaviour
         invulnerable = value;
     }
 
-    public void SetInvulnerableTemporarily(float time)
-    {
-        //invulnerableRoutine = StartCoroutine(TemporaryInvulnerability(time));
-    }
-
-
     public void SetClass(CLASS newClass){
         if (newClass != currentStatus.jobClass)
         {
