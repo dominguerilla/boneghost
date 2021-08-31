@@ -7029,8 +7029,7 @@ MonoBehaviour:
       userScript: 'Variable["Player.currentForm"] = "GHOST";
 
         Variable["RespawnAlertMessage"]
-        = "Your form coalesces from the edges of the air as a shroud appears to cloak
-        you."'
+        = "You coalesce from the edges of the air, cloaked in a verdant shroud."'
       onExecute:
         m_PersistentCalls:
           m_Calls: []
@@ -8336,7 +8335,7 @@ MonoBehaviour:
       userScript: 'Variable["Player.currentForm"] = "DEMON";
 
         Variable["RespawnAlertMessage"]
-        = "Your form claws its way out of the ground, debris shooting all around."'
+        = "You claw out of the ground, debris shooting around you."'
       onExecute:
         m_PersistentCalls:
           m_Calls: []
