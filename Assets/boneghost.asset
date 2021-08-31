@@ -375,6 +375,34 @@ MonoBehaviour:
       value: Whether or not Prometheus has already told the player to fuck off.
       type: 0
       typeString: 
+  - id: 14
+    fields:
+    - title: Name
+      value: Argos.hasDied
+      type: 0
+      typeString: 
+    - title: Initial Value
+      value: false
+      type: 2
+      typeString: CustomFieldType_Boolean
+    - title: Description
+      value: 
+      type: 0
+      typeString: 
+  - id: 15
+    fields:
+    - title: Name
+      value: Prometheus.hasDied
+      type: 0
+      typeString: 
+    - title: Initial Value
+      value: false
+      type: 2
+      typeString: CustomFieldType_Boolean
+    - title: Description
+      value: 
+      type: 0
+      typeString: 
   conversations:
   - id: 1
     fields:
