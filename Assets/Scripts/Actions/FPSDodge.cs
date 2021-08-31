@@ -63,6 +63,7 @@ namespace Mango.Actions
             isCoolingDown = true;
             Vector3 moveDirection = movementControl.GetMovementVector();
             float ctr = 0;
+            if (dodgeCooldownBar) dodgeCooldownBar.ResetAndFillImage(dodgeCooldown + dodgeTime);
             while (ctr < dodgeTime)
             {
                 controller.Move(moveDirection * dodgeSpeed * Time.deltaTime);
@@ -71,7 +72,6 @@ namespace Mango.Actions
             }
             // dumb hack I have to do so I can call the StopDodging() function because CallbackContexts aren't nullable
             StopDodging(new InputAction.CallbackContext());
-            if (dodgeCooldownBar) dodgeCooldownBar.ResetAndFillImage(dodgeCooldown);
             yield return new WaitForSeconds(dodgeCooldown);
             isCoolingDown = false;
         }
