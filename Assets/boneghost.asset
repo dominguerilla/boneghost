@@ -7029,7 +7029,7 @@ MonoBehaviour:
       userScript: 'Variable["Player.currentForm"] = "GHOST";
 
         Variable["RespawnAlertMessage"]
-        = "You coalesce from the edges of the air, cloaked in a verdant shroud."'
+        = "You coalesce from the edges of the air, cloaked in a azure shroud."'
       onExecute:
         m_PersistentCalls:
           m_Calls: []
