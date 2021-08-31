@@ -10,6 +10,15 @@ public class ImageFiller : MonoBehaviour
     [SerializeField] Image targetImage;
 
     Coroutine fillRoutine;
+    Color originalColor;
+
+    private void Start()
+    {
+        if (targetImage)
+        {
+            originalColor = targetImage.color;
+        }
+    }
     public void ResetAndFillImage(float fillTime)
     {
         if(targetImage.isActiveAndEnabled) fillRoutine = StartCoroutine(ResetAndFill(fillTime));
@@ -18,7 +27,6 @@ public class ImageFiller : MonoBehaviour
     IEnumerator ResetAndFill(float fillTime)
     {
         float currentFillAmount = 0;
-        Color originalColor = targetImage.color;
         targetImage.fillAmount = currentFillAmount;
         targetImage.color = Color.gray;
         while (targetImage.fillAmount < 1.0f)
@@ -27,6 +35,20 @@ public class ImageFiller : MonoBehaviour
             targetImage.fillAmount = currentFillAmount / fillTime;
             yield return new WaitForEndOfFrame();
         }
-        targetImage.color = originalColor;
+        ResetImage();
+    }
+
+    void ResetImage()
+    {
+        if (targetImage)
+        {
+            targetImage.color = originalColor;
+            targetImage.fillAmount = 1.0f;
+        }
+    }
+
+    private void OnDisable()
+    {
+        ResetImage();
     }
 }
