@@ -12,7 +12,7 @@ public class ImageFiller : MonoBehaviour
     Coroutine fillRoutine;
     public void ResetAndFillImage(float fillTime)
     {
-        fillRoutine = StartCoroutine(ResetAndFill(fillTime));
+        if(targetImage.isActiveAndEnabled) fillRoutine = StartCoroutine(ResetAndFill(fillTime));
     }
 
     IEnumerator ResetAndFill(float fillTime)
