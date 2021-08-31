@@ -35,7 +35,7 @@ public class StatusUpdater : MonoBehaviour
                 characterPortrait.sprite = boneForm;
                 break;
             default:
-                Debug.LogError($"No character portrait set for race {race.ToString()}");
+                Debug.LogError($"No character portrait set for race {race}");
                 characterPortrait.sprite = boneForm;
                 break;
         }
