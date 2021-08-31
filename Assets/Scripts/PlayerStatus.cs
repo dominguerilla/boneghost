@@ -48,7 +48,7 @@ public class PlayerStatus : MonoBehaviour
             isInventoryInitialized = inventory.isInitialized;
             yield return new WaitForEndOfFrame();
         }
-        SetRaceOnStart(startingRace);
+        //SetRaceOnStart(startingRace);
         isInitialized = true;
         
     }

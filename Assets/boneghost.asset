@@ -325,6 +325,20 @@ MonoBehaviour:
       value: Whether or not Argos has already told the player to fuck off.
       type: 0
       typeString: 
+  - id: 12
+    fields:
+    - title: Name
+      value: Player.currentForm
+      type: 0
+      typeString: 
+    - title: Initial Value
+      value: BONE
+      type: 0
+      typeString: CustomFieldType_Text
+    - title: Description
+      value: The player's current form.
+      type: 0
+      typeString: 
   conversations:
   - id: 1
     fields:
@@ -6831,9 +6845,15 @@ MonoBehaviour:
       delaySimStatus: 0
       falseConditionAction: Block
       conditionPriority: 2
-      outgoingLinks: []
+      outgoingLinks:
+      - originConversationID: 13
+        originDialogueID: 6
+        destinationConversationID: 13
+        destinationDialogueID: 12
+        isConnector: 0
+        priority: 2
       conditionsString: 
-      userScript: 
+      userScript: Variable["Player.currentForm"] = "GHOST"
       onExecute:
         m_PersistentCalls:
           m_Calls: []
@@ -7120,9 +7140,58 @@ MonoBehaviour:
         y: 1118.9724
         width: 160
         height: 30
+    - id: 12
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: 
+      - title: Description
+        value: 
+        type: 0
+        typeString: 
+      - title: Actor
+        value: -1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: -1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: 
+      - title: Dialogue Text
+        value: '[You are now a GHOST. (HIGH RANGE, LOW SPEED)]'
+        type: 0
+        typeString: 
+      - title: Sequence
+        value: 
+        type: 0
+        typeString: 
+      conversationID: 13
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks: []
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 232.43256
+        y: 1336.5706
+        width: 160
+        height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 5.154663, y: 441.20413}
-    canvasZoom: 0.97
+    canvasScrollPosition: {x: 0, y: 762.8906}
+    canvasZoom: 1.06
   syncInfo:
     syncActors: 0
     syncItems: 0
