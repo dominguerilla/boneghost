@@ -697,9 +697,12 @@ MonoBehaviour:
   onUpgrade:
     m_PersistentCalls:
       m_Calls: []
+  onStatusApplied:
+    m_PersistentCalls:
+      m_Calls: []
   soundDelay: 0.2
   baseAttackCooldown: 0.5
-  baseAttackRange: 3
+  baseAttackRange: 4
   projectileSpawnOffset: {x: 0, y: -0.5, z: 0}
   projectilePool: {fileID: 1774832627}
 --- !u!82 &1174456694

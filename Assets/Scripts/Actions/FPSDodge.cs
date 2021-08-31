@@ -15,6 +15,8 @@ namespace Mango.Actions
         [SerializeField] float dodgeSpeed = 5f;
         [SerializeField] float dodgeTime = 0.125f;
         [SerializeField] float dodgeCooldown = 1.0f;
+        [Tooltip("If specified, starts updating the dodge stamina bar image's fill amount gradually.")]
+        [SerializeField] ImageFiller dodgeCooldownBar;
         public UnityEvent onDodgeStart = new UnityEvent();
         public UnityEvent onDodgeEnd = new UnityEvent();
 
@@ -61,6 +63,7 @@ namespace Mango.Actions
             isCoolingDown = true;
             Vector3 moveDirection = movementControl.GetMovementVector();
             float ctr = 0;
+            if (dodgeCooldownBar) dodgeCooldownBar.ResetAndFillImage(dodgeCooldown + dodgeTime);
             while (ctr < dodgeTime)
             {
                 controller.Move(moveDirection * dodgeSpeed * Time.deltaTime);

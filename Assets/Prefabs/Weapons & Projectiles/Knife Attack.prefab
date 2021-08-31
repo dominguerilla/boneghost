@@ -1068,7 +1068,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  baseDamage: 0.5
+  baseDamage: 1
   baseFlightSpeed: 12
   baseLifetime: 2
   maxNumberOfEntitiesDamaged: 1

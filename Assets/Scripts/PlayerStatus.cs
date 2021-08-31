@@ -27,6 +27,7 @@ public class PlayerStatus : MonoBehaviour
     Damageable hitNotifier;
     bool invulnerable = false;
     Status currentStatus = new Status(RaceConfig.MORTAL, CLASS.NONE);
+    Coroutine invulnerableRoutine;
 
     void Awake()
     {
@@ -47,7 +48,7 @@ public class PlayerStatus : MonoBehaviour
             isInventoryInitialized = inventory.isInitialized;
             yield return new WaitForEndOfFrame();
         }
-        SetRaceOnStart(startingRace);
+        //SetRaceOnStart(startingRace);
         isInitialized = true;
         
     }
@@ -71,9 +72,9 @@ public class PlayerStatus : MonoBehaviour
     IEnumerator CooldownHit(Projectile projectile)
     {
         CustomEvent.Trigger(this.gameObject, "OnProjectileHit", projectile);
-        invulnerable = true;
+        SetInvulnerable(true);
         yield return new WaitForSeconds(cooldownBetweenHits);
-        invulnerable = false;
+        SetInvulnerable(false);
     }
 
     public void SetInvulnerable(bool value)
