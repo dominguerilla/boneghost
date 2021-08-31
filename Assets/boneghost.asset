@@ -2138,7 +2138,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 510
-        y: 184
+        y: 183.31506
         width: 160
         height: 30
     - id: 2
@@ -6053,8 +6053,8 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: L-Click to use your sword! It's not very effective for damage here,
-          but it can stun your foes.
+        value: L-Click to use your sword! It's fast and does great damage, but has
+          a short range!
         type: 0
         typeString: 
       - title: Sequence
@@ -6103,8 +6103,8 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: R-Click to use your spear! It has good range and inflicts a good deal
-          of damage.
+        value: R-Click to use your spear! It has good range, but is slower and does
+          less damage!
         type: 0
         typeString: 
       - title: Sequence
@@ -6175,7 +6175,7 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 604
+        x: 605
         y: 481
         width: 160
         height: 30
@@ -6251,7 +6251,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: Practice fighting on me! Test out the range of your weapons!
+        value: Practice fighting on me! Test out the range of your steel!
         type: 0
         typeString: 
       - title: Sequence
@@ -6278,7 +6278,7 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 183, y: 0}
+    canvasScrollPosition: {x: 0, y: 0}
     canvasZoom: 1
   - id: 12
     fields:

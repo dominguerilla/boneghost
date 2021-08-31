@@ -131,7 +131,7 @@ MonoBehaviour:
       type: 2
       typeString: CustomFieldType_Boolean
     portrait: {fileID: 0}
-    spritePortrait: {fileID: 21300000, guid: 7fd29a2172f89a04cb7ef5e9b66d21eb, type: 3}
+    spritePortrait: {fileID: 21300000, guid: 3842fa1ab2c0da245b513d6f6ecc1268, type: 3}
     alternatePortraits: []
     spritePortraits: []
   - id: 5
@@ -256,7 +256,7 @@ MonoBehaviour:
       type: 0
       typeString: 
     - title: Initial Value
-      value: YOU AWAKEN ON THE COLD STONE FLOOR
+      value: You rise from the ground as your bones rattle back into place.
       type: 0
       typeString: CustomFieldType_Text
     - title: Description
@@ -373,6 +373,34 @@ MonoBehaviour:
       typeString: CustomFieldType_Boolean
     - title: Description
       value: Whether or not Prometheus has already told the player to fuck off.
+      type: 0
+      typeString: 
+  - id: 14
+    fields:
+    - title: Name
+      value: Argos.hasDied
+      type: 0
+      typeString: 
+    - title: Initial Value
+      value: False
+      type: 2
+      typeString: CustomFieldType_Boolean
+    - title: Description
+      value: 
+      type: 0
+      typeString: 
+  - id: 15
+    fields:
+    - title: Name
+      value: Prometheus.hasDied
+      type: 0
+      typeString: 
+    - title: Initial Value
+      value: False
+      type: 2
+      typeString: CustomFieldType_Boolean
+    - title: Description
+      value: 
       type: 0
       typeString: 
   conversations:
@@ -2077,8 +2105,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: You feel yourself sinking into the shadows of the floor, thousands
-          of hands pulling you into the darkness.
+        value: "You are falling through endless darkness for what feels like ages.\r"
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
@@ -2100,7 +2127,7 @@ MonoBehaviour:
       - originConversationID: 4
         originDialogueID: 1
         destinationConversationID: 4
-        destinationDialogueID: 2
+        destinationDialogueID: 5
         isConnector: 0
         priority: 2
       conditionsString: 
@@ -2137,8 +2164,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: You open your eyes and find yourself standing in the midst of a dimly
-          lit crypt.
+        value: Suddenly, your eyes burst open as you get to your feet in a panic.
         type: 0
         typeString: 
       - title: Sequence
@@ -2160,61 +2186,6 @@ MonoBehaviour:
       - originConversationID: 4
         originDialogueID: 2
         destinationConversationID: 4
-        destinationDialogueID: 3
-        isConnector: 0
-        priority: 2
-      conditionsString: 
-      userScript: 
-      onExecute:
-        m_PersistentCalls:
-          m_Calls: []
-      canvasRect:
-        serializedVersion: 2
-        x: 513
-        y: 262
-        width: 160
-        height: 30
-    - id: 3
-      fields:
-      - title: Title
-        value: 
-        type: 0
-        typeString: 
-      - title: Description
-        value: 
-        type: 0
-        typeString: 
-      - title: Actor
-        value: -1
-        type: 5
-        typeString: CustomFieldType_Actor
-      - title: Conversant
-        value: 1
-        type: 5
-        typeString: CustomFieldType_Actor
-      - title: Menu Text
-        value: 
-        type: 0
-        typeString: 
-      - title: Dialogue Text
-        value: Skeletons and spirits meander listlessly through the dusty halls.
-        type: 0
-        typeString: 
-      - title: Sequence
-        value: 
-        type: 0
-        typeString: 
-      conversationID: 4
-      isRoot: 0
-      isGroup: 0
-      nodeColor: 
-      delaySimStatus: 0
-      falseConditionAction: Block
-      conditionPriority: 2
-      outgoingLinks:
-      - originConversationID: 4
-        originDialogueID: 3
-        destinationConversationID: 4
         destinationDialogueID: 4
         isConnector: 0
         priority: 2
@@ -2225,8 +2196,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 499
-        y: 329
+        x: 515.05475
+        y: 334.6027
         width: 160
         height: 30
     - id: 4
@@ -2267,6 +2238,117 @@ MonoBehaviour:
       delaySimStatus: 0
       falseConditionAction: Block
       conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 4
+        originDialogueID: 4
+        destinationConversationID: 4
+        destinationDialogueID: 7
+        isConnector: 0
+        priority: 2
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 505.589
+        y: 400.3699
+        width: 160
+        height: 30
+    - id: 5
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: 
+      - title: Description
+        value: 
+        type: 0
+        typeString: 
+      - title: Actor
+        value: -1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: 
+      - title: Dialogue Text
+        value: "You feel as though every part of your body is burning in searing
+          flames, although you can't see it.\r"
+        type: 0
+        typeString: 
+      - title: Sequence
+        value: 
+        type: 0
+        typeString: 
+      conversationID: 4
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 4
+        originDialogueID: 5
+        destinationConversationID: 4
+        destinationDialogueID: 2
+        isConnector: 0
+        priority: 2
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 514.7945
+        y: 249.75339
+        width: 160
+        height: 30
+    - id: 6
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: 
+      - title: Description
+        value: 
+        type: 0
+        typeString: 
+      - title: Actor
+        value: -1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: 
+      - title: Dialogue Text
+        value: "Which of them holds the key to escaping this place?\r"
+        type: 0
+        typeString: 
+      - title: Sequence
+        value: 
+        type: 0
+        typeString: 
+      conversationID: 4
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
       outgoingLinks: []
       conditionsString: 
       userScript: 
@@ -2275,8 +2357,63 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 496
-        y: 399
+        x: 498.05475
+        y: 528.45215
+        width: 160
+        height: 30
+    - id: 7
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: 
+      - title: Description
+        value: 
+        type: 0
+        typeString: 
+      - title: Actor
+        value: -1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: 
+      - title: Dialogue Text
+        value: "Before you is a crypt of wandering spirits patrolling to and fro.\r"
+        type: 0
+        typeString: 
+      - title: Sequence
+        value: 
+        type: 0
+        typeString: 
+      conversationID: 4
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 4
+        originDialogueID: 7
+        destinationConversationID: 4
+        destinationDialogueID: 6
+        isConnector: 0
+        priority: 2
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 508.32874
+        y: 472.2877
         width: 160
         height: 30
     entryGroups: []
@@ -6154,7 +6291,7 @@ MonoBehaviour:
       type: 0
       typeString: 
     - title: Actor
-      value: -1
+      value: 1
       type: 5
       typeString: CustomFieldType_Actor
     - title: Conversant
@@ -6198,11 +6335,11 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Actor
-        value: -1
+        value: 1
         type: 5
         typeString: CustomFieldType_Actor
       - title: Conversant
-        value: -1
+        value: 1
         type: 5
         typeString: CustomFieldType_Actor
       - title: Menu Text
@@ -6257,7 +6394,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Actor
       - title: Conversant
-        value: -1
+        value: 1
         type: 0
         typeString: CustomFieldType_Actor
       - title: Menu Text
@@ -6312,7 +6449,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Actor
       - title: Conversant
-        value: -1
+        value: 1
         type: 0
         typeString: CustomFieldType_Actor
       - title: Menu Text
@@ -6364,7 +6501,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Actor
-        value: -1
+        value: 4
         type: 5
         typeString: CustomFieldType_Actor
       - title: Conversant
@@ -6424,7 +6561,7 @@ MonoBehaviour:
         type: 5
         typeString: CustomFieldType_Actor
       - title: Conversant
-        value: -1
+        value: 1
         type: 5
         typeString: CustomFieldType_Actor
       - title: Menu Text
@@ -6454,8 +6591,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 302
-        y: 565
+        x: 300
+        y: 564
         width: 160
         height: 30
     entryGroups: []
@@ -6889,7 +7026,10 @@ MonoBehaviour:
         isConnector: 0
         priority: 2
       conditionsString: 
-      userScript: Variable["Player.currentForm"] = "GHOST"
+      userScript: 'Variable["Player.currentForm"] = "GHOST";
+
+        Variable["RespawnAlertMessage"]
+        = "You coalesce from the edges of the air, cloaked in a verdant shroud."'
       onExecute:
         m_PersistentCalls:
           m_Calls: []
@@ -7226,7 +7366,7 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 0, y: 762.8906}
+    canvasScrollPosition: {x: 0.9433594, y: 557.2304}
     canvasZoom: 1.06
   - id: 14
     fields:
@@ -8192,14 +8332,17 @@ MonoBehaviour:
         isConnector: 0
         priority: 2
       conditionsString: 
-      userScript: Variable["Player.currentForm"] = "DEMON"
+      userScript: 'Variable["Player.currentForm"] = "DEMON";
+
+        Variable["RespawnAlertMessage"]
+        = "You claw out of the ground, debris shooting around you."'
       onExecute:
         m_PersistentCalls:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 33
-        y: 524
+        x: 38.68181
+        y: 522.86365
         width: 160
         height: 30
     - id: 10
@@ -8252,8 +8395,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 0, y: 0}
-    canvasZoom: 0.8800001
+    canvasScrollPosition: {x: 1.0308838, y: 1.0309143}
+    canvasZoom: 0.97
   syncInfo:
     syncActors: 0
     syncItems: 0
