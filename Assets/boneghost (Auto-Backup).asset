@@ -2090,7 +2090,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Sequence
-        value: 
+        value: required Fade(stay, 0.1)
         type: 0
         typeString: 
       conversationID: 4
@@ -2259,8 +2259,8 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: '[Your hands, which were empty before, now tightly grip the hilt of
-          a sword and a spear.]'
+        value: "[You check your person, finding only a small satchel carrying a smooth
+          stone, a sword and a spear.\r]"
         type: 0
         typeString: 
       - title: Sequence
@@ -2453,7 +2453,7 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 0, y: 36.42946}
+    canvasScrollPosition: {x: 190.41089, y: 67.936295}
     canvasZoom: 1.4600005
   - id: 5
     fields:
@@ -8459,7 +8459,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: You are now a DEMON. (HIGH DAMAGE, LOW RANGE)
+        value: '[You are now a DEMON. (HIGH DAMAGE, LOW RANGE)]'
         type: 0
         typeString: 
       - title: Sequence
@@ -9425,7 +9425,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: Wisdom comes from pain.
+        value: Wisdom comes from pain. Prepare to be greatly enwisened.
         type: 0
         typeString: 
       - title: Sequence
@@ -9443,61 +9443,6 @@ MonoBehaviour:
       - originConversationID: 17
         originDialogueID: 6
         destinationConversationID: 17
-        destinationDialogueID: 7
-        isConnector: 0
-        priority: 2
-      conditionsString: 
-      userScript: 
-      onExecute:
-        m_PersistentCalls:
-          m_Calls: []
-      canvasRect:
-        serializedVersion: 2
-        x: 41
-        y: 381
-        width: 160
-        height: 30
-    - id: 7
-      fields:
-      - title: Title
-        value: 
-        type: 0
-        typeString: 
-      - title: Description
-        value: 
-        type: 0
-        typeString: 
-      - title: Actor
-        value: 6
-        type: 5
-        typeString: CustomFieldType_Actor
-      - title: Conversant
-        value: 6
-        type: 5
-        typeString: CustomFieldType_Actor
-      - title: Menu Text
-        value: 
-        type: 0
-        typeString: 
-      - title: Dialogue Text
-        value: Prepare to be greatly enwisened.
-        type: 0
-        typeString: 
-      - title: Sequence
-        value: 
-        type: 0
-        typeString: 
-      conversationID: 17
-      isRoot: 0
-      isGroup: 0
-      nodeColor: 
-      delaySimStatus: 0
-      falseConditionAction: Block
-      conditionPriority: 2
-      outgoingLinks:
-      - originConversationID: 17
-        originDialogueID: 7
-        destinationConversationID: 17
         destinationDialogueID: 8
         isConnector: 0
         priority: 2
@@ -9509,7 +9454,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 41
-        y: 431
+        y: 381
         width: 160
         height: 30
     - id: 8
@@ -9797,7 +9742,8 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: Fool! There is no escape.
+        value: Fool! There is no escape. You will not even be able to savor your
+          moment of victo-
         type: 0
         typeString: 
       - title: Sequence
@@ -9815,61 +9761,6 @@ MonoBehaviour:
       - originConversationID: 18
         originDialogueID: 3
         destinationConversationID: 18
-        destinationDialogueID: 4
-        isConnector: 0
-        priority: 2
-      conditionsString: 
-      userScript: 
-      onExecute:
-        m_PersistentCalls:
-          m_Calls: []
-      canvasRect:
-        serializedVersion: 2
-        x: 30
-        y: 169
-        width: 160
-        height: 30
-    - id: 4
-      fields:
-      - title: Title
-        value: 
-        type: 0
-        typeString: 
-      - title: Description
-        value: 
-        type: 0
-        typeString: 
-      - title: Actor
-        value: 6
-        type: 5
-        typeString: CustomFieldType_Actor
-      - title: Conversant
-        value: 1
-        type: 5
-        typeString: CustomFieldType_Actor
-      - title: Menu Text
-        value: 
-        type: 0
-        typeString: 
-      - title: Dialogue Text
-        value: You will not even be able to savor your moment of victo-
-        type: 0
-        typeString: 
-      - title: Sequence
-        value: 
-        type: 0
-        typeString: 
-      conversationID: 18
-      isRoot: 0
-      isGroup: 0
-      nodeColor: 
-      delaySimStatus: 0
-      falseConditionAction: Block
-      conditionPriority: 2
-      outgoingLinks:
-      - originConversationID: 18
-        originDialogueID: 4
-        destinationConversationID: 18
         destinationDialogueID: 5
         isConnector: 0
         priority: 2
@@ -9880,8 +9771,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 30
-        y: 220
+        x: 28
+        y: 168
         width: 160
         height: 30
     - id: 5
@@ -9911,7 +9802,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Sequence
-        value: Fade(stay)
+        value: Fade(stay,0.1)
         type: 0
         typeString: 
       conversationID: 18
@@ -9936,7 +9827,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 30
-        y: 270
+        y: 269
         width: 160
         height: 30
     - id: 6
@@ -10243,7 +10134,9 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Sequence
-        value: 
+        value: 'Fade(out,0.1);
+
+          Continue();'
         type: 0
         typeString: 
       - title: EventGuid
@@ -10270,7 +10163,7 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 0, y: 0}
+    canvasScrollPosition: {x: 2, y: 0}
     canvasZoom: 1
   syncInfo:
     syncActors: 0

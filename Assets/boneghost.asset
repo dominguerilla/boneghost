@@ -2259,8 +2259,8 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: '[Your hands, which were empty before, now tightly grip the hilt of
-          a sword and a spear.]'
+        value: "[You check your person, finding only a small satchel carrying a smooth
+          stone, a sword and a spear.\r]"
         type: 0
         typeString: 
       - title: Sequence
@@ -3078,7 +3078,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: You dust off the key and place it in one of your storage orifices.
+        value: You dust off the key and place it in your satchel.
         type: 0
         typeString: 
       - title: Sequence
@@ -7120,7 +7120,7 @@ MonoBehaviour:
       userScript: 'Variable["Player.currentForm"] = "GHOST";
 
         Variable["RespawnAlertMessage"]
-        = "You coalesce from the edges of the air, cloaked in a azure shroud."'
+        = "You coalesce from the edges of the air, cloaked in an azure shroud."'
       onExecute:
         m_PersistentCalls:
           m_Calls: []
@@ -7748,7 +7748,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: Let us see if you can provide I, Prometheus, a modicum of challenge.
+        value: I, Prometheus, will permit your challenge.  Do not disappoint.
         type: 0
         typeString: 
       - title: Sequence
