@@ -2,6 +2,8 @@
 This repository is the source code to two games: [DUST'S ECHO](https://smokyadobo.itch.io/dusts-echo) and [TARTARUS](https://smokyadobo.itch.io/tartarus).
 
 ## TARTARUS Credits
+[TARTARUS Cover](tartarus_cover.png)
+
 Dialogue by [F2AI](https://www.reddit.com/user/f2ai).
 
 Character & UI portraits by Benobow.
