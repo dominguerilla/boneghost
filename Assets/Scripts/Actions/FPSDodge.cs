@@ -15,11 +15,13 @@ namespace Mango.Actions
         [SerializeField] float dodgeSpeed = 5f;
         [SerializeField] float dodgeTime = 0.125f;
         [SerializeField] float dodgeCooldown = 1.0f;
+        [Tooltip("If specified, starts updating the dodge stamina bar image's fill amount gradually.")]
+        [SerializeField] ImageFiller dodgeCooldownBar;
         public UnityEvent onDodgeStart = new UnityEvent();
         public UnityEvent onDodgeEnd = new UnityEvent();
 
         CharacterController controller;
-        bool canDodge = true;
+        bool canDodge = true, isCoolingDown = false;
         FPSMovement movementControl;
 
         private void Awake()
@@ -38,7 +40,7 @@ namespace Mango.Actions
 
         public bool CanDodge()
         {
-            return canDodge;
+            return canDodge && !isCoolingDown;
         }
 
         public void SetCanDodge(bool value)
@@ -48,19 +50,20 @@ namespace Mango.Actions
 
         void InvokeDodgeStart(InputAction.CallbackContext ctx)
         {
-            if (canDodge) onDodgeStart.Invoke();
+            if (canDodge && !isCoolingDown) onDodgeStart.Invoke();
         }
 
         void StartDodge(InputAction.CallbackContext ctx)
         {
-            if(canDodge) StartCoroutine(Dodge());
+            if(canDodge && !isCoolingDown) StartCoroutine(Dodge());
         }
 
         IEnumerator Dodge()
         {
-            canDodge = false;
+            isCoolingDown = true;
             Vector3 moveDirection = movementControl.GetMovementVector();
             float ctr = 0;
+            if (dodgeCooldownBar) dodgeCooldownBar.ResetAndFillImage(dodgeCooldown + dodgeTime);
             while (ctr < dodgeTime)
             {
                 controller.Move(moveDirection * dodgeSpeed * Time.deltaTime);
@@ -70,7 +73,7 @@ namespace Mango.Actions
             // dumb hack I have to do so I can call the StopDodging() function because CallbackContexts aren't nullable
             StopDodging(new InputAction.CallbackContext());
             yield return new WaitForSeconds(dodgeCooldown);
-            canDodge = true;
+            isCoolingDown = false;
         }
 
         void StopDodging(InputAction.CallbackContext ctx) {

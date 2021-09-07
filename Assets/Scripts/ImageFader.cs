@@ -7,10 +7,19 @@ using UnityEngine.UI;
 public class ImageFader : MonoBehaviour
 {
     public Image image;
+    [Range(0,1)]
+    public float startingAlpha;
 
-    public void Awake()
+    private void Awake()
     {
         if (!image) image = GetComponent<Image>();
+    }
+
+    private void Start()
+    {
+        Color color = image.color;
+        color.a = startingAlpha;
+        image.color = color;
     }
 
     public void FadeIn(float duration)

@@ -79,13 +79,13 @@ namespace Mango.Actions
             LockCursor();
         }
 
-        private void UnlockCursor()
+        public void UnlockCursor()
         {
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.Confined;
         }
 
-        private void LockCursor()
+        public void LockCursor()
         {
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;

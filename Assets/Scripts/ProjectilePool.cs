@@ -7,28 +7,50 @@ public class ProjectilePool : MonoBehaviour
     [SerializeField] Projectile[] startingPool;
     Queue<Projectile> availablePool;
 
-    private void Start()
+    float maxDistance = 10f;
+
+    private void Awake()
     {
-        availablePool = new Queue<Projectile>(startingPool);
-        foreach (Projectile projectile in availablePool)
+        availablePool = new Queue<Projectile>();
+        foreach (Projectile projectile in startingPool)
         {
-            projectile.SetPool(this);
-            projectile.gameObject.SetActive(false);
+            AddToPool(projectile);
         }
     }
 
-    public void Launch(Vector3 origin, Quaternion orientation, float lifetime)
+    public void Launch(Vector3 origin, Quaternion rotation)
     {
         Projectile nextProjectile = GetNextProjectile();
-        if (nextProjectile) StartCoroutine(Launch(nextProjectile, origin, orientation, lifetime));
+        if (nextProjectile) StartCoroutine(Launch(nextProjectile, origin, rotation, maxDistance));
         else Debug.LogWarning($"Trying to launch projectile from empty pool { gameObject.name }!");
     }
 
-    public void Launch(Vector3 origin, Quaternion orientation)
+    public void AddToPool(Projectile projectile)
     {
-        Projectile nextProjectile = GetNextProjectile();
-        if (nextProjectile) StartCoroutine(Launch(nextProjectile, origin, orientation, nextProjectile.lifetime));
-        else Debug.LogWarning($"Trying to launch projectile from empty pool { gameObject.name }!");
+        projectile.SetPool(this);
+        projectile.gameObject.SetActive(false);
+        availablePool.Enqueue(projectile);
+    }
+
+    public void SetMaxDistance(float value)
+    {
+        this.maxDistance = value;
+    }
+
+    void ApplyColor(Projectile projectile, Color color)
+    {
+        Renderer projRenderer = projectile.GetComponentInChildren<MeshRenderer>();
+        projRenderer.material.SetColor("_Color", color);
+    }
+
+    public void ApplyStats(Status status)
+    {
+        Color color = status.raceStatus.weaponColor;
+        foreach (Projectile proj in availablePool)
+        {
+            ApplyColor(proj, color);
+            proj.SetBonusFactors(status.raceStatus.STR, status.raceStatus.DEX, status.raceStatus.INT);
+        }
     }
 
     Projectile GetNextProjectile() {
@@ -36,16 +58,9 @@ public class ProjectilePool : MonoBehaviour
         return null;
     }
 
-    IEnumerator Launch(Projectile projectile, Vector3 origin, Quaternion orientation, float lifetime)
+    IEnumerator Launch(Projectile projectile, Vector3 origin, Quaternion orientation, float maxDistance)
     {
-        Transform originalParent = projectile.transform.parent;
-        projectile.transform.parent = null;
-
         projectile.gameObject.SetActive(true);
-        yield return projectile.Launch(origin, orientation, lifetime);
-        
-        projectile.gameObject.SetActive(false);
-        projectile.transform.parent = originalParent;
-        availablePool.Enqueue(projectile);
+        yield return projectile.Launch(origin, orientation, maxDistance);
     }
 }
